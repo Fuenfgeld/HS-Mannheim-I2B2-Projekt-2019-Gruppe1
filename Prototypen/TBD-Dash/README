@@ -1,0 +1,8 @@
+1. zip-Datei herunterladen
+2. zip-Datei entpacken
+3. Dateien in PyCharm oder Editor öffnen
+
+Anmerkungen:
+- Python muss installiert sein: https://www.python.org/downloads/
+- Dash muss installiert sein: sudo pip install dash==0.42.0
+- pandas muss installiert sein: sudo pip install pandas
