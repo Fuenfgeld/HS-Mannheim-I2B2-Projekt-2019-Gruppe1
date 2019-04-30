@@ -1,8 +1,0 @@
-1. zip-Datei herunterladen
-2. zip-Datei entpacken
-3. Dateien in PyCharm oder Editor öffnen
-
-Anmerkungen:
-- python muss installiert sein: https://www.python.org/downloads/
-- django muss installiert sein: sudo pip install django
-- pandas muss installiert sein: sudo pip install pandas
