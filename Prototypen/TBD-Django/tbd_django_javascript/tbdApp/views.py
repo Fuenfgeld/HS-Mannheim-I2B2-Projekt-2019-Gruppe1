@@ -70,6 +70,3 @@ def sex(request):
             'colors': colors,
         }
     )
-
-def test(request):
-    return render
