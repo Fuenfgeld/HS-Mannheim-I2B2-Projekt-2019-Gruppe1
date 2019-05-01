@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    <title>{{ title | safe }}</title>
+</head>
+<body>
+    <div class="container">
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctx, {
+            type: 'bar',
+
+            data: {
+                labels: {{labels|safe}},
+                datasets: [{
+                    label: 'Anzahl Patienten',
+                    data: {{data|safe}},
+                    backgroundColor: {{colors|safe}}
+                }]
+            },
+            options: {
+                title: { //vom Diagramm
+                    display: true,
+                    text: "Alle Patienten",
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
