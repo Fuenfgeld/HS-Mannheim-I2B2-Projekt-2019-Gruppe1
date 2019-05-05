@@ -3,46 +3,50 @@ import dash_core_components as dcc
 import dash_html_components as html
 import psycopg2 as psycopg2
 
+# Server Connection (conn)
+host = "129.206.7.75"
+database = "i2b2"
+user = "i2b2"
+password = "demouser"
 
-dbname = "i2b2"
-hostnr = "129.206.7.75"
-
+# Connection zum Server aufbauen
 conn = psycopg2.connect(
-    host=hostnr,
-    database=dbname,
-    user="i2b2",
-    password="demouser")
+    host=host,
+    database=database,
+    user=user,
+    password=password)
 
+# Suche die Anzahl der Datensätze von Frauen
+curser = conn.cursor()
+curser.execute("SELECT sex_cd FROM i2b2demodata.patient_dimension where sex_cd='F'")
+resulta = curser.rowcount
+curser.close()
+
+# Suche die Anzahl der Datensätze von Männer
 cur = conn.cursor()
-cur.execute("SELECT count(sex_cd) FROM i2b2demodata.patient_dimension where sex_cd='F'")
-resa = cur.fetchone()
-resulta = resa[0]
+cur.execute("SELECT sex_cd from i2b2demodata.patient_dimension where sex_cd='M'")
+resultb = cur.rowcount
+cur.close()
 
-cur1 = conn.cursor()
-cur1.execute("SELECT count(sex_cd) from i2b2demodata.patient_dimension where sex_cd='M'")
-resb = cur1.fetchone()
-resultb = resb[0]
+# Suche die Anzahl der Datensätze von allen Patienten
+cur = conn.cursor()
+cur.execute("SELECT sex_cd from i2b2demodata.patient_dimension")
+resultc = cur.rowcount
+cur.close()
 
-cur2 = conn.cursor()
-cur2.execute("SELECT count(sex_cd) from i2b2demodata.patient_dimension")
-resc = cur2.fetchone()
-resultc = resc[0]
+print("Resulta",resulta)
+print("Resultb",resultb)
+print("Resultc",resultc)
 
+print("Typ von Resulta",type(resulta))
+print("Typ von Resultb",type(resultb))
+print("Typ von Resultc",type(resultc))
 
-print(type(resulta))
-print(type(resultb))
-print(type(resultc))
+conn.close()
 
-a = 10;
-print(type(a))
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-
-# rows = cur.fetchall()
-#def dbausgabe():
- #   for r in rows:
-  #      print(f"query_instance_id {r[0]}   query_master_id  {r[1]}")
 
 
 app.layout = html.Div(children=[
@@ -53,35 +57,20 @@ app.layout = html.Div(children=[
 
 
     dcc.Graph(
-        id='männer-frauen-graph',
+        id='frauen-männer-graph',
         figure={
             'data': [
-                {'x': [1, 2, 3], 'y': [resulta, resultb, resulta], 'type': 'bar', 'name': 'Frauen'},
-                {'x': [1, 2, 3], 'y': [resultc, resultc, resultb], 'type': 'bar', 'name': 'Männer'},
+                {'x': [1], 'y': [resulta], 'type': 'bar', 'name': 'Frauen'},
+                {'x': [1], 'y': [resultb], 'type': 'bar', 'name': 'Männer'},
             ],
             'layout': {
-                'title': 'Dash Männer vs Frauen Visualisieren'
+                'title': 'Frauen und Männer Vergleich'
             }
          }
-    ),
-
-
-dcc.Graph(
-        id='example-graph',
-        figure={
-            'data': [
-                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
-                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
-            ],
-            'layout': {
-                'title': 'Dash Data Visualization'
-            }
-        }
     )
-
 ])
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+   app.run_server(debug=True)
 
