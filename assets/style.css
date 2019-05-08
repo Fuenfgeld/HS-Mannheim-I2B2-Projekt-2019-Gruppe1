@@ -1,0 +1,36 @@
+.Ou{
+    size: 10%px;
+    border-color: black;
+    border-width: 3px;
+    border-style: solid;
+}
+
+.Qu H1{
+    text-align: center;
+    color: black;
+
+
+}
+
+.Ex{
+    border: solid;
+    margin-top: 10%;
+    color: blue;
+}
+.Ex H1{
+    float: left;
+    text-align: left;
+}
+
+.Er{
+    border: solid;
+    margin-top: 10%;
+   color: blue;
+}
+
+.Er H1{
+    margin-left: 50%;
+    float: left;
+    text-align: left;
+}
+
