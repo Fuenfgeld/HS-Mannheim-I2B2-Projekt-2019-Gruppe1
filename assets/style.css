@@ -1,36 +1,32 @@
-.Ou{
-    size: 10%px;
-    border-color: black;
-    border-width: 3px;
-    border-style: solid;
-}
-
-.Qu H1{
+.Div1 {
     text-align: center;
-    color: black;
-
-
-}
-
-.Ex{
+    position: absolute;
+    width: 50%;
+    height: 80%;
+    z-index: 1;
+    left: 0%;
+    top: 20%;
     border: solid;
-    margin-top: 10%;
-    color: blue;
-}
-.Ex H1{
-    float: left;
-    text-align: left;
 }
 
-.Er{
+.Div2 {
+    text-align: center;
+    position: absolute;
+    width: 50%;
+    height: 80%;
+    z-index: 1;
+    left: 50%;
+    top: 20%;
     border: solid;
-    margin-top: 10%;
-   color: blue;
 }
 
-.Er H1{
-    margin-left: 50%;
-    float: left;
-    text-align: left;
+.Div3 {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    z-index: 2;
+    left: 0%;
+    top: 0%;
+    border: solid;
 }
-
