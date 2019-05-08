@@ -1,6 +1,5 @@
-import psycopg2 as pg
 import pandas.io.sql as psql
-
+import psycopg2 as pg
 
 connection = pg.connect(user="i2b2",
                         password="demouser",
@@ -16,5 +15,6 @@ connection = pg.connect(user="i2b2",
 #
 # print('You are connected to -', record)
 
-df = psql.read_sql_query("SELECT * FROM i2b2demodata.visit_dimension", con=connection)
+dfPat = psql.read_sql_query("SELECT * FROM i2b2demodata.patient_dimension", con=connection)
+dfVis = psql.read_sql_query("SELECT * FROM i2b2demodata.visit_dimension", con=connection)
 #    ^^^^^^^^^^^^^^^^^^^  workaround to not work with cursor

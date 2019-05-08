@@ -1,4 +1,4 @@
-setTimeout(wholeFunc, 3000)  //this is heavily needed as it will load before the whole tree can be initialized
+setTimeout(wholeFunc, 1000)  //this is heavily needed as it will load before the whole tree can be initialized
 
 function wholeFunc() {
 
@@ -6,7 +6,7 @@ function wholeFunc() {
     let toggle = document.getElementsByClassName('caret');
     let i;
 
-    // alert(toggle.length);
+    alert(toggle.length);
 
     for (i = 0; i < toggle.length; i++) {
         // alert('in it');

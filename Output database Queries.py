@@ -22,7 +22,7 @@ app.layout = html.Div([
         figure={
             'data': [
                 go.Histogram(
-                    x=db.df["length_of_stay"]
+                    x=db.dfVis["length_of_stay"]
                 ),
             ],
             'layout': go.Layout(
@@ -85,10 +85,7 @@ app.layout = html.Div([
         ],
         id='tree_view_test',
     ),
-    html.Link(
-        href='Zdropdown.css',
-        rel='stylesheet'
-    )
+
 ],
     # gdc.Import(src="Zdropdown.js")
 )

@@ -1,32 +1,35 @@
-/*ul, #tree_view_sample{*/
-/*    list-style-type: none;*/
-/*}*/
-/**/
-/*.caret {*/
-/*    cursor: pointer;*/
-/*    user-select: none;*/
-/*}*/
-/**/
-/*.caret::before {*/
-/*    content: "\25B6";*/
-/*    color: black;*/
-/*}*/
-/**/
-/*.caret-down::before{*/
-/*    transform: rotate(90deg);*/
-/*}*/
-/**/
-/*.nested{*/
-/*    display: none;*/
-/*}*/
-/**/
-/*.active{*/
-/*    display: block;*/
-/*}*/
-/**/
-/*H1{*/
-/*    color: blueviolet;*/
-/*}*/
+/*ul, #tree_view_sample{
+    list-style-type: none;
+}
+
+.caret {
+    cursor: pointer;
+    !*user-select: none;*!
+}
+
+.caret::before {
+    content: "\25B6";
+    color: black;
+}
+
+.caret-down::before{
+    transform: rotate(90deg);
+}
+
+!*Hide the nested stuff*!
+.nested{
+    display: none;
+}
+
+!* when element calss switches to active, display the block*!
+.active{
+    display: block;
+}
+
+!* colors the header for motivation purposes, DELETE WHEN PUSHING*!
+H1{
+    color: blueviolet;
+}*/
 
 /* Remove default bullets */
 ul, #myUL {
@@ -66,4 +69,8 @@ ul, #myUL {
 /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
 .active {
     display: block;
+}
+
+.empty {
+    color: lightslategrey;
 }
