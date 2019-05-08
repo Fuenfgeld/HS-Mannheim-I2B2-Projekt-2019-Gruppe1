@@ -1,0 +1,17 @@
+html.Ul(
+    className='nested',
+    children=[
+        li.beveragesList,
+        html.Li(
+            children=[
+                html.Span(
+                    className='caret'
+                ),
+                html.Ul(
+                    className='nested',
+                    children=li.greenTeaList
+                )
+            ]
+        )
+    ]
+)
