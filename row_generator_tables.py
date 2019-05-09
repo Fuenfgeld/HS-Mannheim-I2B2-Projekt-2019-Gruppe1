@@ -1,7 +1,5 @@
 import dash_html_components as html
 
-import DB_Test as db
-
 
 # print(db.df.keys())
 # print(db.df.keys()[1])
@@ -15,7 +13,7 @@ def add_distinct_values(df):
     uniqueItems = df.unique()
     listUnique = []
     for i in range(len(uniqueItems)):
-        listUnique.append(html.Div('' + str(uniqueItems[i]) + ''))
+        listUnique.append(html.Div('' + str(uniqueItems[i]) + ' (' + str(len(df[df == uniqueItems[i]])) + ')' + ''))
     print(listUnique)
     return listUnique
 
@@ -26,7 +24,7 @@ def add_list_items(df):
     for i in range(len(listOfKeys)):
         if len(df[listOfKeys[i]].unique()) > 1:
             listOfDivElements.append(html.Div([
-                html.Span('' + listOfKeys[i] + '', className='caret'),
+                html.Span(f'{listOfKeys[i]}', className='caret'),
                 html.Ul(add_distinct_values(df[listOfKeys[i]]), className='nested'),
             ],
             ),

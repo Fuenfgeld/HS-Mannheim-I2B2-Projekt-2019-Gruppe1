@@ -2,9 +2,9 @@ import dash
 # import dash_core_components as dcc
 import dash_html_components as html
 
-import DB_Test as db  # import from the file with the database query
+import DB_Queries as db  # import from the file with the database query
 # import plotly.graph_objs as go
-import row_generator as rg
+import row_generator_tables as rg
 
 columnNames = list(db.dfPat)
 

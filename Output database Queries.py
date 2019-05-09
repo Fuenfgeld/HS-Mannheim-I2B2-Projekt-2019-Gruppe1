@@ -3,7 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 
-import DB_Test as db  # import from the file with the database query
+import DB_Queries as db  # import from the file with the database query
 
 d = dash
 app = d.Dash(
