@@ -30,3 +30,26 @@
     top: 0%;
     border: solid;
 }
+
+.StringC{
+    border: solid;
+    float: left;
+    margin-top: 2%;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+
+.String5{
+    float: left;
+    border: solid;
+    margin-top: 2%;
+    margin-left: 1%;
+}
+
+.String7{
+    float: left;
+    border: solid;
+    margin-top: 2%;
+    margin-right: 1%;
+}
