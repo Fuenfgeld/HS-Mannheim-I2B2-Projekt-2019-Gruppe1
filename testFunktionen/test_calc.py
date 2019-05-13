@@ -1,5 +1,6 @@
 import unittest
-import calc as c #zu testende files importen
+from testFunktionen import calc as c
+
 
 class TestCalc(unittest.TestCase): #unittest.TestCase muss übergeben werden
 
