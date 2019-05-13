@@ -1,4 +1,4 @@
-setTimeout(wholeFunc, 1000)  //this is heavily needed as it will load before the whole tree can be initialized
+setTimeout(wholeFunc, 10000);  //this is heavily needed as it will load before the whole tree can be initialized
 
 function wholeFunc() {
 
