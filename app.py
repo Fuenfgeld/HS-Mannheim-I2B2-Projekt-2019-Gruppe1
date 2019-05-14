@@ -5,8 +5,8 @@ import dash_html_components as html
 import sqlalchemy as sa
 import pandas as pd
 
-import FormattedSQL as fs
-import StringSQL as s
+import formattedSQL as fs
+import stringSQL as s
 
 import database as db
 engine = sa.create_engine("postgresql://i2b2:demouser@129.206.7.75:5432/i2b2")
@@ -19,12 +19,19 @@ sql2 = pd.read_sql("select * from i2b2.i2b2demodata.patient_dimension where lang
 a = len(sql2)
 print(a)
 
-sql3 = pd.read_sql("select distinct i2b2.i2b2demodata.patient_dimension.patient_num from i2b2.i2b2demodata.observation_fact "
-                   "join i2b2.i2b2metadata.icd10_icd9 on i2b2.i2b2metadata.icd10_icd9.c_basecode = i2b2.i2b2demodata.observation_fact.concept_cd "
-                   "join i2b2.i2b2demodata.patient_dimension on i2b2.i2b2demodata.observation_fact.patient_num = i2b2.i2b2demodata.patient_dimension.patient_num "
-                   "where i2b2.i2b2metadata.icd10_icd9.c_tooltip like 'Diagnoses \ Diseases of the circulatory system%%'", con=engine)
-e = len(sql3)
-print(e)
+Diag = "Diagnoses \ Diseases of the circulatory system"
+
+sql3 = pd.read_sql(f"select distinct i2b2.i2b2demodata.patient_dimension.patient_num from i2b2.i2b2demodata.observation_fact "
+                   f"join i2b2.i2b2metadata.icd10_icd9 on i2b2.i2b2metadata.icd10_icd9.c_basecode = i2b2.i2b2demodata.observation_fact.concept_cd "
+                   f"join i2b2.i2b2demodata.patient_dimension on i2b2.i2b2demodata.observation_fact.patient_num = i2b2.i2b2demodata.patient_dimension.patient_num "
+                   f"where i2b2.i2b2metadata.icd10_icd9.c_tooltip like '\{'Diag'+'%%'}\'", con=engine)
+z = len(sql3)
+print(z)
+
+
+sql4 = pd.read_sql(fs.SQLBack(s.String11,s.String22,s.String33,s.String44,s.String55,s.String66,s.String77,s.String88), con=engine)
+ä = len(sql4)
+print(ä)
 
 #curser = db.conn.cursor()
 #curser.execute(fs.SQLJoin(s.String1, s.String2, s.String3, s.String4, s.String5, s.String6, s.String7))
