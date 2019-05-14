@@ -17,6 +17,7 @@ icdFourthLevelQuery = db.get_icd_level_query_df(4)
 fourthLevelNames = icdThirdLevelQuery['name']
 fourthLevelICD = icdThirdLevelQuery['icdcode']
 
+
 def add_levels_icd():
     add_groundlevel()
 
@@ -43,8 +44,7 @@ def add_second_level(icdMetaCode):
     listSecondLevelDiv = []
 
     for i in range(len(secondLevelICD)):
-
-        if str(secondLevelICD[i]).startswith(icdMetaCode[0:7]) or secondLevelICD[i][10] in icdMetaCode[10]:
+        if str(secondLevelICD[i]).startswith(icdMetaCode[0:7]) or (secondLevelICD[i][10] in icdMetaCode[10]):
             # print(secondLevelICD[i])
             # print(icdMetaCode)
             listSecondLevelDiv.append(html.Div([
@@ -56,32 +56,35 @@ def add_second_level(icdMetaCode):
 
 def add_third_level(icdMetaCode):
     listThirdLevelDiv = []
+    i = 0
 
-    for i in range(len(thirdLevelICD)):
+    print(icdMetaCode[0:8])
 
-        if str(thirdLevelICD[i]).startswith(icdMetaCode[0:7]):
-            # print(thirdLevelICD[i])
-            # print(icdMetaCode)
-            listThirdLevelDiv.append(html.Div([
-                html.Span(f'{thirdLevelNames[i]} ({thirdLevelICD[i][6:10]})', className='caret'),
-                # html.Ul(add_fourth_level(icdMetaCode), className='nested')],
-            ]))
-
+    while str(thirdLevelICD[i]).startswith(icdMetaCode[0:8]) != True:
+        # print(thirdLevelICD[i])
+        # print(icdMetaCode)
+        listThirdLevelDiv.append(html.Div([
+            html.Span(f'{thirdLevelNames[i]} ({thirdLevelICD[i][6:10]})', className='caret'),
+            # html.Ul(add_fourth_level(icdMetaCode), className='nested')],
+        ]))
+        print(i)
+        i += 1
+    # print(listThirdLevelDiv)
     return listThirdLevelDiv
 
 
 def add_fourth_level(icdMetaCode):
     listFourthLevelDiv = []
 
-    for i in range(len(fourthLevelICD)):
-
-        if str(fourthLevelICD[i]).startswith(icdMetaCode[0:8]):
-            # print(thirdLevelICD[i])
-            # print(icdMetaCode)
-            listFourthLevelDiv.append(html.Div([
-                html.Span(f'{fourthLevelNames[i]} ({fourthLevelICD[i][7:10]})', className='caret'),
-                html.Ul('hehe boah', className='nested')],
-            ))
+    i = 0
+    while str(fourthLevelICD[i]).startswith(icdMetaCode[0:7]) or listFourthLevelDiv == []:
+        # print(fourthLevelICD[i])
+        # print(icdMetaCode)
+        listFourthLevelDiv.append(html.Div([
+            html.Span(f'{fourthLevelNames[i]} ({fourthLevelICD[i][6:10]})', className='caret'),
+            # html.Ul(add_fourth_level(icdMetaCode), className='nested')],
+        ]))
+        i += 1
 
     return listFourthLevelDiv
 
@@ -103,8 +106,6 @@ def get_icd_codes(icdCode, dataSet):
 
     # print (icdCodeList)
     return icdCodeList
-
-
 
 
 add_groundlevel()
