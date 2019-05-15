@@ -22,4 +22,3 @@ def gesamtanzahlFrauen():
                           con=engine)
     i = len(abfrage)
     return i
-
