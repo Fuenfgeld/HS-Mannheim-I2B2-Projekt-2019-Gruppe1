@@ -8,8 +8,15 @@ import plotly.graph_objs as go
 import datetime
 import pandas as pd
 import requests
+import database
+import matplotlib as mlp
+import matplotlib.pyplot as plt
 
 import psycopg2 as psycopg2
+
+import plotly.plotly as py
+import plotly.graph_objs as go
+
 
 # Server Connection (conn)
 host = "129.206.7.75"
@@ -26,6 +33,12 @@ conn = psycopg2.connect(
     password=password)
 
 # Suche die Anzahl der Datensätze von Frauen
+curserAge = conn.cursor()
+curserAge.execute("SELECT * FROM i2b2demodata.patient_dimension")
+resultAge=curserAge.rowcount
+curserAge.close()
+print(resultAge)
+
 
 curser1 = conn.cursor()
 curser1.execute("SELECT sex_cd FROM i2b2demodata.patient_dimension where sex_cd='M'")
@@ -36,10 +49,17 @@ print(resultb)
 curser = conn.cursor()
 curser.execute("SELECT sex_cd FROM i2b2demodata.patient_dimension where sex_cd='F'")
 resulta=curser.rowcount
+resultNameF=curser.fetchone()
 curser.close()
 print(resulta)
 
+curserName = conn.cursor()
+curserName.execute("SELECT sex_cd FROM i2b2demodata.patient_dimension where sex_cd='M'")
+resultName=curserName.fetchone()
+curserName.close()
+print(resultName)
 
+resultSum = resultb+resulta
 
 colors = {
     'background': '#ffffff',
@@ -59,6 +79,7 @@ df = pd.read_csv(
     '5d1ea79569ed194d432e56108a04d188/raw/' +
     'a9f9e8076b837d541398e999dcbac2b2826a81f8/'+
     'gdp-life-exp-2007.csv')
+
 
 def update_news():
     url = "https://api.iextrading.com/1.0/stock/market/news/last/5"
@@ -110,7 +131,7 @@ app.layout = html.Div([
         html.Img(src="/assets/LOGO.png")
     ], className="banner"),
 
-    html.Div([html.H4("ABFRAGELEISTE")]),
+    html.Div([html.H4("-------------------------------------------------------------------------ABFRAGELEISTE-------------------------------------------------------------------------")]),
 
     html.Div([
         html.H3("Patient dimension"),
@@ -121,51 +142,77 @@ app.layout = html.Div([
     html.Div([
 
         html.Div([
+            html.H5("Ergebnis Dezimal: "+str(resultSum)),
             dcc.Graph(
                 id="graph_close",
-        figure={
-            'data': [
-                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
-                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
-            ],
-            'layout': {
+            figure={
+             'data': [
+                {'x': [1,2,3], 'y': [resulta], 'type': 'bar', 'name': "%s" % (resultNameF)},
+                {'x': [1,2,3], 'y': [resultb], 'type': 'bar', 'name': "%s" % (resultName)},
+             ],
+             'layout': {
                 'plot_bgcolor': colors['background'],
                 'paper_bgcolor': colors['background'],
                 'font': {
                     'color': colors['text']
                 }
-            }
-        }
+              }
+             }
             ),
-dcc.Graph(
+            dcc.Graph(
                 id="graph_close1",
-        figure={
-            'data': [
-                {'x': [1], 'y': [resulta], 'type': 'bar', 'name': 'Frauen'},
-                {'x': [1], 'y': [resultb], 'type': 'bar', 'name': 'Männer'},
-            ],
-            'layout': {
-                'titel':'Frauen vergleich'
-            }
-        }
+            figure={
+             'data': [
+                {'x': [1], 'y': [resultAge], 'type': 'markers', 'name': "%s" % (resultName)},
+                {'x': [1], 'y': [resultb], 'type': 'bar', 'name': "%s" % (resultNameF)},
+             ],
+             'layout': {
+                'plot_bgcolor': colors['background'],
+                'paper_bgcolor': colors['background'],
+                'font': {
+                    'color': colors['text']
+                }
+              }
+             }
             ),
+            dcc.Graph(id='device_usage',
+                    figure=go.Figure(
+                        data=[go.Pie(labels=[resultName, resultNameF],
+                                       values=[resultb, resulta])],
+                        layout=go.Layout(
+                              title='Kreisdiagramm')
+                      )),
 
-                dcc.Graph(
+            dcc.Graph(
                     id='life-exp-vs-gdp',
                     figure={
+#                      'data': [
+#                             go.Scatter(
+#                                 x=df[df['continent'] == i]['gdp per capita'],
+#                                 y=df[df['continent'] == i]['life expectancy'],
+#                                 text=df[df['continent'] == i]['country'],
+#                                 mode='markers',
+#                                 opacity=0.8,
+#                                 marker={
+#                                     'size': 15,
+#                                     'line': {'width': 0.5, 'color': 'white'}
+#                                 },
+#                                 name=i
+#                             ) for i in df.continent.unique()
+#                         ],
                         'data': [
                             go.Scatter(
-                                x=df[df['continent'] == i]['gdp per capita'],
-                                y=df[df['continent'] == i]['life expectancy'],
-                                text=df[df['continent'] == i]['country'],
+                                x=resultAge,
+                                y=resultAge,
+                                # text=curserAge[curserAge['age_in_years_num']['religion_cd']],
                                 mode='markers',
-                                opacity=0.7,
+                                opacity=0.8,
                                 marker={
                                     'size': 15,
                                     'line': {'width': 0.5, 'color': 'white'}
                                 },
-                                name=i
-                            ) for i in df.continent.unique()
+
+                            )
                         ],
                         'layout': go.Layout(
                             xaxis={'type': 'log', 'title': 'GDP Per Capita'},
@@ -215,11 +262,11 @@ app.css.append_css({
 
 
 # @app.callback(Output('graph_close', 'figure'),
-#               [Input("submit-button", "n_clicks")],
-#               [State("stock-input", "value")]
+#               [Input("", "n_clicks")],
+#
 #               )
 
-# def update_fig(n_clicks, input_value):
+# def update_fig(input_value):
 #     df = get_historical_data(input_value, start=start, end=end, output_format="pandas")
 #
 #     trace_line = go.Scatter(x=list(df.index),
@@ -312,10 +359,10 @@ app.css.append_css({
 #         )
 #     )
 #
-#     return {
-#         "data": data,
-#         "layout": layout
-#     }
+    # return {
+    #     "data": data,
+    #     "layout": layout
+    # }
 
 if __name__=="__main__":
     app.run_server(debug=True, port=5001)
