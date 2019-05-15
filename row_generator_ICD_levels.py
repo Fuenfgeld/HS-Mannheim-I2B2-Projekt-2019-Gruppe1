@@ -54,12 +54,13 @@ def add_second_level(icdMetaCode):
     return listSecondLevelDiv
 
 
+###
 def add_third_level(icdMetaCode):
     listThirdLevelDiv = []
 
     for i in range(len(thirdLevelICD)):
 
-        if str(thirdLevelICD[i]).startswith(icdMetaCode[0:7]):
+        if str(thirdLevelICD[i]).startswith(icdMetaCode[0:8]):
             # print(thirdLevelICD[i])
             # print(icdMetaCode)
             listThirdLevelDiv.append(html.Div([

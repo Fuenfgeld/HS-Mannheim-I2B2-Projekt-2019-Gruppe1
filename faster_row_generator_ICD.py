@@ -17,6 +17,10 @@ icdFourthLevelQuery = db.get_icd_level_query_df(4)
 fourthLevelNames = icdThirdLevelQuery['name']
 fourthLevelICD = icdThirdLevelQuery['icdcode']
 
+globalThirdLevelIndex = 0
+
+
+
 
 def add_levels_icd():
     add_groundlevel()
@@ -56,20 +60,32 @@ def add_second_level(icdMetaCode):
 
 def add_third_level(icdMetaCode):
     listThirdLevelDiv = []
-    i = 0
 
-    print(icdMetaCode[0:8])
+    global globalThirdLevelIndex
+    global thirdLevelNames
+    global thirdLevelICD
+    i = globalThirdLevelIndex
 
-    while str(thirdLevelICD[i]).startswith(icdMetaCode[0:8]) != True:
+    # print(icdMetaCode[0:8])
+
+    while str(thirdLevelICD[i]).startswith(icdMetaCode[0:8]):
         # print(thirdLevelICD[i])
         # print(icdMetaCode)
         listThirdLevelDiv.append(html.Div([
             html.Span(f'{thirdLevelNames[i]} ({thirdLevelICD[i][6:10]})', className='caret'),
             # html.Ul(add_fourth_level(icdMetaCode), className='nested')],
         ]))
-        print(i)
+        # print(i)
         i += 1
+    print(i)
+    print(str(globalThirdLevelIndex) + ' Index')
+    # print(globalThirdLevelIndex)
     # print(listThirdLevelDiv)
+    # print(thirdLevelICD)
+    if i - globalThirdLevelIndex != 0:
+        globalThirdLevelIndex = i
+    else:
+        globalThirdLevelIndex = i + 1
     return listThirdLevelDiv
 
 
