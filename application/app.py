@@ -71,10 +71,10 @@ app.layout = html.Div([
     html.Div([dcc.Upload(
         id='upload-data',
         children=html.Div([
-            'Drag and Drop - Abfrageleiste ',
+            html.H5('Drag and Drop - Abfrageleiste '),
         ]),
         style={
-            'width': '100%',
+            'width': '98,5%',
             'height': '150px',
             'lineHeight': '60px',
             'borderWidth': '2px',
@@ -86,17 +86,20 @@ app.layout = html.Div([
         # Allow multiple files to be uploaded
         multiple=True
     ), ]
-        , className='Div3'),
+        , className='DivAbfrageleiste'),
 
     html.Div([
-        html.H3("Navigationsstruktur"),
+        html.Div([html.H5("Suchen")], className="DivSuchleiste"),
+        html.H5(children="Navigationsstruktur", style={
+            'margin': '50px'
+            }),
 
-    ], className="Div1"),
+    ], className="DivNavigation"),
 
     html.Div([
 
         html.Div([
-            html.Div([html.H5("Anzahl Patienten: " + str(sg.gesamtanzahlPatienten()))], className='Div4'),
+            html.Div([html.H5(children="Anzahl Patienten: " + str(sg.gesamtanzahlPatienten()))], className='DivGesamtanzahl'),
             dcc.Graph(
                 id="sex_distribution",
                 figure={
@@ -144,7 +147,7 @@ app.layout = html.Div([
                 }
             )
 
-        ], className="Div2")
+        ], className="DivErgebnis")
 
     ], className="row")
 ])

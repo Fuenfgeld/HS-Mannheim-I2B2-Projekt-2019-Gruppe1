@@ -9,4 +9,7 @@ class TestSqlGesamtanzahl(unittest.TestCase):
         self.assertEqual(sg.gesamtanzahlPatienten(), 134)
 
     def test_gesamtanzahlGeschlecht(self):
-        self.assertEqual(sg.gesamtanzahlGeschlecht('M'), 82)
+        self.assertIsInstance(sg.gesamtanzahlGeschlecht('M'), int)
+        self.assertGreater(sg.gesamtanzahlGeschlecht('M'), 0)
+        self.assertEqual(sg.gesamtanzahlGeschlecht('F'), 52)
+        self.assertEqual(sg.gesamtanzahlGeschlecht('L'), 0)

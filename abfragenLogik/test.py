@@ -4,7 +4,7 @@ import abfragenLogik.sqlGesamtanzahl as sg
 import abfragenLogik.sqlTemplates as st
 import pandas as pd
 
-#print(sg.gesamtanzahlPatienten())
+print(sg.gesamtanzahlPatienten())
 try:
     print(st.anzahlPatProKriteriumBlatt("Hypertensive renal disease"))
 except:
@@ -13,4 +13,5 @@ except:
 print(st.anzahlPatZweiKriterienAND("Essential hypertension", "Hypertensive renal disease"))
 
 print(st.anzahlPatZweiKriterienOR("Essential hypertension", "Hypertensive renal disease"))
+
 
