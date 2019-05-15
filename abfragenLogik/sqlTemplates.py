@@ -16,17 +16,13 @@ def patProKriteriumBlatt(name_char):
 def anzahlPatProKriteriumBlatt(name_char):
     return len(patProKriteriumBlatt(name_char))
 
-def anzahlPatEinKriteriumEltern():
-    return 0
-
 def anzahlPatZweiKriterienAND(name_char1, name_char2):
     df1 = patProKriteriumBlatt(name_char1)
     df2 = patProKriteriumBlatt(name_char2)
     j = 0
     for n in range(0, len(df1)):
-        m = df1.loc[n].values[0]
         for i in range(0, len(df2)):
-            if m == df2.loc[i].values[0]:
+            if df1.loc[n].values[0] == df2.loc[i].values[0]:
                 j += 1
     return j
 
@@ -35,8 +31,10 @@ def anzahlPatZweiKriterienOR(name_char1, name_char2):
     df2 = patProKriteriumBlatt(name_char2)
     j = len(df1) + len(df2)
     for n in range(0, len(df1)):
-        m = df1.loc[n].values[0]
         for i in range(0, len(df2)):
-            if m == df2.loc[i].values[0]:
+            if df1.loc[n].values[0] == df2.loc[i].values[0]:
                 j -= 1
     return j
+
+def anzahlPatProKriteriumEltern():
+    return 0

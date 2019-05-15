@@ -1,5 +1,5 @@
 import unittest
-from testFunktionen import calc as c
+from zanderes import calc as c
 
 
 class TestCalc(unittest.TestCase): #unittest.TestCase muss übergeben werden
