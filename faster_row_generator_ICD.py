@@ -66,27 +66,9 @@ def add_third_level(icdMetaCode):
     global thirdLevelICD
     i = globalThirdLevelIndex
 
-    # print(icdMetaCode[0:8])
+    thirdLevelNamesList = thirdLevelICD[thirdLevelICD.str.startswith(icdMetaCode)]
 
-    while str(thirdLevelICD[i]).startswith(icdMetaCode[0:8]):
-        # print(thirdLevelICD[i])
-        # print(icdMetaCode)
-        listThirdLevelDiv.append(html.Div([
-            html.Span(f'{thirdLevelNames[i]} ({thirdLevelICD[i][6:10]})', className='caret'),
-            # html.Ul(add_fourth_level(icdMetaCode), className='nested')],
-        ]))
-        # print(i)
-        i += 1
-    print(i)
-    print(str(globalThirdLevelIndex) + ' Index')
-    # print(globalThirdLevelIndex)
-    # print(listThirdLevelDiv)
-    # print(thirdLevelICD)
-    if i - globalThirdLevelIndex != 0:
-        globalThirdLevelIndex = i
-    else:
-        globalThirdLevelIndex = i + 1
-    return listThirdLevelDiv
+    print(len(thirdLevelNamesList))
 
 
 def add_fourth_level(icdMetaCode):
