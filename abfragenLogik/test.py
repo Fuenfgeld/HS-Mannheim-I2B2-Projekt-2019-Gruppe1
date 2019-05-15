@@ -1,5 +1,8 @@
+from pandas import DataFrame
+
 import abfragenLogik.sqlGesamtanzahl as sg
 import abfragenLogik.sqlTemplates as st
+import pandas as pd
 
 #print(sg.gesamtanzahlPatienten())
 try:
@@ -10,3 +13,4 @@ except:
 print(st.anzahlPatZweiKriterienAND("Essential hypertension", "Hypertensive renal disease"))
 
 print(st.anzahlPatZweiKriterienOR("Essential hypertension", "Hypertensive renal disease"))
+

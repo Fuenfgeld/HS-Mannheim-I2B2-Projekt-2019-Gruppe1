@@ -96,15 +96,16 @@ app.layout = html.Div([
     html.Div([
 
         html.Div([
-            html.Div([html.H5("Number of patients: " + str(sg.gesamtanzahlPatienten()))], className='Div4'),
+            html.Div([html.H5("Anzahl Patienten: " + str(sg.gesamtanzahlPatienten()))], className='Div4'),
             dcc.Graph(
-                id="graph_close",
+                id="sex_distribution",
                 figure={
                     'data': [
-                        {'x': [1], 'y': [sg.gesamtanzahlFrauen()], 'type': 'bar', 'name': 'Female'},
-                        {'x': [1], 'y': [sg.gesamtanzahlMaenner()], 'type': 'bar', 'name': 'Male'},
+                        {'x': ['W'], 'y': [sg.gesamtanzahlGeschlecht("F")], 'type': 'bar', 'name': 'Weiblich'},
+                        {'x': ['M'], 'y': [sg.gesamtanzahlGeschlecht("M")], 'type': 'bar', 'name': 'Männlich'},
                     ],
                     'layout': {
+                        'title': 'Geschlechterverteilung',
                         'plot_bgcolor': colors['background'],
                         'paper_bgcolor': colors['background'],
                         'font': {
@@ -113,31 +114,37 @@ app.layout = html.Div([
                     }
                 }
             ),
-            dcc.Graph(
-                id="graph_close1",
-                figure={
-                    'data': [
-                        {'x': [1], 'y': [1], 'type': 'markers', 'name': 'lol'},
-                        {'x': [1], 'y': [2], 'type': 'bar', 'name': 'lol'},
-                    ],
-                    'layout': {
-                        'plot_bgcolor': colors['background'],
-                        'paper_bgcolor': colors['background'],
-                        'font': {
-                            'color': colors['text']
-                        }
-                    }
-                }
-            ),
-            dcc.Graph(id='device_usage',
+            dcc.Graph(id='race_distribution',
                       figure=go.Figure(
-                          data=[go.Pie(labels=['lol', 'lol'],
-                                       values=[1, 1])],
+                          data=[go.Pie(labels=['Afrikanisch', 'Europäisch', 'Asiatisch', 'Hispanisch', 'Indisch'],
+                                       values=[sg.gesamtanzahlEthnie("black"), sg.gesamtanzahlEthnie("white"),
+                                               sg.gesamtanzahlEthnie("asian"), sg.gesamtanzahlEthnie("hispanic"),
+                                               sg.gesamtanzahlEthnie("indian")])],
                           layout=go.Layout(
-                              title='Kreisdiagramm')
-                      )),
+                              title='Ethnische Verteilung')
+                      )
+            ),
+            dcc.Graph(
+                id='marital_status_distribution',
+                figure={
+                    'data': [
+                        {'x': ['Alleinstehend'], 'y': [sg.gesamtanzahlFamilienstatus("single")], 'type': 'bar', 'name': 'Alleinstehend'},
+                        {'x': ['Verheiratet'], 'y': [sg.gesamtanzahlFamilienstatus("married")], 'type': 'bar', 'name': 'Verheiratet'},
+                        {'x': ['Geschieden'], 'y': [sg.gesamtanzahlFamilienstatus("divorced")], 'type': 'bar', 'name': 'Geschieden'},
+                        {'x': ['Verwitwet'], 'y': [sg.gesamtanzahlFamilienstatus("widow")], 'type': 'bar', 'name': 'Verwitwet'},
+                    ],
+                    'layout': {
+                        'title': 'Verteilung nach Familienstatus',
+                        'plot_bgcolor': colors['background'],
+                        'paper_bgcolor': colors['background'],
+                        'font': {
+                            'color': colors['text']
+                        }
+                    }
+                }
+            )
 
-        ], className="Div2"),
+        ], className="Div2")
 
     ], className="row")
 ])

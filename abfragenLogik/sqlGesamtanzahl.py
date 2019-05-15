@@ -5,21 +5,19 @@ engine = sa.create_engine('postgresql://i2b2:demouser@129.206.7.75:5432/i2b2')
 
 def gesamtanzahlPatienten():
     abfrage = pd.read_sql("select distinct patient_num from i2b2.i2b2demodata.patient_dimension", con = engine)
-    i = len(abfrage)
-    return i
+    return len(abfrage)
 
-def gesamtanzahlMaenner():
-    abfrage = pd.read_sql("select distinct patient_num from i2b2.i2b2demodata.patient_dimension where sex_cd = 'M'", con = engine)
-    i = len(abfrage)
-    return i
+def gesamtanzahlGeschlecht(sex_cd):
+    abfrage = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.patient_dimension where sex_cd = \'{sex_cd}\'', con = engine)
+    return len(abfrage)
 
-def gesamtanzahlFrauen():
-    abfrage = pd.read_sql("select distinct patient_num from i2b2.i2b2demodata.patient_dimension where sex_cd = 'F'", con = engine)
-    i = len(abfrage)
-    return i
+def gesamtanzahlEthnie(race_cd):
+    abfrage = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.patient_dimension where race_cd = \'{race_cd}\'', con = engine)
+    return len(abfrage)
 
-
-
+def gesamtanzahlFamilienstatus(marital_status_cd):
+    abfrage = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.patient_dimension where marital_status_cd = \'{marital_status_cd}\'', con = engine)
+    return len(abfrage)
 
 
 
