@@ -1,5 +1,6 @@
 import SQL.sqlTemplates as sqlT
 
+
 class sqlVerknüpfung:
 
     def anzahlPatZweiKriterienAND(self, name_char, name_char1):

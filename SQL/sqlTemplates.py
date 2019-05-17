@@ -8,7 +8,8 @@ ICD10 = "ICD10"
 
 # über concept_dimension den ICD9 Code und über ICD9 die Patientennummern (DONE)
 def anzahlPatEinKriteriumBlattCD(name_char):
-    df1 = pd.read_sql(f'select concept_cd from i2b2.i2b2demodata.concept_dimension where name_char = \'{name_char}\'', con=database.engine)
+    df1 = pd.read_sql(f'select concept_cd from i2b2.i2b2demodata.concept_dimension where name_char = \'{name_char}\'',
+                      con=database.engine)
     for n in range(0, 10):
         if ICD9 in df1.loc[n].values[0]:
             break
@@ -17,45 +18,36 @@ def anzahlPatEinKriteriumBlattCD(name_char):
                       f'where concept_cd like \'{icd + "%%"}\'', con=database.engine)
     return df2
 
-def abstraktanzahlPatEinKriteriumBlattCD(name_char):
-    return anzahlPatEinKriteriumBlatt(
-        searchCodeEinKriteriumBlatt(
-            concept_cdEinKriteriumBlatt(
-                buildSQLEinKriteriumBlatt(name_char))))
+
+def pat_df_EinKriteriumBlattCD(name_char):
+    buildsql = buildSQL_EinKriteriumBlatt(name_char)
+    get_concept_cd = concept_cd_EinKriteriumBlatt(buildsql)
+    icd_code = searchCode_EinKriteriumBlatt(get_concept_cd)
+    patienten_df = patient_EinKriteriumBlatt(icd_code)
+    return patienten_df
 
 
-def buildSQLEinKriteriumBlatt(name_char):
+def buildSQL_EinKriteriumBlatt(name_char):
     buildsql = f'select concept_cd from i2b2.i2b2demodata.concept_dimension where name_char = \'{name_char}\''
     return buildsql
 
-def concept_cdEinKriteriumBlatt(buildSQL):
-    df1 = pd.read_sql(buildSQL, con=database.engine)
-    return df1
 
-def searchCodeEinKriteriumBlatt(df1):
+def concept_cd_EinKriteriumBlatt(buildsql):
+    df = pd.read_sql(buildsql, con=database.engine)
+    return df
+
+
+def searchCode_EinKriteriumBlatt(df1):
     for n in range(0, len(df1)):
         if ICD9 in df1.loc[n].values[0]:
             break
     return df1.loc[n].values[0]
 
-def anzahlPatEinKriteriumBlatt(icd):
+
+def patient_EinKriteriumBlatt(icd):
     df2 = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.observation_fact '
                       f'where concept_cd like \'{icd + "%%"}\'', con=database.engine)
     return df2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # über i2b2 den ICD9 Code und über ICD9 die Patientennummern (DONE)
@@ -69,6 +61,7 @@ def anzahlPatEinKriteriumBlatti2b2(name_char):
     df2 = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.observation_fact where concept_cd '
                       f'like \'{icd + "%%"}\'', con=database.engine)
     return df2
+
 
 # pro basecode patienten rausholen und überprüfen ob doppelte
 def anzahlPatEinKriteriumEltern(c_fullname):
