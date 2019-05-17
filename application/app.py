@@ -1,12 +1,16 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+from dash.dependencies import Output
 from dateutil.relativedelta import relativedelta
 import datetime
 import pandas as pd
 import requests
 import plotly.graph_objs as go
 import abfragenLogik.sqlGesamtanzahl as sg
+import tree.rowGenerator as rgICD
+
+
 
 colors = {
     'background': '#ffffff',
@@ -95,6 +99,7 @@ app.layout = html.Div([
             }),
 
     ], className="DivNavigation"),
+
 
     html.Div([
 
