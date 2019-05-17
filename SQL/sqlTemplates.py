@@ -1,69 +1,88 @@
-import sqlalchemy as sa
 import pandas as pd
+from config import database
+from SQL.formatted import stringSQL
 
-engine = sa.create_engine("postgresql://i2b2:demouser@129.206.7.75:5432/i2b2")
+ICD9 = "ICD9"
+ICD10 = "ICD10"
 
-#def anzahlPatEinKriteriumBlatt(name_char):
-#    df = pd.read_sql(f'select concept_cd from i2b2.i2b2demodata.concept_dimension where name_char = \'{name_char}\'', con = engine)
-#    s = "ICD9"
-#    for n in range(0, 10):
-#        # loc ist Auswahl an der Stelle 0,1,2... % .values ist direkt auf den Wert zugreifen
-#        if s in df.loc[n].values[0]:
-#            break
-#    icd = df.loc[n].values[0]
-#    df2 = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.observation_fact where concept_cd like \'{icd + "%%"}\'', con = engine)
-#    return len(df2)
 
-def anzahlPatEinKriteriumBlatt1(name_char):
-    df = pd.read_sql(f'select c_basecode from i2b2.i2b2metadata.i2b2 where c_name = \'{name_char}\'', con = engine)
-    s = "ICD9"
+# über concept_dimension den ICD9 Code und über ICD9 die Patientennummern (DONE)
+def anzahlPatEinKriteriumBlattCD(name_char):
+    df1 = pd.read_sql(f'select concept_cd from i2b2.i2b2demodata.concept_dimension where name_char = \'{name_char}\'', con=database.engine)
     for n in range(0, 10):
-        if s in df.loc[n].values[0]:
+        if ICD9 in df1.loc[n].values[0]:
             break
-
-
-    icd = df.loc[n].values[0]
-    df2 = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.observation_fact where concept_cd like \'{icd + "%%"}\'', con = engine)
+    icd = df1.loc[n].values[0]
+    df2 = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.observation_fact '
+                      f'where concept_cd like \'{icd + "%%"}\'', con=database.engine)
     return df2
 
+def abstraktanzahlPatEinKriteriumBlattCD(name_char):
+    return anzahlPatEinKriteriumBlatt(
+        searchCodeEinKriteriumBlatt(
+            concept_cdEinKriteriumBlatt(
+                buildSQLEinKriteriumBlatt(name_char))))
+
+
+def buildSQLEinKriteriumBlatt(name_char):
+    buildsql = f'select concept_cd from i2b2.i2b2demodata.concept_dimension where name_char = \'{name_char}\''
+    return buildsql
+
+def concept_cdEinKriteriumBlatt(buildSQL):
+    df1 = pd.read_sql(buildSQL, con=database.engine)
+    return df1
+
+def searchCodeEinKriteriumBlatt(df1):
+    for n in range(0, len(df1)):
+        if ICD9 in df1.loc[n].values[0]:
+            break
+    return df1.loc[n].values[0]
+
+def anzahlPatEinKriteriumBlatt(icd):
+    df2 = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.observation_fact '
+                      f'where concept_cd like \'{icd + "%%"}\'', con=database.engine)
+    return df2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# über i2b2 den ICD9 Code und über ICD9 die Patientennummern (DONE)
+def anzahlPatEinKriteriumBlatti2b2(name_char):
+    df1 = pd.read_sql(f'select distinct c_basecode from i2b2.i2b2metadata.i2b2 '
+                      f'where c_name = \'{name_char}\'', con=database.engine)
+    for n in range(0, 10):
+        if ICD9 in df1.loc[n].values[0]:
+            break
+    icd = df1.loc[n].values[0]
+    df2 = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.observation_fact where concept_cd '
+                      f'like \'{icd + "%%"}\'', con=database.engine)
+    return df2
+
+# pro basecode patienten rausholen und überprüfen ob doppelte
 def anzahlPatEinKriteriumEltern(c_fullname):
-    df = pd.read_sql(f'select distinct c_basecode from i2b2.i2b2metadata.i2b2 where c_fullname like \'{c_fullname + "%%"}\'', con=engine)
-    s = "ICD9"
-    col_names = ['A']
-    df3 = pd.DataFrame(columns=col_names)
+    df = pd.read_sql(f'select distinct c_basecode from i2b2.i2b2metadata.i2b2 '
+                     f'where c_fullname like \'{"%%" + c_fullname + "%%"}\'', con=database.engine)
+    df = df.dropna()
+    df3 = pd.DataFrame()
     for n in range(0, len(df)):
-         if s in df.loc[n].values[0]:
+        if ICD10 not in df.loc[n].values[0]:
             icd = df.loc[n].values[0]
-            df2 = pd.read_sql(f'select distinct patient_num from i2b2.i2b2demodata.observation_fact where concept_cd like \'{icd + "%%"}\'',con=engine)
-            for w in range(0, len(df2)):
-                for e in range(0, len(df2)):
-                    if df2.loc[w].values[0] not in df3.loc[e].values[0]:
-                        df3.loc[e].values[0] = df2.loc[w].values[0]
-    return df3
-
-def anzahlPatZweiKriterienAND(name_char, name_char1):
-    df1 = anzahlPatEinKriteriumBlatt1(name_char)
-    df2 = anzahlPatEinKriteriumBlatt1(name_char1)
-    AND = 0
-    for n in range(0, len(df1)):
-        m = df1.loc[n].values[0]
-        for z in range(0, len(df2)):
-            if m == df2.loc[z].values[0]:
-                AND += 1
-    return AND
-
-def anzahlPatZweiKriterienOR(name_char, name_char1):
-    df1 = anzahlPatEinKriteriumBlatt1(name_char)
-    df2 = anzahlPatEinKriteriumBlatt1(name_char1)
-    OR = 0
-    AND = 0
-    for n in range(0, len(df1)):
-        m = df1.loc[n].values[0]
-        for z in range(0, len(df2)):
-            if m != df2.loc[z].values[0]:
-                OR += 1
-            elif m == df2.loc[z].values[0]:
-                AND +=1
-
-
-    return OR+AND
+            df2 = pd.read_sql(f'select patient_num from i2b2.i2b2demodata.observation_fact '
+                              f'where concept_cd like \'{icd + "%%"}\'', con=database.engine)
+            df3 = df3.append(df2)
+    df3 = df3.reset_index(drop=True)
+    df3 = df3.drop_duplicates()
+    print(df3)
+    return len(df3)

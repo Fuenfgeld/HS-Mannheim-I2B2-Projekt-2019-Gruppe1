@@ -1,24 +1,17 @@
-import sqlalchemy as sa
+from config import database as database
+from SQL.formatted import stringSQL
 import pandas as pd
 
-engine = sa.create_engine('postgresql://i2b2:demouser@129.206.7.75:5432/i2b2')
+class gesamtAnzahl:
 
+    def gesamtanzahlPatienten(self):
+        anzahlPatienten = pd.read_sql(stringSQL.gesamtanzahlPatienten, con=database.engine)
+        return len(anzahlPatienten)
 
-def gesamtanzahlPatienten():
-    abfrage = pd.read_sql("select distinct patient_num from i2b2.i2b2demodata.patient_dimension", con=engine)
-    i = len(abfrage)
-    return i
+    def gesamtanzahlMaenner(self):
+        anzahlMaenner = pd.read_sql(stringSQL.gesamtanzahlMaenner, con=database.engine)
+        return len(anzahlMaenner)
 
-
-def gesamtanzahlMaenner():
-    abfrage = pd.read_sql("select distinct patient_num from i2b2.i2b2demodata.patient_dimension where sex_cd = 'M'",
-                          con=engine)
-    i = len(abfrage)
-    return i
-
-
-def gesamtanzahlFrauen():
-    abfrage = pd.read_sql("select distinct patient_num from i2b2.i2b2demodata.patient_dimension where sex_cd = 'F'",
-                          con=engine)
-    i = len(abfrage)
-    return i
+    def gesamtanzahlFrauen(self):
+        anzahlFrauen = pd.read_sql(stringSQL.gesamtanzahlFrauen, con=database.engine)
+        return len(anzahlFrauen)

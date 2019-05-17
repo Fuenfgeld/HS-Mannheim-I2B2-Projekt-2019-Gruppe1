@@ -1,4 +1,5 @@
 import psycopg2 as psycopg2
+import sqlalchemy as sa
 
 
 host = "129.206.7.75"
@@ -13,3 +14,5 @@ conn = psycopg2.connect(
     database=database,
     user=user,
     password=password)
+
+engine = sa.create_engine('postgresql://i2b2:demouser@129.206.7.75:5432/i2b2')

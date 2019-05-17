@@ -1,14 +1,11 @@
 import dash
-import dash_core_components as dcc
 import dash_html_components as html
 
 import sqlalchemy as sa
 import pandas as pd
 
-import formattedSQL as fs
-import stringSQL as s
+from SQL.formatted import formattedSQL as fs, stringSQL as s
 
-import database as db
 engine = sa.create_engine("postgresql://i2b2:demouser@129.206.7.75:5432/i2b2")
 
 sql1 = pd.read_sql("SELECT * FROM i2b2.i2b2metadata.icd10_icd9 WHERE c_hlevel = 1;", con=engine)
