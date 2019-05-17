@@ -18,4 +18,6 @@ print(sT.anzahlPatZweiKriterienAND("Essential hypertension", "Hypertensive renal
 
 print(sT.anzahlPatZweiKriterienOR("Essential hypertension", "Hypertensive renal disease"))
 
+print(sT.anzahlPatProKriteriumBlatt("Hypertensive renal disease"))
+
 
