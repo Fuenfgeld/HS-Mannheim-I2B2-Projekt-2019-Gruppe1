@@ -40,6 +40,8 @@ ul, #myUL {
 .caret {
     cursor: pointer;
     user-select: none; /* Prevent text selection */
+    margin-top: 50px;
+    margin-left: 5px;
 }
 
 /* Create the caret/arrow with a unicode, and style it */

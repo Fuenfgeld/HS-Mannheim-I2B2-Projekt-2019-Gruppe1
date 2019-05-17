@@ -1,7 +1,7 @@
 from pandas import DataFrame
 
-import abfragenLogik.sqlGesamtanzahl as sg
-import abfragenLogik.sqlTemplates as st
+import abfragenLogik.sqlGesamtanzahl as sqlGesamtanzahl
+import abfragenLogik.sqlTemplates as sqlTemplates
 import pandas as pd
 
 # print(sg.gesamtanzahlPatienten())
@@ -10,8 +10,12 @@ import pandas as pd
 # except:
 #     print('Eltern')
 
-print(st.anzahlPatZweiKriterienAND("Essential hypertension", "Hypertensive renal disease"))
 
-print(st.anzahlPatZweiKriterienOR("Essential hypertension", "Hypertensive renal disease"))
+sT = sqlTemplates.sqlTemplates()
+sG = sqlGesamtanzahl.sqlGesamtanzahl()
+
+print(sT.anzahlPatZweiKriterienAND("Essential hypertension", "Hypertensive renal disease"))
+
+print(sT.anzahlPatZweiKriterienOR("Essential hypertension", "Hypertensive renal disease"))
 
 

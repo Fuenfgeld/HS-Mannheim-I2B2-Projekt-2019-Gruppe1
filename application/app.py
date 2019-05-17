@@ -1,70 +1,21 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Output
-from dateutil.relativedelta import relativedelta
-import datetime
-import pandas as pd
-import requests
 import plotly.graph_objs as go
-import abfragenLogik.sqlGesamtanzahl as sg
-import tree.rowGenerator as rgICD
-
-
+import abfragenLogik.sqlGesamtanzahl as sqlGesamtanzahl
+import tree.rowGenerator as rowGenerator
+from dash.dependencies import Output
 
 colors = {
     'background': '#ffffff',
     'text': '#111111'
 }
 
-start = datetime.datetime.today() - relativedelta(years=5)
-end = datetime.datetime.today()
+sG = sqlGesamtanzahl.sqlGesamtanzahl()
 
-
-def update_news():
-    url = "https://api.iextrading.com/1.0/stock/market/news/last/5"
-    r = requests.get(url)
-    json_string = r.json()
-
-    df = pd.DataFrame(json_string)
-    df = pd.DataFrame(df[["headline", "url"]])
-
-    return df
-
-
-def generate_html_table(max_rows=10):
-    df = update_news()
-
-    return html.Div(
-        [
-            html.Div(
-                html.Table(
-                    # Header
-                    [html.Tr([html.Th()])]
-                    +
-                    # Body
-                    [
-                        html.Tr(
-                            [
-                                html.Td(
-                                    html.A(
-                                        df.iloc[i]["headline"],
-                                        href=df.iloc[i]["url"],
-                                        target="_blank"
-                                    )
-                                )
-                            ]
-                        )
-                        for i in range(min(len(df), max_rows))
-                    ]
-                ),
-                style={"height": "300px", "overflowY": "scroll"},
-            ),
-        ],
-        style={"height": "100%"}, )
-
-
-app = dash.Dash(__name__)
+app = dash.Dash(__name__,
+                external_stylesheets=['layout.css'],
+                external_scripts=['Zdropdown.js'])
 
 app.layout = html.Div([
     html.Div([
@@ -94,9 +45,10 @@ app.layout = html.Div([
 
     html.Div([
         html.Div([html.H5("Suchen")], className="DivSuchleiste"),
-        html.H5(children="Navigationsstruktur", style={
-            'margin': '50px'
-            }),
+        html.Span([
+            html.H5('ICD 10', className='caret'),
+            html.Ul(rowGenerator.add_groundlevel(), className='nested'),
+            html.Div(id='selected')])
 
     ], className="DivNavigation"),
 
@@ -104,13 +56,13 @@ app.layout = html.Div([
     html.Div([
 
         html.Div([
-            html.Div([html.H5(children="Anzahl Patienten: " + str(sg.gesamtanzahlPatienten()))], className='DivGesamtanzahl'),
+            html.Div([html.H5(children="Anzahl Patienten: " + str(sG.gesamtanzahlPatienten()))], className='DivGesamtanzahl'),
             dcc.Graph(
                 id="sex_distribution",
                 figure={
                     'data': [
-                        {'x': ['W'], 'y': [sg.gesamtanzahlGeschlecht("F")], 'type': 'bar', 'name': 'Weiblich'},
-                        {'x': ['M'], 'y': [sg.gesamtanzahlGeschlecht("M")], 'type': 'bar', 'name': 'Männlich'},
+                        {'x': ['W'], 'y': [sG.gesamtanzahlGeschlecht("F")], 'type': 'bar', 'name': 'Weiblich'},
+                        {'x': ['M'], 'y': [sG.gesamtanzahlGeschlecht("M")], 'type': 'bar', 'name': 'Männlich'},
                     ],
                     'layout': {
                         'title': 'Geschlechterverteilung',
@@ -125,9 +77,9 @@ app.layout = html.Div([
             dcc.Graph(id='race_distribution',
                       figure=go.Figure(
                           data=[go.Pie(labels=['Afrikanisch', 'Europäisch', 'Asiatisch', 'Hispanisch', 'Indisch'],
-                                       values=[sg.gesamtanzahlEthnie("black"), sg.gesamtanzahlEthnie("white"),
-                                               sg.gesamtanzahlEthnie("asian"), sg.gesamtanzahlEthnie("hispanic"),
-                                               sg.gesamtanzahlEthnie("indian")])],
+                                       values=[sG.gesamtanzahlEthnie("black"), sG.gesamtanzahlEthnie("white"),
+                                               sG.gesamtanzahlEthnie("asian"), sG.gesamtanzahlEthnie("hispanic"),
+                                               sG.gesamtanzahlEthnie("indian")])],
                           layout=go.Layout(
                               title='Ethnische Verteilung')
                       )
@@ -136,10 +88,10 @@ app.layout = html.Div([
                 id='marital_status_distribution',
                 figure={
                     'data': [
-                        {'x': ['Alleinstehend'], 'y': [sg.gesamtanzahlFamilienstatus("single")], 'type': 'bar', 'name': 'Alleinstehend'},
-                        {'x': ['Verheiratet'], 'y': [sg.gesamtanzahlFamilienstatus("married")], 'type': 'bar', 'name': 'Verheiratet'},
-                        {'x': ['Geschieden'], 'y': [sg.gesamtanzahlFamilienstatus("divorced")], 'type': 'bar', 'name': 'Geschieden'},
-                        {'x': ['Verwitwet'], 'y': [sg.gesamtanzahlFamilienstatus("widow")], 'type': 'bar', 'name': 'Verwitwet'},
+                        {'x': ['Alleinstehend'], 'y': [sG.gesamtanzahlFamilienstatus("single")], 'type': 'bar', 'name': 'Alleinstehend'},
+                        {'x': ['Verheiratet'], 'y': [sG.gesamtanzahlFamilienstatus("married")], 'type': 'bar', 'name': 'Verheiratet'},
+                        {'x': ['Geschieden'], 'y': [sG.gesamtanzahlFamilienstatus("divorced")], 'type': 'bar', 'name': 'Geschieden'},
+                        {'x': ['Verwitwet'], 'y': [sG.gesamtanzahlFamilienstatus("widow")], 'type': 'bar', 'name': 'Verwitwet'},
                     ],
                     'layout': {
                         'title': 'Verteilung nach Familienstatus',
@@ -160,6 +112,12 @@ app.layout = html.Div([
 app.css.append_css({
     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
 })
+
+@app.callback(
+    Output('selected', 'children'),
+    [rowGenerator.secondLevelIDList[0]])
+def update_div(secondLevelIDList):
+    return
 
 if __name__ == "__main__":
     app.run_server(debug=True, port=5001)
