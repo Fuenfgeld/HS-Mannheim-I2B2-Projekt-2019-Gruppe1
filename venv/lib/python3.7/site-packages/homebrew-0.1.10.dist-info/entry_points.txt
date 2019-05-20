@@ -1,0 +1,3 @@
+[console_scripts]
+hb = homebrew.command_line:main
+
