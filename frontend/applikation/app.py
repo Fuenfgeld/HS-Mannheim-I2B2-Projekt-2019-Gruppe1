@@ -44,7 +44,7 @@ app.layout = html.Div([
         , className='DivAbfrageleiste'),
 
     html.Div([
-        html.Div([html.H5("Suchen")], className="DivSuchleiste"),
+        html.Div(dcc.Input(placeholder='Suche', type='text', size= '63'), className="DivSuchleiste"),
         html.Span([
             html.H5('ICD 10', className='caret'),
             html.Ul(row_generator.add_groundlevel(), className='nested'),
