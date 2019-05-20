@@ -1,51 +1,51 @@
 import dash
 import dash_html_components as html
+from SQL.selects.gesamt_anzahl import gesamtAnzahl
+from SQL.selects.sql_verknüpfung import sqlVerknüpfung
+from SQL.selects import sql_templates
+from SQL.formatted import string_sql
 
-import sqlalchemy as sa
-import pandas as pd
+gesamtAnzahl = gesamtAnzahl()
+sqlVerknüpfung = sqlVerknüpfung()
 
-from SQL.formatted import formatted_sql as fs, string_sql as s
+# Ein Callback ist nichts anderes als ein Zeiger auf eine Funktion. Also eine Funktion, in der die Adresse einer anderen Funktion gespeichert wird.
+# funclist = [gesamtAnzahl.gesamtanzahlPatienten(), gesamtAnzahl.gesamtanzahlMaenner(), gesamtAnzahl.gesamtanzahlFrauen()]
 
-engine = sa.create_engine("postgresql://i2b2:demouser@129.206.7.75:5432/i2b2")
+try:
+    # rufe über Objekt auf
+    # print("Alle Patienten")
+    # print(gesamtAnzahl.gesamtanzahlPatienten())
+    # print("Alle Männer")
+    # print(gesamtAnzahl.gesamtanzahlMaenner())
+    # print("Alle Frauen")
+    # print(gesamtAnzahl.gesamtanzahlFrauen())
 
-sql1 = pd.read_sql("SELECT * FROM i2b2.i2b2metadata.icd10_icd9 WHERE c_hlevel = 1;", con=engine)
-i = len(sql1)
-print(i)
+    # rufe über import auf
 
-sql2 = pd.read_sql("select * from i2b2.i2b2demodata.patient_dimension where language_cd like 'eng%%'", con=engine)
-a = len(sql2)
-print(a)
+    # print(len(sql_templates.pat_df_ein_kriterium_blatt_cd('Essential hypertension')))
+    # print(len(sql_templates.pat_df_ein_kriterium_blatt_i2b2('Essential hypertension')))
 
-Diag = "Diagnoses \ Diseases of the circulatory system"
+    # print(len(sql_templates.anzahlPatEinKriteriumEltern(string_sql.c_fullna)))
+    # print(len(sql_templates.anzahlPatEinKriteriumEltern(string_sql.c_fullnam)))
+    # print(len(sql_templates.anzahlPatEinKriteriumEltern(string_sql.c_fullname)))
 
-sql3 = pd.read_sql(f"select distinct i2b2.i2b2demodata.patient_dimension.patient_num from i2b2.i2b2demodata.observation_fact "
-                   f"join i2b2.i2b2metadata.icd10_icd9 on i2b2.i2b2metadata.icd10_icd9.c_basecode = i2b2.i2b2demodata.observation_fact.concept_cd "
-                   f"join i2b2.i2b2demodata.patient_dimension on i2b2.i2b2demodata.observation_fact.patient_num = i2b2.i2b2demodata.patient_dimension.patient_num "
-                   f"where i2b2.i2b2metadata.icd10_icd9.c_tooltip like '\{'Diag'+'%%'}\'", con=engine)
-z = len(sql3)
-print(z)
+    print(len(sqlVerknüpfung.anzahlPatZweiKriterienAND("Essential hypertension", "Hypertensive renal disease")))
+    print(len(sqlVerknüpfung.anzahlPatZweiKriterienOR("Essential hypertension", "Hypertensive renal disease")))
 
 
-sql4 = pd.read_sql(fs.SQLBack(s.String11,s.String22,s.String33,s.String44,s.String55,s.String66,s.String77,s.String88), con=engine)
-ä = len(sql4)
-print(ä)
+    # 1 Patient
+    # print(sqlVerknüpfung.anzahlPatZweiKriterienAND('Essential hypertension', 'Hypertensive renal disease'))
+    # 40 Patienten
+    # print(sqlVerknüpfung.anzahlPatZweiKriterienOR('Essential hypertension', 'Hypertensive renal disease'))
 
-#curser = db.conn.cursor()
-#curser.execute(fs.SQLJoin(s.String1, s.String2, s.String3, s.String4, s.String5, s.String6, s.String7))
-#resulta = curser.rowcount
-#curser.close()
+    # Versuch Eltern mit allen Unterknoten ausgeben
+    # print(st.anzahlPatEinKriteriumEltern(c_fullname))
+except:
+    print('Eltern')
 
-#curser1 = db.conn.cursor()
-#curser1.execute(
-#    fs.SQLBack(s.String11, s.String22, s.String33, s.String44, s.String55, s.String66, s.String77, s.String88))
-#resultb = curser1.rowcount
-#curser1.close()
 
-#print(resultb)
-#print(resultb)
-
-app = dash.Dash(external_stylesheets=['style.css'])
-app.layout = html.Div([
+# app = dash.Dash(external_stylesheets=['style.css'])
+# app.layout = html.Div([
 #    html.Div([html.H1("Explorer")], className="Div1"),
 #    html.Div([html.H1(resultb)], className="Div2"),
 #    html.Div([
@@ -54,8 +54,8 @@ app.layout = html.Div([
 #            [html.Div([html.H1(s.String5)], className="String5"), html.Div([html.H1(s.String7)], className="String7")],
 #            className="String5_7")
 #    ], className="Div3")
-])
+# ])
 
 # Stop Flask Server Strg+C
-if __name__ == '__main__':
-    app.run_server(debug=True)
+# if __name__ == '__main__':
+#     app.run_server(debug=True)

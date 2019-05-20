@@ -5,9 +5,7 @@ gesamtanzahlFrauen = "select distinct patient_num from i2b2.i2b2demodata.patient
 
 
 # Test für classe sqlTemplates Funk:anzahlPatEinKriteriumEltern
-# c_fullna = '''_i2b2_Diagnoses_Symptoms_ signs_ and ill-defined conditions (780-799)_Nonspecific abnormal findings (790-796)_(793) Nonspecific abnormal findin'''
-# c_fullnam = '''_i2b2_Diagnoses_Symptoms_ signs_ and ill-defined conditions (780-799)_Nonspecific abnormal findings_(790-796)_'''
-# c_fullname = '''Nonspecific abnormal ele'''
+
 
 
 # class sqlTemplates
