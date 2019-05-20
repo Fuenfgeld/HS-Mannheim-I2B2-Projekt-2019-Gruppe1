@@ -26,7 +26,7 @@ app.layout = html.Div([
     html.Div([dcc.Upload(
         id='upload-data',
         children=html.Div([
-            html.H5('Drag and Drop - Abfrageleiste '),
+            html.H5('Abfrageleiste '),
         ]),
         style={
             'width': '98,5%',

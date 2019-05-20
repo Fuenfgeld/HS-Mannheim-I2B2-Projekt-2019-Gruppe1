@@ -7,24 +7,21 @@ class SQLTemplates:
     ICD9 = "ICD9"
     ICD10 = "ICD10"
 
-    def pat_df_ein_kriterium_blatt_cd(self, name_char):
-        get_concept_cd = self.concept_cd_from_concept_dimension_ein_kriterium_blatt(name_char)
-        icd_code = self.search_code_with_df(get_concept_cd)
-        patienten_df = self.get_patient_with_icd(icd_code)
-        return patienten_df
-
-
     def pat_df_ein_kriterium_blatt_i2b2(self, name_char):
         get_c_basecode = self.c_basecode_from_i2b2_ein_kriterium_blatt(name_char)
         icd_code = self.search_code_with_df(get_c_basecode)
         patient_df = self.get_patient_with_icd(icd_code)
         return patient_df
 
-
-    def concept_cd_from_concept_dimension_ein_kriterium_blatt(self, name_char):
-        df = pd.read_sql(strings_sql.build_SQL_concept_cd(name_char), con=database.engine)
-        return df
-
+    # def pat_df_ein_kriterium_blatt_cd(self, name_char):
+    #     get_concept_cd = self.concept_cd_from_concept_dimension_ein_kriterium_blatt(name_char)
+    #     icd_code = self.search_code_with_df(get_concept_cd)
+    #     patienten_df = self.get_patient_with_icd(icd_code)
+    #     return patienten_df
+    #
+    # def concept_cd_from_concept_dimension_ein_kriterium_blatt(self, name_char):
+    #     df = pd.read_sql(strings_sql.build_SQL_concept_cd(name_char), con=database.engine)
+    #     return df
 
     def c_basecode_from_i2b2_ein_kriterium_blatt(self, name_char):
         df = pd.read_sql(strings_sql.build_SQL_c_basecode(name_char), con=database.engine)

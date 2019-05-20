@@ -1,5 +1,9 @@
-import backend.abfragenLogik.gesamt_anzahl as sqlGesamtanzahl
-import backend.abfragenLogik.sql_templates as sqlTemplates
+from backend.abfragenLogik import gesamt_anzahl as gesamt_anzahl
+from backend.abfragenLogik import sql_templates as sql_templates
+from backend.abfragenLogik import sql_verknuepfungen as sql_verknuepfungen
+
+gesamtAnzahl = gesamt_anzahl.GesamtAnzahl()
+sqlVerknuepfung = sql_verknuepfungen.SQLVerknuepfung()
 
 # print(sg.gesamtanzahlPatienten())
 # try:
@@ -14,11 +18,6 @@ sG = sqlGesamtanzahl.sqlGesamtanzahl()
 print(sT.anzahlPatZweiKriterienAND("Essential hypertension", "Hypertensive renal disease"))
 
 print(sT.anzahlPatZweiKriterienOR("Essential hypertension", "Hypertensive renal disease"))
-
-print(sT.anzahlPatProKriteriumBlatt("Hypertensive renal disease"))
-
-gesamtAnzahl = gesamtAnzahl()
-sqlVerknüpfung = sqlVerknüpfung()
 
 # Ein Callback ist nichts anderes als ein Zeiger auf eine Funktion. Also eine Funktion, in der die Adresse einer anderen Funktion gespeichert wird.
 funclist = [gesamtAnzahl.gesamtanzahlPatienten(), gesamtAnzahl.gesamtanzahlMaenner(), gesamtAnzahl.gesamtanzahlFrauen()]
