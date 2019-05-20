@@ -1,4 +1,4 @@
-from backend.abfragenLogik import sql_templates as sql_templates
+from backend.abfragenLogik import sql_templates
 
 
 class SQLVerknuepfung:

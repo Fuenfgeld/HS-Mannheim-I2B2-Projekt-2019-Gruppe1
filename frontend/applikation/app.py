@@ -2,8 +2,8 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
-import backend.abfragenLogik.gesamt_anzahl as gA
-import backend.baum.rowGenerator as rowGenerator
+from backend.abfragenLogik import gesamt_anzahl
+from backend.baum import row_generator
 from dash.dependencies import Output
 
 colors = {
@@ -11,7 +11,7 @@ colors = {
     'text': '#111111'
 }
 
-gesamtAnzahl = gA.GesamtAnzahl()
+gesamtAnzahl = gesamt_anzahl.GesamtAnzahl()
 
 app = dash.Dash(__name__,
                 external_stylesheets=['layout.css'],
@@ -47,7 +47,7 @@ app.layout = html.Div([
         html.Div([html.H5("Suchen")], className="DivSuchleiste"),
         html.Span([
             html.H5('ICD 10', className='caret'),
-            html.Ul(rowGenerator.add_groundlevel(), className='nested'),
+            html.Ul(row_generator.add_groundlevel(), className='nested'),
             html.Div(id='selected')])
 
     ], className="DivNavigation"),
@@ -115,7 +115,7 @@ app.css.append_css({
 
 @app.callback(
     Output('selected', 'children'),
-    [rowGenerator.secondLevelIDList[0]])
+    [row_generator.secondLevelIDList[0]])
 def update_div(secondLevelIDList):
     return
 

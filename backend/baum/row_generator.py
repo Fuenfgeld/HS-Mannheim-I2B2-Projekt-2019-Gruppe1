@@ -2,7 +2,7 @@
 import dash_html_components as html
 from dash.dependencies import Input
 
-import backend.baum.DB_Queries as db  # import from the file with the database query
+import backend.baum.db_queries as db  # import from the file with the database query
 
 # import plotly.graph_objs as go
 

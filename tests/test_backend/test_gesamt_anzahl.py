@@ -1,5 +1,5 @@
 import unittest
-from backend.abfragenLogik import gesamt_anzahl as gesamt_anzahl
+from backend.abfragenLogik import gesamt_anzahl
 
 gesamtAnzahl = gesamt_anzahl.GesamtAnzahl()
 

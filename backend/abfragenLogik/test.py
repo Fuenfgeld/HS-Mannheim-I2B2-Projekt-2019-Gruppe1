@@ -1,6 +1,6 @@
-from backend.abfragenLogik import gesamt_anzahl as gesamt_anzahl
-from backend.abfragenLogik import sql_templates as sql_templates
-from backend.abfragenLogik import sql_verknuepfungen as sql_verknuepfungen
+from backend.abfragenLogik import gesamt_anzahl
+from backend.abfragenLogik import sql_templates
+from backend.abfragenLogik import sql_verknuepfungen
 
 gesamtAnzahl = gesamt_anzahl.GesamtAnzahl()
 sqlTemplates = sql_templates.SQLTemplates()
