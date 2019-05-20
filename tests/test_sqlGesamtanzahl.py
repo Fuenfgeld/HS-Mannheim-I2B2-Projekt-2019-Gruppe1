@@ -1,5 +1,6 @@
 import unittest
-from abfragenLogik import sqlGesamtanzahl as sg
+from backend.abfragenLogik import sqlGesamtanzahl as sg
+
 
 class TestSqlGesamtanzahl(unittest.TestCase):
 
