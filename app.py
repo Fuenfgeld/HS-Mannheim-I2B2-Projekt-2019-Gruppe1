@@ -4,7 +4,7 @@ import dash_html_components as html
 import sqlalchemy as sa
 import pandas as pd
 
-from SQL.formatted import formattedSQL as fs, stringSQL as s
+from SQL.formatted import formatted_sql as fs, string_sql as s
 
 engine = sa.create_engine("postgresql://i2b2:demouser@129.206.7.75:5432/i2b2")
 

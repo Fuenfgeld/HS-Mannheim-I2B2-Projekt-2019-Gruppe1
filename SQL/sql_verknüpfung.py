@@ -1,4 +1,4 @@
-import SQL.sqlTemplates as sqlT
+import SQL.sql_templates as sqlT
 
 
 class sqlVerknüpfung:

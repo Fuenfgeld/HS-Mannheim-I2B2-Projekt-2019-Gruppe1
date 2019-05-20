@@ -1,6 +1,6 @@
-from SQL.gesamtAnzahl import gesamtAnzahl
-from SQL.sqlVerknüpfung import sqlVerknüpfung
-from SQL import sqlTemplates
+from SQL.gesamt_anzahl import gesamtAnzahl
+from SQL.sql_verknüpfung import sqlVerknüpfung
+from SQL import sql_templates
 
 gesamtAnzahl = gesamtAnzahl()
 sqlVerknüpfung = sqlVerknüpfung()
@@ -9,25 +9,18 @@ sqlVerknüpfung = sqlVerknüpfung()
 funclist = [gesamtAnzahl.gesamtanzahlPatienten(), gesamtAnzahl.gesamtanzahlMaenner(), gesamtAnzahl.gesamtanzahlFrauen()]
 
 try:
-
-    # über Objekt
+    # rufe über Objekt auf
+    # print("Alle Patienten")
     # print(gesamtAnzahl.gesamtanzahlPatienten())
+    # print("Alle Männer")
     # print(gesamtAnzahl.gesamtanzahlMaenner())
+    # print("Alle Frauen")
     # print(gesamtAnzahl.gesamtanzahlFrauen())
 
-    # über import
-    # 40 Patienten
-    # print(len(sqlTemplates.anzahlPatEinKriteriumBlatti2b2('Essential hypertension')))
-    # 40 Patienten
-    # print(len(sqlTemplates.anzahlPatEinKriteriumBlattCD('Essential hypertension')))
-    # 40 Patienten mi 4 Funktionen
-    print(len(sqlTemplates.patient_EinKriteriumBlatt(
-        sqlTemplates.searchCode_EinKriteriumBlatt(
-            sqlTemplates.concept_cd_EinKriteriumBlatt(
-                sqlTemplates.buildSQL_EinKriteriumBlatt('Essential hypertension'))))))
+    # rufe über import auf
+    print(len(sql_templates.pat_df_ein_kriterium_blatt_cd('Essential hypertension')))
+    print(len(sql_templates.pat_df_ein_kriterium_blatt_i2b2('Essential hypertension')))
 
-    # Funktion die obrigen Zeilen vereint
-    print(len(sqlTemplates.pat_df_EinKriteriumBlattCD('Essential hypertension')))
     # 1 Patient
     # print(sqlVerknüpfung.anzahlPatZweiKriterienAND('Essential hypertension', 'Hypertensive renal disease'))
     # 40 Patienten
