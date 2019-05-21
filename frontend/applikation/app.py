@@ -52,7 +52,6 @@ app.layout = html.Div([
 
     ], className="DivNavigation"),
 
-
     html.Div([
 
         html.Div([
