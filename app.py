@@ -1,21 +1,12 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Output, Input, State
-#from iexfinance import get_historical_data
 from dateutil.relativedelta import relativedelta
-import plotly.graph_objs as go
 import datetime
-import pandas as pd
-import requests
-import database
-import matplotlib as mlp
-import matplotlib.pyplot as plt
-
 import psycopg2 as psycopg2
-
-import plotly.plotly as py
 import plotly.graph_objs as go
+import DB_Test as db
+import row_generator as rg
 
 
 # Server Connection (conn)
@@ -66,62 +57,43 @@ colors = {
     'text': '#111111'
 }
 
-import DB_Test as db  # import from the file with the database query
-# import plotly.graph_objs as go
-import row_generator as rg
-import psycopg2 as psycopg2
+
+
 
 start = datetime.datetime.today() - relativedelta(years=5)
 end = datetime.datetime.today()
 
-df = pd.read_csv(
-    'https://gist.githubusercontent.com/chriddyp/' +
-    '5d1ea79569ed194d432e56108a04d188/raw/' +
-    'a9f9e8076b837d541398e999dcbac2b2826a81f8/'+
-    'gdp-life-exp-2007.csv')
-
-
-def update_news():
-    url = "https://api.iextrading.com/1.0/stock/market/news/last/5"
-    r = requests.get(url)
-    json_string = r.json()
-
-    df = pd.DataFrame(json_string)
-    df = pd.DataFrame(df[["headline", "url"]])
-
-    return df
-
-def generate_html_table(max_rows=10):
-
-    df = update_news()
-
-    return html.Div(
-        [
-            html.Div(
-                html.Table(
-                    # Header
-                    [html.Tr([html.Th()])]
-                    +
-                    # Body
-                    [
-                        html.Tr(
-                            [
-                                html.Td(
-                                    html.A(
-                                        df.iloc[i]["headline"],
-                                        href=df.iloc[i]["url"],
-                                        target="_blank"
-                                    )
-                                )
-                            ]
-                        )
-                        for i in range(min(len(df),max_rows))
-                    ]
-                ),
-                style={"height": "300px", "overflowY": "scroll"},
-            ),
-        ],
-        style={"height": "100%"},)
+# def generate_html_table(max_rows=10):
+#
+#     df = update_news()
+#
+#     return html.Div(
+#         [
+#             html.Div(
+#                 html.Table(
+#                     # Header
+#                     [html.Tr([html.Th()])]
+#                     +
+#                     # Body
+#                     [
+#                         html.Tr(
+#                             [
+#                                 html.Td(
+#                                     html.A(
+#                                         df.iloc[i]["headline"],
+#                                         href=df.iloc[i]["url"],
+#                                         target="_blank"
+#                                     )
+#                                 )
+#                             ]
+#                         )
+#                         for i in range(min(len(df),max_rows))
+#                     ]
+#                 ),
+#                 style={"height": "300px", "overflowY": "scroll"},
+#             ),
+#         ],
+#         style={"height": "100%"},)
 
 app = dash.Dash(__name__)
 
@@ -183,78 +155,14 @@ app.layout = html.Div([
                               title='Kreisdiagramm')
                       )),
 
-            dcc.Graph(
-                    id='life-exp-vs-gdp',
-                    figure={
-#                      'data': [
-#                             go.Scatter(
-#                                 x=df[df['continent'] == i]['gdp per capita'],
-#                                 y=df[df['continent'] == i]['life expectancy'],
-#                                 text=df[df['continent'] == i]['country'],
-#                                 mode='markers',
-#                                 opacity=0.8,
-#                                 marker={
-#                                     'size': 15,
-#                                     'line': {'width': 0.5, 'color': 'white'}
-#                                 },
-#                                 name=i
-#                             ) for i in df.continent.unique()
-#                         ],
-                        'data': [
-                            go.Scatter(
-                                x=resultAge,
-                                y=resultAge,
-                                # text=curserAge[curserAge['age_in_years_num']['religion_cd']],
-                                mode='markers',
-                                opacity=0.8,
-                                marker={
-                                    'size': 15,
-                                    'line': {'width': 0.5, 'color': 'white'}
-                                },
 
-                            )
-                        ],
-                        'layout': go.Layout(
-                            xaxis={'type': 'log', 'title': 'GDP Per Capita'},
-                            yaxis={'title': 'Life Expectancy'},
-                            margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-                            legend={'x': 0, 'y': 1},
-                            hovermode='closest'
-                        )
-                    }
-                )
         ], className="six columns"),
 
 
 
     ],className="row")
 ])
-# app.layout = html.Div([
-#     html.Div([
-#
-#         html.H2("Stock App"),
-#         html.Img(src="/assets/stock-icon.png")
-#     ], className="banner"),
-#
-#     html.Div([
-#         dcc.Input(id="stock-input", value="SPY", type="text"),
-#         html.Button(id="submit-button", n_clicks=0, children="Submit")
-#     ]),
-#
-#     html.Div([
-#         html.Div([
-#             dcc.Graph(
-#                 id="graph_close",
-#             )
-#         ], className="six columns"),
-#
-#         html.Div([
-#             html.H3("Market News"),
-#             generate_html_table()
-#         ], className="six columns"),
-#
-#     ],className="row")
-# ])
+
 
 app.css.append_css({
     "external_url":"https://codepen.io/chriddyp/pen/bWLwgP.css"
