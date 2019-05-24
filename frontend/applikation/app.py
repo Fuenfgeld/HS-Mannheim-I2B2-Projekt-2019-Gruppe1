@@ -11,12 +11,17 @@ from frontend.applikation import show_banner
 from frontend.applikation import query_bar
 from frontend.applikation import navigation_bar
 from frontend.applikation import show_graph
+from frontend.applikation import show_geschlechterverteilung
+
 
 #Objekte zur Anzeige der Seite
 bannerObject = show_banner.ShowBanner()
 queryObject = query_bar.ShowAbfrageleiste()
 navigationObject = navigation_bar.ShowNavigation()
 graphObject = show_graph.ShowGraph()
+
+
+sexObject = show_geschlechterverteilung.Geschlechterverteilung()
 
 
 app = dash.Dash(__name__)
@@ -30,7 +35,8 @@ app.layout = html.Div([
 
     navigationObject.layoutNavigation,
 
-    graphObject.layoutGraph
+    graphObject.layoutGraph,
+
 
 ])
 

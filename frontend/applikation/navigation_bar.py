@@ -12,7 +12,7 @@ class ShowNavigation():
     layoutNavigation = app.layout
 
     layoutNavigation = html.Div([
-        html.Div(dcc.Input(placeholder='Suche', type='text', size= '84'), className="DivSuchleiste"),
+        html.Div(dcc.Input(placeholder='Suche', type='text', size= '61'), className="DivSuchleiste"),
         html.Span([
             html.H5('ICD 10', className='caret'),
             html.Ul(row_generator.add_groundlevel(), className='nested'),

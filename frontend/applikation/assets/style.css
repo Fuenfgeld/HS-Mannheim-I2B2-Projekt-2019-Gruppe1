@@ -61,9 +61,9 @@
 .DivSuchleiste {
     text-align: left;
     position: relative;
-    height: 7%;
-    width: 79%;
+    height: 8%;
+    width: 80%;
     left: 2%;
-    top: 3%;
+    top: 5%;
     border: solid;
 }

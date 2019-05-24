@@ -10,7 +10,6 @@ class ShowAbfrageleiste():
         id='upload-data',
         children=html.Div([
             html.H5('Abfrageleiste '),
-            html.H6("hjdf")
         ]),
 
         style={
