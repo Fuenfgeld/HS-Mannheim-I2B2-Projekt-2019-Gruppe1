@@ -26,8 +26,8 @@ queryleiste = Queryleiste()
 
 sexObject = show_geschlechterverteilung.Geschlechterverteilung()
 
-queryleiste.append_icd_list('ICD9:008.8')
-#queryleiste.append_icd_list('ICD9:008.8')
+queryleiste.append_icd_list('ICD9:382.9')
+queryleiste.append_icd_list('ICD9:493')
 
 result_icd = pd.read_sql(queryleiste.len_icd_aufruf(), con=database.engine)
 print(result_icd)

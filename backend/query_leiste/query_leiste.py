@@ -10,7 +10,7 @@ class Queryleiste:
 
     def len_icd_aufruf(self):
         if len(self.icd_list) == 0:
-            return formatted_sql.build_SQL_i2b2_observation_fact()
+            return formatted_sql.build_SQL_patient_dimension()
         elif len(self.icd_list) == 1:
             return formatted_sql.build_SQL_i2b2_observation_fact_krit1(self.icd_list[0])
         elif len(self.icd_list) == 2:
