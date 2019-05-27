@@ -1,0 +1,11 @@
+# class formattet_sql
+def build_SQL_i2b2_observation_fact():
+    return 'select distinct ob_fa.patient_num from i2b2metadata.i2b2 as i2b2 ' \
+           'join i2b2demodata.observation_fact as ob_fa on i2b2.c_basecode = ob_fa.concept_cd ' \
+
+def build_SQL_i2b2_patient_dimension():
+    return 'select distinct patient_num from i2b2demodata.patient_dimension'
+
+#letzte merge auf patiente_dimension
+def build_SQL_patient_dimension_sex_cd():
+    return f'select sex_cd, patient_num from i2b2demodata.patient_dimension'
