@@ -27,10 +27,10 @@ queryleiste = Queryleiste()
 sexObject = show_geschlechterverteilung.Geschlechterverteilung()
 
 queryleiste.append_icd_list('ICD9:382.9')
-queryleiste.append_icd_list('ICD9:493')
+# queryleiste.append_icd_list('ICD9:493')
 
 result_icd = pd.read_sql(queryleiste.len_icd_aufruf(), con=database.engine)
-print(result_icd)
+result_name = pd.read_sql(queryleiste.get_name_from_code(), con=database.engine)
 
 app = dash.Dash(__name__)
 
@@ -41,7 +41,7 @@ app.layout = html.Div([
 
     navigationObject.layoutNavigation,
 
-    queryObject.layoutQuery,
+    queryObject.showqueryleiste(result_name),
 
     graphObject.result_show(result_icd),
 

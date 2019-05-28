@@ -15,3 +15,7 @@ def build_SQL_i2b2_patient_dimension():
 #letzte merge auf patiente_dimension
 def build_SQL_patient_dimension_sex_cd():
     return f'select sex_cd, patient_num from i2b2demodata.patient_dimension'
+
+def build_c_name_i2b2_oservation_fact():
+    return 'select distinct i2b2.c_name from i2b2metadata.i2b2 as i2b2 ' \
+           'join i2b2demodata.observation_fact  as of on i2b2.c_basecode=of.concept_cd '
