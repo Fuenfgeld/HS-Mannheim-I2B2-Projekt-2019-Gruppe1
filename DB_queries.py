@@ -18,7 +18,8 @@ class Queries:
             "select c_name as name, c_path as path, c_basecode as icdcode, c_hlevel as level, c_fullname as fullname "
             f"from i2b2metadata.icd10_icd9 where c_hlevel = {level} and c_basecode like 'ICD%' "
             f"order by c_hlevel, c_basecode ",
-            con=Queries.connection)
+            con=Queries.connection)  # query into a data frame that contains name. icd code, level, path and fullpath
+        # (extended path) of a certain level of the icd catalogue
         return whole_icd
 
     print('done')

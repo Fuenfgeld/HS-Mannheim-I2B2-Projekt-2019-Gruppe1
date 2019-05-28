@@ -21,6 +21,7 @@ def add_first_level(metaPath):
 
     for i in range(len(levelList)):
         if str(levelList['path'][i]) == '\\Diagnoses\\':
+
             levelFullNames[i] = Node(f'{levelNames[i]}', parent=rootNode)
             # print(levelFullNames[i])
             # print(copyFullNames[i])
@@ -41,10 +42,12 @@ def add_next_level(metaPath, metaNode, level):
     if level <= 2:
         for i in range(len(levelList)):
             if str(levelList['path'][i]) == f'{metaPath}':
+
                 levelFullNames[i] = Node(f'{levelNames[i]}', parent=metaNode)
                 # print(levelFullNames[i])
                 # print(copyFullNames[i])
                 add_next_level(copyFullNames[i], levelFullNames[i], level + 1)
+
 
 
 add_first_level('Diagnosis')
