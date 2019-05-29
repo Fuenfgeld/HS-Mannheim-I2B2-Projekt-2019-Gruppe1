@@ -1,19 +1,19 @@
 
 import dash_html_components as html
 
-from backend.result import show_geschlechterverteilung
-from backend.result import ergebnis_dezimal
+from backend.result_logic import graph_sex_distribution
+from backend.result_logic import laylout_result_decimal
 
 colors = {
     'background': '#ffffff',
     'text': '#111111'
 }
 
-geschlechtObject = show_geschlechterverteilung.Geschlechterverteilung()
-ergDeziObject = ergebnis_dezimal.ErgebnisDezimal()
+sexObject = graph_sex_distribution.graphSexDistribution()
+resultDecimalObject = laylout_result_decimal.ErgebnisDezimal()
 
 
-class ShowGraph():
+class layoutGraph:
 
     def result_show(self, df):
 
@@ -21,9 +21,9 @@ class ShowGraph():
 
             html.Div([
 
-                ergDeziObject.setlayoutdezimal(df),
+                resultDecimalObject.set_layout_decimal(df),
 
-                geschlechtObject.setlayoutgeschlecht(df),
+                sexObject.set_layout_sex_graph(df),
 
                 # herkunftObject.layoutHerkunft,
 

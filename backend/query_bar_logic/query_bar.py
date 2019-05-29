@@ -1,8 +1,11 @@
 from backend.sql import formatted_sql
 
 
-class Queryleiste:
-    icd_list = []
+class queryBar:
+
+    def __init__(self):
+        self.icd_list = []
+        self.name_list = []
 
     def append_icd_list(self, icd_code):
         self.icd_list.append(icd_code)
@@ -16,7 +19,6 @@ class Queryleiste:
         elif len(self.icd_list) == 2:
             return formatted_sql.build_SQL_i2b2_observation_fact_krit2(self.icd_list[0], self.icd_list[1])
 
-    name_list = []
     def append_name_list(self, icd_name):
         if len(self.name_list) % 2 == 0:
             self.name_list.append(icd_name)

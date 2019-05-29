@@ -1,7 +1,7 @@
 
 import dash_html_components as html
 
-class ShowBanner():
+class layoutBanner:
 
     layoutBanner = html.Div([
             html.H5("greenCET"),

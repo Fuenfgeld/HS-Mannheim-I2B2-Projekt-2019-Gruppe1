@@ -14,14 +14,14 @@ from frontend.app_layout import layout_query_bar
 from frontend.app_layout import layout_navigation_bar
 from frontend.app_layout import layout_graph
 
-from backend.query_leiste.query_leiste import Queryleiste
+from backend.query_bar_logic.query_bar import queryBar
 
 # Objekte zur Anzeige der Seite
-bannerObject = layout_banner.ShowBanner()
-queryObject = layout_query_bar.ShowAbfrageleiste()
-navigationObject = layout_navigation_bar.ShowNavigation()
-graphObject = layout_graph.ShowGraph()
-queryleiste = Queryleiste()
+bannerObject = layout_banner.layoutBanner()
+queryObject = layout_query_bar.layoutQueryBar()
+navigationObject = layout_navigation_bar.layoutNavigationBar()
+graphObject = layout_graph.layoutGraph()
+queryleiste = queryBar()
 
 # Mockdaten
 queryleiste.append_icd_list('ICD9:382.9')
@@ -44,7 +44,7 @@ app.layout = html.Div([
 
     navigationObject.layoutNavigation,
 
-    queryObject.showqueryleiste(queryleiste.name_list),
+    queryObject.fill_query_bar(queryleiste.name_list),
 
     graphObject.result_show(result_icd),
 

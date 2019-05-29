@@ -1,8 +1,6 @@
-import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from backend.result import ergebnis_merge
-
+from backend.result_logic import result_merge
 
 colors = {
     'background': '#ffffff',
@@ -10,20 +8,12 @@ colors = {
 }
 
 
-class Geschlechterverteilung():
-    app = dash.Dash(__name__)
+class graphSexDistribution():
 
-    # gesamtAnzahl = gesamt_anzahl.GesamtAnzahl()
+    def set_layout_sex_graph(self, df):
+        dfnew = result_merge.merge_two_df(df)
 
-    layoutGeschlechterverteilung = app.layout
-
-    def setlayoutgeschlecht(self, df):
-
-        dfnew = ergebnis_merge.mergezweidf(df)
-
-        layoutGeschlechterverteilung = html.Div([
-
-
+        layoutSexDistribution = html.Div([
 
             dcc.Graph(
                 id="sex_distribution",
@@ -45,4 +35,4 @@ class Geschlechterverteilung():
 
         ])
 
-        return layoutGeschlechterverteilung
+        return layoutSexDistribution

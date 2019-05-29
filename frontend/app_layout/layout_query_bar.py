@@ -2,9 +2,9 @@
 import dash_core_components as dcc
 import dash_html_components as html
 
-class ShowAbfrageleiste():
+class layoutQueryBar:
 
-    def showqueryleiste(self, name_list):
+    def fill_query_bar(self, name_list):
         if len(name_list)==1:
             layoutQuery = html.Div([dcc.Upload(
                 children=html.Div([
