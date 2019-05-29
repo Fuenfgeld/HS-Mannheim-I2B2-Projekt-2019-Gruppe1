@@ -27,10 +27,10 @@ queryleiste = Queryleiste()
 sexObject = show_geschlechterverteilung.Geschlechterverteilung()
 
 queryleiste.append_icd_list('ICD9:382.9')
-#queryleiste.append_icd_list('ICD9:493')
+queryleiste.append_icd_list('ICD9:493')
 
 queryleiste.append_name_list("Rheumatic chorea without mention of heart involvement")
-#queryleiste.append_name_list("Rheumatic chorea with heart involvement")
+queryleiste.append_name_list("Rheumatic chorea with heart involvement")
 
 result_icd = pd.read_sql(queryleiste.len_icd_aufruf(), con=database.engine)
 
