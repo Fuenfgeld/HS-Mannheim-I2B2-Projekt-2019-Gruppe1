@@ -27,10 +27,15 @@ queryleiste = Queryleiste()
 sexObject = show_geschlechterverteilung.Geschlechterverteilung()
 
 queryleiste.append_icd_list('ICD9:382.9')
-# queryleiste.append_icd_list('ICD9:493')
+#queryleiste.append_icd_list('ICD9:493')
+
+queryleiste.append_name_list("Rheumatic chorea without mention of heart involvement")
+#queryleiste.append_name_list("Rheumatic chorea with heart involvement")
 
 result_icd = pd.read_sql(queryleiste.len_icd_aufruf(), con=database.engine)
-result_name = pd.read_sql(queryleiste.get_name_from_code(), con=database.engine)
+
+
+
 
 app = dash.Dash(__name__)
 
@@ -41,7 +46,7 @@ app.layout = html.Div([
 
     navigationObject.layoutNavigation,
 
-    queryObject.showqueryleiste(result_name),
+    queryObject.showqueryleiste(queryleiste.name_list),
 
     graphObject.result_show(result_icd),
 

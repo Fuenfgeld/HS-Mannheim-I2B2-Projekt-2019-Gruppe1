@@ -7,10 +7,6 @@ class ShowBanner():
 
     layoutBanner = app.layout
     layoutBanner = html.Div([
-
-        html.Div([
-            html.H2("greenCET"),
+            html.H5("greenCET"),
             html.Img(src="/assets/LOGO.png")
-        ], className="banner")
-
-    ])
+    ], className="bannerDiv")

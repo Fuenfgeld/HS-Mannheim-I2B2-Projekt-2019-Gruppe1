@@ -1,11 +1,11 @@
 .DivNavigation {
     text-align: left;
     position: absolute;
-    width: 49%;
-    height: 80%;
+    width: 49.5%;
+    height: 78.5%;
     z-index: 1;
-    left: 0%;
-    top: 31%;
+    left: 0.1%;
+    top: 21%;
     border: solid;
     overflow: auto;
 }
@@ -13,57 +13,64 @@
 .DivErgebnis {
     text-align: left;
     position: absolute;
-    width: 50%;
-    height: 80%;
+    width: 49.5%;
+    height: 78.5%;
     z-index: 1;
     left: 50%;
-    top: 31%;
+    top: 21%;
     border: solid;
     overflow: auto;
-}
-
-.DivAbfrageleiste1{
-
-    width: 98.5%;
-    height: 150px;
-    lineHeight: 60px;
-    borderWidth: 2px;
-    borderStyle: dashed;
-    borderRadius: 5px;
-    textAlign: center;
-    margin: 10px;
-
 }
 
 .DivAbfrageleiste {
     text-align: center;
     position: absolute;
-    width: 100%;
+    width: 99.5%;
     height: 15%;
     z-index: 2;
-    left: 0%;
-    top: 14%;
+    left: 0.1%;
+    top: 5%;
     border: solid;
     overflow: auto;
 }
+
+.bannerDiv {
+    background-color: rgb(109, 204, 64);
+    position: absolute;
+    width: 99.5%;
+    left: 0.25%;
+    top: 0.1%;
+    bottom: 0.1%;
+    height: 4.8%;
+    z-index: 2;
+}
+
+.bannerDiv H5{
+    text-align: left;
+    color: white;
+    display: inline-block;
+}
+
+.bannerDiv Img{
+    position: relative;
+    float: right;
+    right: 1%;
+    height: 99%;
+}
+
+
+
 
 .DivGesamtanzahl {
     text-align: center;
     position: relative;
     height: 10%;
-    width: 22%;
+    width: 96%;
     left: 2%;
-    top: 3%;
+    right: 2%;
+    top: 2%;
     z-index: 2;
     border: dashed;
 }
 
-.DivSuchleiste {
-    text-align: left;
-    position: relative;
-    height: 8%;
-    width: 80%;
-    left: 2%;
-    top: 5%;
-    border: solid;
-}
+
