@@ -1,5 +1,6 @@
 import dash_core_components as dcc
 import dash_html_components as html
+import plotly.graph_objs as go
 from backend.result_logic import result_merge
 
 colors = {
@@ -24,22 +25,15 @@ class graphSexDistribution():
 
             dcc.Graph(
                 id="sex_distribution",
-                figure={
-                    'data': [
-                        {'x': ['W'], 'y': [self.count_female], 'type': 'bar', 'name': 'Frauen'},
-                        {'x': ['M'], 'y': [self.count_male], 'type': 'bar', 'name': 'Männlich'},
-                    ],
-                    'layout': {
-                        'title': 'Geschlechterverteilung',
-                        'plot_bgcolor': colors['background'],
-                        'paper_bgcolor': colors['background'],
-                        'font': {
-                            'color': colors['text']
-                        }
-                    }
-                }
-            ),
-
+                figure=go.Figure(
+                    data=[go.Pie(labels=['Weiblich', 'Männlich'],
+                                 values=[self.count_female,
+                                         self.count_male])],
+                    layout=go.Layout(
+                        title='Geschlechterverteilung'
+                    )
+                )
+            )
         ])
 
         return layoutSexDistribution
