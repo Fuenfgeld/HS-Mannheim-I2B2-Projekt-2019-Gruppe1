@@ -10,8 +10,15 @@ colors = {
 
 class graphSexDistribution():
 
+    def __init__(self):
+        self.count_male = 82
+        self.count_female = 52
+
     def set_layout_sex_graph(self, df):
-        dfnew = result_merge.merge_two_df(df)
+        if df is not None:
+            dfNew = result_merge.merge_two_df(df)
+            self.count_male = dfNew.sex_cd.str.count('M').sum()
+            self.count_female = dfNew.sex_cd.str.count('F').sum()
 
         layoutSexDistribution = html.Div([
 
@@ -19,8 +26,8 @@ class graphSexDistribution():
                 id="sex_distribution",
                 figure={
                     'data': [
-                        {'x': ['W'], 'y': [dfnew.sex_cd.str.count('F').sum()], 'type': 'bar', 'name': 'Frauen'},
-                        {'x': ['M'], 'y': [dfnew.sex_cd.str.count('M').sum()], 'type': 'bar', 'name': 'Männlich'},
+                        {'x': ['W'], 'y': [self.count_female], 'type': 'bar', 'name': 'Frauen'},
+                        {'x': ['M'], 'y': [self.count_male], 'type': 'bar', 'name': 'Männlich'},
                     ],
                     'layout': {
                         'title': 'Geschlechterverteilung',

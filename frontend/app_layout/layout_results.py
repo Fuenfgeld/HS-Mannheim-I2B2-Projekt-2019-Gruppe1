@@ -2,7 +2,7 @@
 import dash_html_components as html
 
 from backend.result_logic import graph_sex_distribution
-from backend.result_logic import laylout_result_decimal
+from backend.result_logic import layout_result_decimal
 
 colors = {
     'background': '#ffffff',
@@ -10,14 +10,13 @@ colors = {
 }
 
 sexObject = graph_sex_distribution.graphSexDistribution()
-resultDecimalObject = laylout_result_decimal.ErgebnisDezimal()
+resultDecimalObject = layout_result_decimal.layoutResultDecimal()
 
+class layoutResults:
 
-class layoutGraph:
+    def show_results(self, df):
 
-    def result_show(self, df):
-
-        layoutGraph = html.Div([
+        layoutResults = html.Div([
 
             html.Div([
 
@@ -25,12 +24,9 @@ class layoutGraph:
 
                 sexObject.set_layout_sex_graph(df),
 
-                # herkunftObject.layoutHerkunft,
-
-                # familienstandObject.layoutFamilienstand
 
             ], className="DivErgebnis")
 
         ], className="row")
 
-        return layoutGraph
+        return layoutResults

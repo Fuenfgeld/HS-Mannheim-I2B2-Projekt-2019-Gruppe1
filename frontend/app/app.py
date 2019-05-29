@@ -12,15 +12,15 @@ from dash.dependencies import Output
 from frontend.app_layout import layout_banner
 from frontend.app_layout import layout_query_bar
 from frontend.app_layout import layout_navigation_bar
-from frontend.app_layout import layout_graph
+from frontend.app_layout import layout_results
 
 from backend.query_bar_logic.query_bar import queryBar
 
 # Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
-queryObject = layout_query_bar.layoutQueryBar()
-navigationObject = layout_navigation_bar.layoutNavigationBar()
-graphObject = layout_graph.layoutGraph()
+queryBarObject = layout_query_bar.layoutQueryBar()
+navigationBarObject = layout_navigation_bar.layoutNavigationBar()
+resultsObject = layout_results.layoutResults()
 queryleiste = queryBar()
 
 # Mockdaten
@@ -42,11 +42,11 @@ app.layout = html.Div([
 
     bannerObject.layoutBanner,
 
-    navigationObject.layoutNavigation,
+    navigationBarObject.layoutNavigation,
 
-    queryObject.fill_query_bar(queryleiste.name_list),
+    queryBarObject.fill_query_bar(queryleiste.name_list),
 
-    graphObject.result_show(result_icd),
+    resultsObject.show_results(None),
 
 ])
 
