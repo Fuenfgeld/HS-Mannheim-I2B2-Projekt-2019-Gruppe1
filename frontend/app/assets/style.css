@@ -1,3 +1,39 @@
+.DivBanner {
+    background-color: rgb(109, 204, 64);
+    position: absolute;
+    width: 99.5%;
+    left: 0.25%;
+    top: 0.1%;
+    bottom: 0.1%;
+    height: 4.8%;
+    z-index: 2;
+}
+
+.DivBanner H5{
+    text-align: left;
+    color: white;
+    display: inline-block;
+}
+
+.DivBanner Img{
+    position: relative;
+    float: right;
+    right: 1%;
+    height: 99%;
+}
+
+.DivAbfrageleiste {
+    text-align: center;
+    position: absolute;
+    width: 99.5%;
+    height: 15.4%;
+    z-index: 2;
+    left: 0.1%;
+    top: 5%;
+    border: solid;
+    overflow: auto;
+}
+
 .DivNavigation {
     text-align: left;
     position: absolute;
@@ -9,7 +45,7 @@
     border: solid;
     overflow: auto;
 }
-.suchen{
+.DivSuchen{
     margin-top: 1%;
     width: 99%;
     margin-left: 0.5%;
@@ -26,45 +62,6 @@
     border: solid;
     overflow: auto;
 }
-
-.DivAbfrageleiste {
-    text-align: center;
-    position: absolute;
-    width: 99.5%;
-    height: 15.4%;
-    z-index: 2;
-    left: 0.1%;
-    top: 5%;
-    border: solid;
-    overflow: auto;
-}
-
-.bannerDiv {
-    background-color: rgb(109, 204, 64);
-    position: absolute;
-    width: 99.5%;
-    left: 0.25%;
-    top: 0.1%;
-    bottom: 0.1%;
-    height: 4.8%;
-    z-index: 2;
-}
-
-.bannerDiv H5{
-    text-align: left;
-    color: white;
-    display: inline-block;
-}
-
-.bannerDiv Img{
-    position: relative;
-    float: right;
-    right: 1%;
-    height: 99%;
-}
-
-
-
 
 .DivGesamtanzahl {
     text-align: center;

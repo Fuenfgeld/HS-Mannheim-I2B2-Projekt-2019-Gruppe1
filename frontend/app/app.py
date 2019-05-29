@@ -13,7 +13,6 @@ from frontend.app_logic import show_banner
 from frontend.app_logic import query_bar
 from frontend.app_logic import navigation_bar
 from frontend.app_logic import show_graph
-from backend.result import show_geschlechterverteilung
 
 from backend.query_leiste.query_leiste import Queryleiste
 
@@ -24,8 +23,7 @@ navigationObject = navigation_bar.ShowNavigation()
 graphObject = show_graph.ShowGraph()
 queryleiste = Queryleiste()
 
-sexObject = show_geschlechterverteilung.Geschlechterverteilung()
-
+# Mockdaten
 queryleiste.append_icd_list('ICD9:382.9')
 queryleiste.append_icd_list('ICD9:493')
 

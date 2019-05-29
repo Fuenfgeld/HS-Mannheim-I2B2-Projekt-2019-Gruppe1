@@ -9,4 +9,4 @@ class ShowBanner():
     layoutBanner = html.Div([
             html.H5("greenCET"),
             html.Img(src="/assets/LOGO.png")
-    ], className="bannerDiv")
+    ], className="DivBanner")
