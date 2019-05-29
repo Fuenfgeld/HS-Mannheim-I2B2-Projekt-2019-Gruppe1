@@ -9,18 +9,18 @@ from backend.tree import row_generator_level
 from dash.dependencies import Output
 
 # imports der Klassen zur Anzeige der Seite
-from frontend.app_logic import show_banner
-from frontend.app_logic import query_bar
-from frontend.app_logic import navigation_bar
-from frontend.app_logic import show_graph
+from frontend.app_layout import layout_banner
+from frontend.app_layout import layout_query_bar
+from frontend.app_layout import layout_navigation_bar
+from frontend.app_layout import layout_graph
 
 from backend.query_leiste.query_leiste import Queryleiste
 
 # Objekte zur Anzeige der Seite
-bannerObject = show_banner.ShowBanner()
-queryObject = query_bar.ShowAbfrageleiste()
-navigationObject = navigation_bar.ShowNavigation()
-graphObject = show_graph.ShowGraph()
+bannerObject = layout_banner.ShowBanner()
+queryObject = layout_query_bar.ShowAbfrageleiste()
+navigationObject = layout_navigation_bar.ShowNavigation()
+graphObject = layout_graph.ShowGraph()
 queryleiste = Queryleiste()
 
 # Mockdaten

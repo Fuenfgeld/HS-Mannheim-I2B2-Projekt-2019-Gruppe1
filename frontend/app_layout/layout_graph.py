@@ -1,4 +1,4 @@
-import dash
+
 import dash_html_components as html
 
 from backend.result import show_geschlechterverteilung
@@ -16,9 +16,6 @@ ergDeziObject = ergebnis_dezimal.ErgebnisDezimal()
 class ShowGraph():
 
     def result_show(self, df):
-        app = dash.Dash(__name__)
-
-        layoutGraph = app.layout
 
         layoutGraph = html.Div([
 
