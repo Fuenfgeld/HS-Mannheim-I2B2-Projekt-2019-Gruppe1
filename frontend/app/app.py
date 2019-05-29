@@ -25,7 +25,7 @@ queryleiste = queryBar()
 
 # Mockdaten
 queryleiste.append_icd_list('ICD9:382.9')
-queryleiste.append_icd_list('ICD9:493')
+#queryleiste.append_icd_list('ICD9:493')
 
 queryleiste.append_name_list("Rheumatic chorea without mention of heart involvement")
 queryleiste.append_name_list("Rheumatic chorea with heart involvement")
@@ -46,7 +46,7 @@ app.layout = html.Div([
 
     queryBarObject.fill_query_bar(queryleiste.name_list),
 
-    resultsObject.show_results(None),
+    resultsObject.show_results(result_icd),
 
 ])
 
