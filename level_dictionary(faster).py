@@ -1,6 +1,13 @@
-from anytree import Node, RenderTree
+import json
+
+from anytree import Node
+# from collections import OrderedDict
+from anytree.exporter import JsonExporter, DictExporter
 
 import DB_queries as db
+
+json_exporter = JsonExporter(indent=2)
+dict_exporter = DictExporter()
 
 
 def add_first_level(metaPath):
@@ -22,7 +29,13 @@ def add_first_level(metaPath):
             # referenced
 
     add_next_level(2, levelFullNames, copyFullNames)  # recursive method that adds next levels
-    print(RenderTree(rootNode))  # show the tree using the tree renderer
+    # pprint(dict_exporter.export(rootNode))
+    # pprint(json_exporter.export(rootNode))
+    # print('Length of dictionary: ', len(dict_exporter.export(rootNode)))
+    print('Length of dictionary: ', len(json_exporter.export(rootNode)))
+    return json_exporter.export(rootNode)
+    # print(RenderTree(rootNode))  # show the tree using the tree renderer
+
 
 
 def add_next_level(level, parentNodeList, parentPathList):
@@ -52,7 +65,7 @@ def add_next_level(level, parentNodeList, parentPathList):
             # print('Next one')
             metaListIndex += 1
 
-    if level <= 9:  # there is a limit to the levels, without this statement this would create an endless loop
+    if level <= 2:  # there is a limit to the levels, without this statement this would create an endless loop
         print('Length of the whole level list: ', len(wholeLevelList))
         print('Index of the whole list: ', wholeLvelIndex)
         print('Length of parent list: ', len(parentNodeList))
@@ -61,7 +74,12 @@ def add_next_level(level, parentNodeList, parentPathList):
         add_next_level(level + 1, levelFullNames, copyFullNames)
 
 
-add_first_level('Diagnosis')
+# print(len(add_first_level('Diagnosis')))
+print(add_first_level('Diagnosis'))
+
+with open('icd_tree.json', 'w') as write_file:
+    json.dump(add_first_level('Diagnosis'), write_file)
+
 
 # class SearchLevel:
 #     query = db.Queries()
