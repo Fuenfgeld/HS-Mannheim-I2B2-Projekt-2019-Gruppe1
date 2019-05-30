@@ -23,8 +23,8 @@ class graphLanguageDistribution:
                 figure=go.Figure(
                     data=[go.Bar(x=['Englisch', 'Spanisch', 'Deutsch'],
                                  y=[count_english, count_spanish, count_german],
-                                 marker=dict(color=['#0066FF', '#CC3333','#FFCC00'],
-                                             line=dict(color='#000000', width=2)),
+                                 marker=dict(color=['#248f24', '#47d147','#99e699'],
+                                             line=dict(color='#a3a3c2', width=2)),
                                  )
                           ],
 

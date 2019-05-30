@@ -18,8 +18,8 @@ class graphSexDistribution():
                     data=[go.Pie(labels=['Weiblich', 'Männlich'],
                                  values=[count_female,
                                          count_male],
-                                 marker=dict(colors=['#CC6699', '#0099FF'],
-                                             line=dict(color='#000000', width=2)),
+                                 marker=dict(colors=['#d0d0e1', '#85e085'],
+                                             line=dict(color='#a3a3c2', width=2)),
                                  textfont={'size': 15},
                                  textinfo='value'
                                  )
