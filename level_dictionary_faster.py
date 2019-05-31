@@ -32,8 +32,8 @@ def add_first_level(metaPath):
     # pprint(dict_exporter.export(rootNode))
     # pprint(json_exporter.export(rootNode))
     # print('Length of dictionary: ', len(dict_exporter.export(rootNode)))
-    print('Length of dictionary: ', len(json_exporter.export(rootNode)))
-    return json_exporter.export(rootNode)
+    print('Length of dictionary: ', len(dict_exporter.export(rootNode)))
+    return dict_exporter.export(rootNode)
     # print(RenderTree(rootNode))  # show the tree using the tree renderer
 
 
@@ -75,7 +75,8 @@ def add_next_level(level, parentNodeList, parentPathList):
 
 
 # print(len(add_first_level('Diagnosis')))
-print(add_first_level('Diagnosis'))
+dictString = str(add_first_level('Diagnosis'))
+
 
 with open('icd_tree.json', 'w') as write_file:
     json.dump(add_first_level('Diagnosis'), write_file)
