@@ -6,7 +6,7 @@ from config import database
 
 # Benötigt für den Callback des Baums
 from backend.tree import row_generator_level
-from dash.dependencies import Output
+from dash.dependencies import Output, Input, State
 
 # imports der Klassen zur Anzeige der Seite
 from frontend.app_layout import layout_banner
@@ -55,12 +55,13 @@ app.css.append_css({
 })
 
 
-# CallBack des Baums
+#CallBack des Baums
 @app.callback(
     Output('selected', 'children'),
     [row_generator_level.secondLevelIDList[0]])
 def update_div(secondLevelIDList):
     return
+
 
 
 if __name__ == "__main__":
