@@ -6,7 +6,8 @@ from backend.tree import row_generator_level
 class layoutNavigationBar:
 
     layoutNavigation = html.Div([
-        dcc.Input(placeholder='Suche', type='text', className="DivSuchen"),
+        dcc.Input(id='input-box', placeholder='Suche', type='text', className="DivSuchen"),
+        html.Button('Add', id='button'),
         html.Span([
            html.H5('ICD 10', className='caret'),
            html.Ul(row_generator_level.add_groundlevel(), className='nested'),

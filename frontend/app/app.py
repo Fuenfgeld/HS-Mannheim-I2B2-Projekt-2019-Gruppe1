@@ -27,9 +27,6 @@ queryleiste = queryBar()
 queryleiste.append_icd_list('ICD9:382.9')
 #queryleiste.append_icd_list('ICD9:493')
 
-queryleiste.append_name_list("Rheumatic chorea without mention of heart involvement")
-queryleiste.append_name_list("Rheumatic chorea with heart involvement")
-
 result_icd = pd.read_sql(queryleiste.len_icd_aufruf(), con=database.engine)
 
 
@@ -44,9 +41,9 @@ app.layout = html.Div([
 
     navigationBarObject.layoutNavigation,
 
-    queryBarObject.fill_query_bar(queryleiste.name_list),
+    queryBarObject.layoutQuery,
 
-    resultsObject.show_results(result_icd),
+    resultsObject.show_results(result_icd)
 
 ])
 
@@ -61,6 +58,20 @@ app.css.append_css({
     [row_generator_level.secondLevelIDList[0]])
 def update_div(secondLevelIDList):
     return
+
+@app.callback(
+    Output('output-container-button', 'children'),
+    [Input('button', 'n_clicks')],
+    [State('input-box', 'value')])
+def update_output(n_clicks, value):
+    if n_clicks == 1:
+        queryleiste.name_list.clear()
+    queryleiste.append_name_list(value)
+    ergebnis = '{}'.format(
+        queryleiste.print_name_list()
+    )
+    return ergebnis
+
 
 
 

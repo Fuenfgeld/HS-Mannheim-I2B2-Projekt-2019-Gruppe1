@@ -9,7 +9,7 @@ class queryBar:
 
     def append_icd_list(self, icd_code):
         self.icd_list.append(icd_code)
-        # return self.icd_list
+
 
     def delete_icd_list_items(self):
         self.icd_list.clear()
@@ -18,11 +18,18 @@ class queryBar:
     def append_name_list(self, icd_name):
         if len(self.name_list) % 2 == 0:
             self.name_list.append(icd_name)
-           # return self.name_list
         elif len(self.name_list) % 2 == 1:
             self.name_list.append(" AND ")
             self.name_list.append(icd_name)
-           # return self.name_list
+
+    def print_name_list(self):
+        ausgabe = ''
+        if self.name_list[0] is None:
+            return 'Abfrageleiste'
+        else:
+            for i in range(0, len(self.name_list)):
+                ausgabe = ausgabe + self.name_list[i]
+        return ausgabe
 
     def delete_name_list_items(self):
         self.name_list.clear()
