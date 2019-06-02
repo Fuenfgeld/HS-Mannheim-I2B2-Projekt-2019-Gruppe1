@@ -1,6 +1,7 @@
 setTimeout(whole_func, 1000);
 
 function whole_func() {
+    alert('jquery loaded')
     /*! jQuery v2.1.3 | (c) 2005, 2014 jQuery Foundation, Inc. | jquery.org/license */
     !function (a, b) {
         "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function (a) {

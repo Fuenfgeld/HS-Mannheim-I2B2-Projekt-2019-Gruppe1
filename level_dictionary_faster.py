@@ -65,7 +65,7 @@ class levels():
                 # print('Next one')
                 metaListIndex += 1
 
-        if level <= 1:  # there is a limit to the levels, without this statement this would create an endless loop
+        if level <= 9:  # there is a limit to the levels, without this statement this would create an endless loop
             print('Length of the whole level list: ', len(wholeLevelList))
             print('Index of the whole list: ', wholeLvelIndex)
             print('Length of parent list: ', len(parentNodeList))
@@ -75,8 +75,8 @@ class levels():
 
 
 # print(levels.add_first_level('Diagnosis'))
-# dict_string = str(levels.add_first_level('Diagnosis'))
-# dict_string = dict_string.replace('name', 'text')
+dict_string = str(levels.add_first_level('Diagnosis'))
+dict_string = dict_string.replace('name', 'text')
 #
 # updated_dict_string = dict_string.translate({ord(i): None for i in '[]'})
 #
@@ -91,8 +91,8 @@ class levels():
 # print(len(updated_dict))
 
 
-with open('icd_tree.json', 'w') as write_file:
-    json.dump(levels.add_first_level('Diagnosis'), write_file)
+with open('icd_tree_all_levels.json', 'w') as write_file:
+    json.dump(dict_string, write_file)
 
 
 # class SearchLevel:
