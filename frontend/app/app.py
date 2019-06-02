@@ -14,20 +14,20 @@ from frontend.app_layout import layout_query_bar
 from frontend.app_layout import layout_navigation_bar
 from frontend.app_layout import layout_results
 
-from backend.query_bar_logic.query_bar import queryBar
+from backend.query_bar_logic import query_bar
 
 # Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
 queryBarObject = layout_query_bar.layoutQueryBar()
 navigationBarObject = layout_navigation_bar.layoutNavigationBar()
 resultsObject = layout_results.layoutResults()
-queryleiste = queryBar()
+queryBarLogicObject = query_bar.queryBar()
 
 # Mockdaten
-queryleiste.append_icd_list('ICD9:382.9')
+queryBarLogicObject.append_icd_list('ICD9:382.9')
 #queryleiste.append_icd_list('ICD9:493')
 
-result_icd = pd.read_sql(queryleiste.len_icd_aufruf(), con=database.engine)
+result_icd = pd.read_sql(queryBarLogicObject.len_icd_aufruf(), con=database.engine)
 
 
 
@@ -37,11 +37,11 @@ app = dash.Dash(__name__)
 # Visualisierung der Seite
 app.layout = html.Div([
 
-    bannerObject.layoutBanner,
+    bannerObject.layout_banner,
 
-    navigationBarObject.layoutNavigation,
+    navigationBarObject.layout_navigation,
 
-    queryBarObject.layoutQuery,
+    queryBarObject.layout_query_bar,
 
     resultsObject.show_results(result_icd)
 
@@ -65,12 +65,12 @@ def update_div(secondLevelIDList):
     [State('input-box', 'value')])
 def update_output(n_clicks, value):
     if n_clicks == 1:
-        queryleiste.name_list.clear()
-    queryleiste.append_name_list(value)
-    ergebnis = '{}'.format(
-        queryleiste.print_name_list()
+        queryBarLogicObject.name_list.clear()
+    queryBarLogicObject.append_name_list(value)
+    result = '{}'.format(
+        queryBarLogicObject.print_name_list()
     )
-    return ergebnis
+    return result
 
 
 

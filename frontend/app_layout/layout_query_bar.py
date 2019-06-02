@@ -3,7 +3,8 @@ import dash_html_components as html
 
 
 class layoutQueryBar:
-    layoutQuery = html.Div([dcc.Upload(
+
+    layout_query_bar = html.Div([dcc.Upload(
         children=html.Div([
             html.Div(id='output-container-button', children=''),
         ]), multiple=True), ]

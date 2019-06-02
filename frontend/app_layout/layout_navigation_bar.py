@@ -5,7 +5,7 @@ from backend.tree import row_generator_level
 
 class layoutNavigationBar:
 
-    layoutNavigation = html.Div([
+    layout_navigation = html.Div([
         dcc.Input(id='input-box', placeholder='Suche', type='text', className="DivSuchen"),
         html.Button('Add', id='button'),
         html.Span([

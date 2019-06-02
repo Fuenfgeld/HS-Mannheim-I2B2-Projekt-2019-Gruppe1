@@ -10,10 +10,8 @@ class queryBar:
     def append_icd_list(self, icd_code):
         self.icd_list.append(icd_code)
 
-
     def delete_icd_list_items(self):
         self.icd_list.clear()
-        # bei Löschen der Abfrage; neuer Aufruf von len_icd_aufruf nötig (wo?)
 
     def append_name_list(self, icd_name):
         if len(self.name_list) % 2 == 0:
@@ -23,17 +21,16 @@ class queryBar:
             self.name_list.append(icd_name)
 
     def print_name_list(self):
-        ausgabe = ''
+        print = ''
         if self.name_list[0] is None:
             return 'Abfrageleiste'
         else:
             for i in range(0, len(self.name_list)):
-                ausgabe = ausgabe + self.name_list[i]
-        return ausgabe
+                print = print + self.name_list[i]
+            return print
 
     def delete_name_list_items(self):
         self.name_list.clear()
-        # bei Löschen der Abfrage; neuer Aufruf von len_icd_aufruf nötig (wo?)
 
     def len_icd_aufruf(self):
         if len(self.icd_list) == 0:
