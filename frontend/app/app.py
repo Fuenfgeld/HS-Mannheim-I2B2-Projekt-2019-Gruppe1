@@ -100,10 +100,13 @@ def update_graph(n_clicks, value):
     else:
         dfCode = pd.read_sql(queryBarLogicObject.get_icd_code_from_name(value), con=database.engine)
         queryBarLogicObject.append_icd_list(dfCode.loc[0].values[0])
+        print(dfCode.loc[0].values[0])
         df = pd.read_sql(queryBarLogicObject.len_icd_aufruf(), con=database.engine)
         dfNew = result_merge.merge_two_df(df, 'sex_cd')
         count_male = dfNew.sex_cd.str.count('M').sum()
+        print(count_male)
         count_female = dfNew.sex_cd.str.count('F').sum()
+        print(count_female)
         return {
             'data': [go.Pie(
                 labels=['Weiblich', 'Männlich'],

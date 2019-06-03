@@ -34,4 +34,4 @@ def build_SQL_i2b2_demodata_observation_fact_c_name():
 
 
 def build_SQL_i2b2_metadata_icd10_icd9_c_basecode():
-    return 'select distinct c_basecode from i2b2metadata.icd10_icd9 '
+    return 'select distinct c_basecode from i2b2metadata.i2b2 '
