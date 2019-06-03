@@ -7,7 +7,7 @@ class graphSexDistribution():
 
     def set_layout_sex_graph(self, df):
         if df is None:
-            dfAll = result_merge.build_df_sex_cd_patient_dimension()
+            dfAll = result_merge.generate_df_sex_cd_patient_dimension()
             count_male = dfAll.sex_cd.str.count('M').sum()
             count_female = dfAll.sex_cd.str.count('F').sum()
 

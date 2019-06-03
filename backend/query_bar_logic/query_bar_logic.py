@@ -1,4 +1,4 @@
-from backend.sql import formatted_sql
+from backend.sql_logic import sql_builder
 
 
 class queryBar:
@@ -8,7 +8,7 @@ class queryBar:
         self.name_list = []
 
     def get_icd_code_from_name(self, name):
-        return formatted_sql.build_code_i2b2_observation_fact(name)
+        return sql_builder.build_SQL_i2b2_metadata_i2b2_code(name)
 
     def append_icd_list(self, code):
         self.icd_list.append(code)
@@ -35,12 +35,12 @@ class queryBar:
     def delete_name_list_items(self):
         self.name_list.clear()
 
-    def len_icd_aufruf(self):
+    def get_all_patients_within_icd_list(self):
         if len(self.icd_list) == 0:
-            return formatted_sql.build_SQL_patient_dimension()
+            return sql_builder.build_SQL_i2b2_patient_dimension_patient_num()
         elif len(self.icd_list) == 1:
-            return formatted_sql.build_SQL_i2b2_observation_fact_krit1(self.icd_list[0])
+            return sql_builder.build_SQL_i2b2_observation_fact_1_criterium(self.icd_list[0])
         elif len(self.icd_list) == 2:
-            return formatted_sql.build_SQL_i2b2_observation_fact_krit2(self.icd_list[0], self.icd_list[1])
+            return sql_builder.build_SQL_i2b2_observation_fact_2_criteria(self.icd_list[0], self.icd_list[1])
 
 

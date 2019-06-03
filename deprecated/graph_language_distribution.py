@@ -17,7 +17,7 @@ class graphLanguageDistribution:
         count_spanish_new = df_new.language_cd.str.count('spanish').sum()
         count_german_new = df_new.language_cd.str.count('german').sum()
 
-        df_over_all = result_merge.build_df_language_cd_patient_dimension()
+        df_over_all = result_merge.generate_df_language_cd_patient_dimension()
         count_english_over_all = df_over_all.language_cd.str.count('english').sum()
         count_spanish_over_all = df_over_all.language_cd.str.count('spanish').sum()
         count_german_over_all = df_over_all.language_cd.str.count('german').sum()

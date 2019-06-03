@@ -1,14 +1,11 @@
 import dash
-import dash_core_components as dcc
 import dash_html_components as html
-import pandas as pd
+from dash.dependencies import Output, Input, State
 import plotly.graph_objs as go
-from config import database
-from backend.result_logic import result_merge
+import pandas as pd
 
 # Benötigt für den Callback des Baums
-from backend.tree import row_generator_level
-from dash.dependencies import Output, Input, State
+from deprecated import row_generator_level
 
 # imports der Klassen zur Anzeige der Seite
 from frontend.app_layout import layout_banner
@@ -16,23 +13,19 @@ from frontend.app_layout import layout_query_bar
 from frontend.app_layout import layout_navigation_bar
 from frontend.app_layout import layout_results
 
-from backend.query_bar_logic import query_bar
+# imports für Logik und Datenbankanbindung
+from backend.query_bar_logic import query_bar_logic
+from backend.result_logic import result_merge
+from backend.data_frame_logic import data_frame_logic
+from config import database
+
 
 # Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
 queryBarObject = layout_query_bar.layoutQueryBar()
 navigationBarObject = layout_navigation_bar.layoutNavigationBar()
 resultsObject = layout_results.layoutResults()
-queryBarLogicObject = query_bar.queryBar()
-
-# Mockdaten
-#queryBarLogicObject.append_icd_list('ICD9:382.9')
-#queryleiste.append_icd_list('ICD9:493')
-
-#result_icd = pd.read_sql(queryBarLogicObject.len_icd_aufruf(), con=database.engine)
-
-
-
+queryBarLogicObject = query_bar_logic.queryBar()
 
 app = dash.Dash(__name__)
 
@@ -54,12 +47,12 @@ app.css.append_css({
 })
 
 
-#CallBack des Baums
-@app.callback(
-    Output('selected', 'children'),
-    [row_generator_level.secondLevelIDList[0]])
-def update_div(secondLevelIDList):
-    return
+# #CallBack des Baums
+# @app.callback(
+#     Output('selected', 'children'),
+#     [row_generator_level.secondLevelIDList[0]])
+# def update_div(secondLevelIDList):
+#     return
 
 @app.callback(
     Output('query-bar', 'children'),
@@ -67,7 +60,7 @@ def update_div(secondLevelIDList):
     [State('input-box', 'value')])
 def update_output(n_clicks, value):
     if n_clicks == 1:
-        queryBarLogicObject.name_list.clear()
+        queryBarLogicObject.delete_name_list_items()
     queryBarLogicObject.append_name_list(value)
     result = '{}'.format(
         queryBarLogicObject.print_name_list()
@@ -98,15 +91,11 @@ def update_graph(n_clicks, value):
         }
 
     else:
-        dfCode = pd.read_sql(queryBarLogicObject.get_icd_code_from_name(value), con=database.engine)
+        dfCode = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
         queryBarLogicObject.append_icd_list(dfCode.loc[0].values[0])
-        print(dfCode.loc[0].values[0])
-        df = pd.read_sql(queryBarLogicObject.len_icd_aufruf(), con=database.engine)
-        dfNew = result_merge.merge_two_df(df, 'sex_cd')
-        count_male = dfNew.sex_cd.str.count('M').sum()
-        print(count_male)
-        count_female = dfNew.sex_cd.str.count('F').sum()
-        print(count_female)
+        dfPatients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
+        count_male = dfPatients.sex_cd.str.count('M').sum()
+        count_female = dfPatients.sex_cd.str.count('F').sum()
         return {
             'data': [go.Pie(
                 labels=['Weiblich', 'Männlich'],
