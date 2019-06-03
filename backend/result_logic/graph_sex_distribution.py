@@ -6,9 +6,15 @@ from backend.result_logic import result_merge
 class graphSexDistribution():
 
     def set_layout_sex_graph(self, df):
-        dfNew = result_merge.merge_two_df(df, 'sex_cd')
-        count_male = dfNew.sex_cd.str.count('M').sum()
-        count_female = dfNew.sex_cd.str.count('F').sum()
+        if df is None:
+            dfAll = result_merge.build_df_sex_cd_patient_dimension()
+            count_male = dfAll.sex_cd.str.count('M').sum()
+            count_female = dfAll.sex_cd.str.count('F').sum()
+
+        else:
+            dfNew = result_merge.merge_two_df(df, 'sex_cd')
+            count_male = dfNew.sex_cd.str.count('M').sum()
+            count_female = dfNew.sex_cd.str.count('F').sum()
 
         layoutSexDistribution = html.Div([
 

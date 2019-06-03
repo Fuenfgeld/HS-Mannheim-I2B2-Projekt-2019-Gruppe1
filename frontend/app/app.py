@@ -24,10 +24,10 @@ resultsObject = layout_results.layoutResults()
 queryBarLogicObject = query_bar.queryBar()
 
 # Mockdaten
-queryBarLogicObject.append_icd_list('ICD9:382.9')
+#queryBarLogicObject.append_icd_list('ICD9:382.9')
 #queryleiste.append_icd_list('ICD9:493')
 
-result_icd = pd.read_sql(queryBarLogicObject.len_icd_aufruf(), con=database.engine)
+#result_icd = pd.read_sql(queryBarLogicObject.len_icd_aufruf(), con=database.engine)
 
 
 
@@ -43,7 +43,7 @@ app.layout = html.Div([
 
     queryBarObject.layout_query_bar,
 
-    resultsObject.show_results(result_icd)
+    resultsObject.show_results(None)
 
 ])
 
@@ -60,7 +60,7 @@ def update_div(secondLevelIDList):
     return
 
 @app.callback(
-    Output('output-container-button', 'children'),
+    Output('query-bar', 'children'),
     [Input('button', 'n_clicks')],
     [State('input-box', 'value')])
 def update_output(n_clicks, value):
@@ -71,6 +71,10 @@ def update_output(n_clicks, value):
         queryBarLogicObject.print_name_list()
     )
     return result
+
+# @app.callback(
+#     Output('')
+# )
 
 
 

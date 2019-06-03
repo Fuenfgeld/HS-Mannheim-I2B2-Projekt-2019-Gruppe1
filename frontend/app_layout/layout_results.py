@@ -21,17 +21,14 @@ class layoutResults:
 
         layoutResults = html.Div([
 
-            html.Div([
-
-                resultDecimalObject.set_layout_decimal(df),
+                #resultDecimalObject.set_layout_decimal(df),
 
                 sexObject.set_layout_sex_graph(df),
 
-                languageObject.set_layout_language_graph(df),
+                #languageObject.set_layout_language_graph(df),
 
 
             ], className="DivErgebnis")
 
-        ], className="row")
 
         return layoutResults
