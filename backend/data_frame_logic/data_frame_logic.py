@@ -12,6 +12,15 @@ def generate_df_all_patients(queryBarLogicObject, case):
         df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list_sex_cd(), con=database.engine)
         df_final = result_merge.merge_two_df(df_temp, case)
         return df_final
+    elif case is 'language_cd':
+        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list_language_cd(), con=database.engine)
+        df_final = result_merge.merge_two_df(df_temp, case)
+        return df_final
+    elif case is 'age_in_years_num':
+        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list_age_in_years_num(), con=database.engine)
+        df_final = result_merge.merge_two_df(df_temp, case)
+        return df_final
+
 
 
 def generate_df_icd_code(queryBarLogicObject, value):

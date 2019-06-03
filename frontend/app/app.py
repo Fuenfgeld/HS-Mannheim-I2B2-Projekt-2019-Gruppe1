@@ -20,7 +20,6 @@ from backend.result_logic import result_merge
 from backend.data_frame_logic import data_frame_logic
 from config import database
 
-
 # Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
 queryBarObject = layout_query_bar.layoutQueryBar()
@@ -69,6 +68,7 @@ def update_output(n_clicks, value):
         result = '{}'.format(
             queryBarLogicObject.print_name_list())
         return result
+
 
 @app.callback(
     Output('decimal', 'children'),
@@ -136,6 +136,114 @@ def update_graph(n_clicks, value):
 
             'layout': go.Layout(
                 title='Geschlechterverteilung'
+            )
+        }
+
+
+@app.callback(
+    Output('age-distribution', 'figure'),
+    [Input('button', 'n_clicks')],
+    [State('input-box', 'value')])
+def update_graph(n_clicks, value):
+    if n_clicks is None:
+        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
+        age_until_17 = (((df_patients['age_in_years_num']).ge(10)) & ((df_patients['age_in_years_num']).le(17))).sum()
+        age_until_34 = (((df_patients['age_in_years_num']).ge(18)) & ((df_patients['age_in_years_num']).le(34))).sum()
+        age_until_44 = (((df_patients['age_in_years_num']).ge(35)) & ((df_patients['age_in_years_num']).le(44))).sum()
+        age_until_54 = (((df_patients['age_in_years_num']).ge(45)) & ((df_patients['age_in_years_num']).le(54))).sum()
+        age_until_64 = (((df_patients['age_in_years_num']).ge(55)) & ((df_patients['age_in_years_num']).le(64))).sum()
+        age_until_74 = (((df_patients['age_in_years_num']).ge(65)) & ((df_patients['age_in_years_num']).le(74))).sum()
+        age_until_84 = (((df_patients['age_in_years_num']).ge(75)) & ((df_patients['age_in_years_num']).le(84))).sum()
+        age_greater_85 = ((df_patients['age_in_years_num']).ge(85)).sum()
+        return {
+            'data': [go.Bar(
+                x=['0-9', '10-17', '18-34', '35-44', '45-54', '55-64', '65-74', '75-84', '>=85'],
+                y=[age_until_17, age_until_34, age_until_44, age_until_54, age_until_64, age_until_74, age_until_84,
+                   age_greater_85],
+                marker=dict(
+                    color=['#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff'],
+                    line=dict(color='#a3a3c2', width=2)),
+            ),
+            ],
+
+            'layout': go.Layout(
+                title='Altersverteilung',
+            )
+        }
+    if n_clicks is not None and (value is None or value is ''):
+        raise PreventUpdate('No Changing!')
+    else:
+        df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+        queryBarLogicObject.append_icd_list_age_in_years_num(df_code.loc[0].values[0])
+        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
+        age_until_17 = (((df_patients['age_in_years_num']).ge(10)) & ((df_patients['age_in_years_num']).le(17))).sum()
+        age_until_34 = (((df_patients['age_in_years_num']).ge(18)) & ((df_patients['age_in_years_num']).le(34))).sum()
+        age_until_44 = (((df_patients['age_in_years_num']).ge(35)) & ((df_patients['age_in_years_num']).le(44))).sum()
+        age_until_54 = (((df_patients['age_in_years_num']).ge(45)) & ((df_patients['age_in_years_num']).le(54))).sum()
+        age_until_64 = (((df_patients['age_in_years_num']).ge(55)) & ((df_patients['age_in_years_num']).le(64))).sum()
+        age_until_74 = (((df_patients['age_in_years_num']).ge(65)) & ((df_patients['age_in_years_num']).le(74))).sum()
+        age_until_84 = (((df_patients['age_in_years_num']).ge(75)) & ((df_patients['age_in_years_num']).le(84))).sum()
+        age_greater_85 = ((df_patients['age_in_years_num']).ge(85)).sum()
+        return {
+            'data': [go.Bar(
+                x=['0-9', '10-17', '18-34', '35-44', '45-54', '55-64', '65-74', '75-84', '>=85'],
+                y=[age_until_17, age_until_34, age_until_44, age_until_54, age_until_64, age_until_74, age_until_84,
+                   age_greater_85],
+                marker=dict(
+                    color=['#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff'],
+                    line=dict(color='#a3a3c2', width=2)),
+            ),
+            ],
+
+            'layout': go.Layout(
+                title='Altersverteilung',
+            )
+        }
+
+
+@app.callback(
+    Output('language-distribution', 'figure'),
+    [Input('button', 'n_clicks')],
+    [State('input-box', 'value')])
+def update_graph(n_clicks, value):
+    if n_clicks is None:
+        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'language_cd')
+        count_english = df_patients.language_cd.str.count('english').sum()
+        count_spanish = df_patients.language_cd.str.count('spanish').sum()
+        count_german = df_patients.language_cd.str.count('german').sum()
+        return {
+            'data': [go.Bar(
+                x=['Englisch', 'Spanisch', 'Deutsch'],
+                y=[count_english, count_spanish, count_german],
+                marker=dict(color=['#4da6ff', '#4da6ff', '#4da6ff'],
+                            line=dict(color='#a3a3c2', width=2)),
+            ),
+            ],
+
+            'layout': go.Layout(
+                title='Verteilung nach Muttersprache',
+            )
+        }
+    if n_clicks is not None and (value is None or value is ''):
+        raise PreventUpdate('No Changing!')
+    else:
+        df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+        queryBarLogicObject.append_icd_list_language_cd(df_code.loc[0].values[0])
+        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'language_cd')
+        count_english = df_patients.language_cd.str.count('english').sum()
+        count_spanish = df_patients.language_cd.str.count('spanish').sum()
+        count_german = df_patients.language_cd.str.count('german').sum()
+        return {
+            'data': [go.Bar(
+                x=['Englisch', 'Spanisch', 'Deutsch'],
+                y=[count_english, count_spanish, count_german],
+                marker=dict(color=['#4da6ff', '#4da6ff', '#4da6ff'],
+                            line=dict(color='#a3a3c2', width=2)),
+            ),
+            ],
+
+            'layout': go.Layout(
+                title='Verteilung nach Muttersprache',
             )
         }
 
