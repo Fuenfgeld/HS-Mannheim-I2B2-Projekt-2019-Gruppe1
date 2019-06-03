@@ -7,18 +7,21 @@ class queryBar:
         self.icd_list = []
         self.name_list = []
 
-    def append_icd_list(self, icd_code):
-        self.icd_list.append(icd_code)
+    def get_icd_code_from_name(self, name):
+        return formatted_sql.build_code_i2b2_observation_fact(name)
+
+    def append_icd_list(self, code):
+        self.icd_list.append(code)
 
     def delete_icd_list_items(self):
         self.icd_list.clear()
 
-    def append_name_list(self, icd_name):
+    def append_name_list(self, name):
         if len(self.name_list) % 2 == 0:
-            self.name_list.append(icd_name)
+            self.name_list.append(name)
         elif len(self.name_list) % 2 == 1:
             self.name_list.append(" AND ")
-            self.name_list.append(icd_name)
+            self.name_list.append(name)
 
     def print_name_list(self):
         print = ''

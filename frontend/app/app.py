@@ -2,7 +2,9 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
+import plotly.graph_objs as go
 from config import database
+from backend.result_logic import result_merge
 
 # Benötigt für den Callback des Baums
 from backend.tree import row_generator_level
@@ -43,7 +45,7 @@ app.layout = html.Div([
 
     queryBarObject.layout_query_bar,
 
-    resultsObject.show_results(None)
+    resultsObject.layout_results
 
 ])
 
@@ -72,11 +74,52 @@ def update_output(n_clicks, value):
     )
     return result
 
-# @app.callback(
-#     Output('')
-# )
+@app.callback(
+    Output('sex-distribution', 'figure'),
+    [Input('button', 'n_clicks')],
+    [State('input-box', 'value')])
+def update_graph(n_clicks, value):
+    if value is None:
+        return {
+            'data': [go.Pie(
+                labels=['Weiblich', 'Männlich'],
+                values=[52,
+                        82],
+                marker=dict(colors=['#d0d0e1', '#85e085'],
+                            line=dict(color='#a3a3c2', width=2)),
+                textfont={'size': 15},
+                textinfo='value'
+            )
+            ],
 
+            'layout': go.Layout(
+                title='Geschlechterverteilung'
+            )
+        }
 
+    else:
+        dfCode = pd.read_sql(queryBarLogicObject.get_icd_code_from_name(value), con=database.engine)
+        queryBarLogicObject.append_icd_list(dfCode.loc[0].values[0])
+        df = pd.read_sql(queryBarLogicObject.len_icd_aufruf(), con=database.engine)
+        dfNew = result_merge.merge_two_df(df, 'sex_cd')
+        count_male = dfNew.sex_cd.str.count('M').sum()
+        count_female = dfNew.sex_cd.str.count('F').sum()
+        return {
+            'data': [go.Pie(
+                labels=['Weiblich', 'Männlich'],
+                values=[count_female,
+                        count_male],
+                marker=dict(colors=['#d0d0e1', '#85e085'],
+                            line=dict(color='#a3a3c2', width=2)),
+                textfont={'size': 15},
+                textinfo='value'
+            )
+            ],
+
+            'layout': go.Layout(
+                title='Geschlechterverteilung'
+            )
+        }
 
 
 if __name__ == "__main__":
