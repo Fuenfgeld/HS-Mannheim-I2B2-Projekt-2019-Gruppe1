@@ -71,15 +71,33 @@ def update_output(n_clicks, value):
         return result
 
 @app.callback(
+    Output('decimal', 'children'),
+    [Input('button', 'n_clicks')],
+    [State('input-box', 'value')])
+def update_output(n_clicks, value):
+    if n_clicks is None:
+        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'decimal')
+        count_patients = len(df_patients)
+        return html.H5('Anzahl Patienten: ' + str(count_patients))
+    if n_clicks is not None and (value is None or value is ''):
+        raise PreventUpdate('No Changing!')
+    else:
+        df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+        queryBarLogicObject.append_icd_list_decimal(df_code.loc[0].values[0])
+        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'decimal')
+        count_patients = len(df_patients)
+        return html.H5('Anzahl Patienten: ' + str(count_patients))
+
+
+@app.callback(
     Output('sex-distribution', 'figure'),
     [Input('button', 'n_clicks')],
     [State('input-box', 'value')])
 def update_graph(n_clicks, value):
     if n_clicks is None:
-        queryBarLogicObject.delete_icd_list_items()
-        dfPatients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
-        count_male = dfPatients.sex_cd.str.count('M').sum()
-        count_female = dfPatients.sex_cd.str.count('F').sum()
+        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
+        count_male = df_patients.sex_cd.str.count('M').sum()
+        count_female = df_patients.sex_cd.str.count('F').sum()
         return {
             'data': [go.Pie(
                 labels=['Weiblich', 'Männlich'],
@@ -99,11 +117,11 @@ def update_graph(n_clicks, value):
     if n_clicks is not None and (value is None or value is ''):
         raise PreventUpdate('No Changing!')
     else:
-        dfCode = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
-        queryBarLogicObject.append_icd_list(dfCode.loc[0].values[0])
-        dfPatients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
-        count_male = dfPatients.sex_cd.str.count('M').sum()
-        count_female = dfPatients.sex_cd.str.count('F').sum()
+        df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+        queryBarLogicObject.append_icd_list_sex_cd(df_code.loc[0].values[0])
+        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
+        count_male = df_patients.sex_cd.str.count('M').sum()
+        count_female = df_patients.sex_cd.str.count('F').sum()
         return {
             'data': [go.Pie(
                 labels=['Weiblich', 'Männlich'],

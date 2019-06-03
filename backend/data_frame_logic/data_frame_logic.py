@@ -6,9 +6,12 @@ from backend.result_logic import result_merge
 
 #used in app.py for the graphs
 def generate_df_all_patients(queryBarLogicObject, case):
-    df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list(), con=database.engine)
-    df_final = result_merge.merge_two_df(df_temp, case)
-    return df_final
+    if case is 'decimal':
+        return pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list_decimal(), con=database.engine)
+    elif case is 'sex_cd':
+        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list_sex_cd(), con=database.engine)
+        df_final = result_merge.merge_two_df(df_temp, case)
+        return df_final
 
 
 def generate_df_icd_code(queryBarLogicObject, value):

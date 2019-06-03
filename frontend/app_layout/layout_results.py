@@ -14,6 +14,7 @@ colors = {
 class layoutResults:
 
         layout_results = html.Div([
+                html.Div(id='decimal', children='', className='DivGesamtanzahl'),
                 dcc.Graph(id='sex-distribution')
             ], className="DivErgebnis")
 
