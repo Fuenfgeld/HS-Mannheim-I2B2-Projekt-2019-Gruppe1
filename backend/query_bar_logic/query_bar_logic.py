@@ -24,13 +24,10 @@ class queryBar:
             self.name_list.append(name)
 
     def print_name_list(self):
-        print = ''
-        if self.name_list[0] is None:
-            return 'Abfrageleiste'
-        else:
-            for i in range(0, len(self.name_list)):
-                print = print + self.name_list[i]
-            return print
+        result = ''
+        for i in range(0, len(self.name_list)):
+             result = result + self.name_list[i]
+        return result
 
     def delete_name_list_items(self):
         self.name_list.clear()
