@@ -1,5 +1,3 @@
-import json
-
 from anytree import Node
 # from collections import OrderedDict
 from anytree.exporter import JsonExporter, DictExporter
@@ -65,7 +63,7 @@ class levels():
                 # print('Next one')
                 metaListIndex += 1
 
-        if level <= 9:  # there is a limit to the levels, without this statement this would create an endless loop
+        if level <= 2:  # there is a limit to the levels, without this statement this would create an endless loop
             print('Length of the whole level list: ', len(wholeLevelList))
             print('Index of the whole list: ', wholeLvelIndex)
             print('Length of parent list: ', len(parentNodeList))
@@ -91,8 +89,8 @@ dict_string = dict_string.replace('name', 'text')
 # print(len(updated_dict))
 
 
-with open('icd_tree_all_levels.json', 'w') as write_file:
-    json.dump(dict_string, write_file)
+# with open('icd_tree_all_levels.json', 'w') as write_file:
+#     json.dump(dict_string, write_file)
 
 
 # class SearchLevel:
