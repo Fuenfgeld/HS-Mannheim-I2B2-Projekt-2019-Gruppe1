@@ -8,24 +8,26 @@ d = dash
 app = d.Dash(__name__, external_stylesheets=['style.css'],
              external_scripts=['tree_dropdown.js, bootstrap.js, jquery.js. jstree.js, selector.js'])
 
+nameList=[]
+
 app.layout = html.Div(
     [html.Div(className='container'),
      html.Div(id='jstree-tree'),
      html.Div(id='jstree-result'),
-     html.Div(dcc.Input(id='input-box', type='text', className='')),
+     html.Div(dcc.Input(id='input-box', type='text')),
      html.Button('Add to query', id='button'),
-     html.Div(id='output-div')],
+     html.Div(id='output-div')],b
 )
 
 
 @app.callback(
     Output('output-div', 'children'),
     [Input('button', 'n_clicks')],
-    [State('input-box', 'className')]
+    [State('input-box', 'value')]
 )
 def update_output(n_clicks, value):
-    return 'You selected {} and clicked it {} times'.format(
-        value, n_clicks)
+    print(n_clicks, value)
+    nameList.append('Lumbago')
 
 
 if __name__ == '__main__':
