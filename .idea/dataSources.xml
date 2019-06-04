@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="i2b2 admin" uuid="8f14668e-e402-4e94-ac74-6a03e58da10c">
+    <data-source source="LOCAL" name="i2b2 Admin" uuid="784e6cb2-bb51-4b18-9901-89582a662907">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
+      <remarks>Postgres DB i2b2</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://129.206.7.75:5432/i2b2</jdbc-url>
     </data-source>
