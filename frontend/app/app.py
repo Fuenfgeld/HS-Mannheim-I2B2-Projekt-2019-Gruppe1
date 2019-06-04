@@ -14,11 +14,9 @@ from frontend.app_layout import layout_query_bar
 from frontend.app_layout import layout_navigation_bar
 from frontend.app_layout import layout_results
 
-# imports für Logik und Datenbankanbindung
+# imports für Logik
 from backend.query_bar_logic import query_bar_logic
-from backend.result_logic import result_merge
 from backend.data_frame_logic import data_frame_logic
-from config import database
 
 # Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
