@@ -3,7 +3,6 @@ import dash_html_components as html
 from dash.exceptions import PreventUpdate
 from dash.dependencies import Output, Input, State
 import plotly.graph_objs as go
-import pandas as pd
 
 # Benötigt für den Callback des Baums
 from deprecated import row_generator_level
