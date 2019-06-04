@@ -1,7 +1,7 @@
 setTimeout(whole_func, 2000);
 
 function whole_func() {
-    alert('Bootstrap loaded');
+    // alert('Bootstrap loaded');
     if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requires jQuery");
     +function (a) {
         "use strict";

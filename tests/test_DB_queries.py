@@ -2,7 +2,7 @@ import unittest
 
 import pandas.io.sql as psql
 
-import DB_queries as db
+from backend.tree_logic import DB_queries as db
 
 
 class MyTestCase(unittest.TestCase):

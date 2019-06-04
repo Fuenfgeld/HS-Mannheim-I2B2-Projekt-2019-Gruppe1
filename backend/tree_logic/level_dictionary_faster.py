@@ -2,7 +2,7 @@ from anytree import Node
 # from collections import OrderedDict
 from anytree.exporter import JsonExporter, DictExporter
 
-import DB_queries as db
+from backend.tree_logic import DB_queries as db
 
 json_exporter = JsonExporter(indent=2)
 dict_exporter = DictExporter()

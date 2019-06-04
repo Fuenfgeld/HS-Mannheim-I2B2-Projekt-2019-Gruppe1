@@ -44,13 +44,6 @@ app.css.append_css({
 })
 
 
-# #CallBack des Baums
-# @app.callback(
-#     Output('selected', 'children'),
-#     [row_generator_level.secondLevelIDList[0]])
-# def update_div(secondLevelIDList):
-#     return
-
 @app.callback(
     Output('query-bar', 'children'),
     [Input('button', 'n_clicks')],
@@ -144,6 +137,7 @@ def update_graph(n_clicks, value):
 def update_graph(n_clicks, value):
     if n_clicks is None:
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
+        age_until_9 = (((df_patients['age_in_years_num']).ge(0)) & ((df_patients['age_in_years_num']).le(9))).sum()
         age_until_17 = (((df_patients['age_in_years_num']).ge(10)) & ((df_patients['age_in_years_num']).le(17))).sum()
         age_until_34 = (((df_patients['age_in_years_num']).ge(18)) & ((df_patients['age_in_years_num']).le(34))).sum()
         age_until_44 = (((df_patients['age_in_years_num']).ge(35)) & ((df_patients['age_in_years_num']).le(44))).sum()
@@ -155,10 +149,11 @@ def update_graph(n_clicks, value):
         return {
             'data': [go.Bar(
                 x=['0-9', '10-17', '18-34', '35-44', '45-54', '55-64', '65-74', '75-84', '>=85'],
-                y=[age_until_17, age_until_34, age_until_44, age_until_54, age_until_64, age_until_74, age_until_84,
-                   age_greater_85],
+                y=[age_until_9, age_until_17, age_until_34, age_until_44, age_until_54, age_until_64, age_until_74,
+                   age_until_84, age_greater_85],
                 marker=dict(
-                    color=['#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff'],
+                    color=['#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff',
+                           '#4da6ff'],
                     line=dict(color='#a3a3c2', width=2)),
             ),
             ],
@@ -173,6 +168,7 @@ def update_graph(n_clicks, value):
         df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
         queryBarLogicObject.append_icd_list_age_in_years_num(df_code.loc[0].values[0])
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
+        age_until_9 = (((df_patients['age_in_years_num']).ge(0)) & ((df_patients['age_in_years_num']).le(9))).sum()
         age_until_17 = (((df_patients['age_in_years_num']).ge(10)) & ((df_patients['age_in_years_num']).le(17))).sum()
         age_until_34 = (((df_patients['age_in_years_num']).ge(18)) & ((df_patients['age_in_years_num']).le(34))).sum()
         age_until_44 = (((df_patients['age_in_years_num']).ge(35)) & ((df_patients['age_in_years_num']).le(44))).sum()
@@ -184,10 +180,11 @@ def update_graph(n_clicks, value):
         return {
             'data': [go.Bar(
                 x=['0-9', '10-17', '18-34', '35-44', '45-54', '55-64', '65-74', '75-84', '>=85'],
-                y=[age_until_17, age_until_34, age_until_44, age_until_54, age_until_64, age_until_74, age_until_84,
-                   age_greater_85],
+                y=[age_until_9, age_until_17, age_until_34, age_until_44, age_until_54, age_until_64, age_until_74,
+                   age_until_84, age_greater_85],
                 marker=dict(
-                    color=['#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff'],
+                    color=['#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff',
+                           '#4da6ff'],
                     line=dict(color='#a3a3c2', width=2)),
             ),
             ],
