@@ -1,21 +1,19 @@
 import dash
 import dash_html_components as html
-from dash.exceptions import PreventUpdate
-from dash.dependencies import Output, Input, State
 import plotly.graph_objs as go
+from dash.dependencies import Output, Input, State
+from dash.exceptions import PreventUpdate
 
-# Benötigt für den Callback des Baums
-from deprecated import row_generator_level
-
-# imports der Klassen zur Anzeige der Seite
-from frontend.app_layout import layout_banner
-from frontend.app_layout import layout_query_bar
-from frontend.app_layout import layout_navigation_bar
-from frontend.app_layout import layout_results
-
+from backend.data_frame_logic import data_frame_logic
 # imports für Logik
 from backend.query_bar_logic import query_bar_logic
-from backend.data_frame_logic import data_frame_logic
+# imports der Klassen zur Anzeige der Seite
+from frontend.app_layout import layout_banner
+from frontend.app_layout import layout_navigation_bar
+from frontend.app_layout import layout_query_bar
+from frontend.app_layout import layout_results
+
+# Benötigt für den Callback des Baums
 
 # Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
@@ -54,11 +52,12 @@ app.css.append_css({
 @app.callback(
     Output('query-bar', 'children'),
     [Input('button', 'n_clicks')],
-    [State('input-box', 'value')])
+     [State('input-box', 'value')])
 def update_output(n_clicks, value):
+    print(n_clicks, value)
     if n_clicks is None:
         return 'Abfrageleiste'
-    if n_clicks is not None and (value is None or value is ''):
+    if n_clicks is not None and (value is None):
         return 'Bitte Wert eingeben!'
     else:
         queryBarLogicObject.append_name_list(value)

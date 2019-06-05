@@ -11,6 +11,6 @@ class layoutNavigationBar:
         html.Button('Add', id='button'),
         html.Div(className='container'),
         html.Div(id='jstree-tree'),
-        dcc.Input(id='jstree-result')
+        html.Div(id='jstree-result', hidden=True)
 
     ], className="DivNavigation")
