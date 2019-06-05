@@ -16,7 +16,7 @@ app.layout = html.Div(
      html.Div(id='jstree-result'),
      html.Div(dcc.Input(id='input-box', type='text')),
      html.Button('Add to query', id='button'),
-     html.Div(id='output-div')],b
+     html.Div(id='output-div')]
 )
 
 
