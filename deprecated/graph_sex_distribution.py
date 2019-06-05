@@ -30,12 +30,10 @@ class graphSexDistribution():
                                  textinfo='value'
                                  )
                           ],
-
                     layout=go.Layout(
                         title='Geschlechterverteilung'
                     )
                 )
             )
         ])
-
         return layoutSexDistribution

@@ -6,11 +6,9 @@ colors = {
     'text': '#111111'
 }
 
-
 # sexObject = graph_sex_distribution.graphSexDistribution()
 # languageObject = graph_language_distribution.graphLanguageDistribution()
 # resultDecimalObject = layout_result_decimal.layoutResultDecimal()
-
 
 class layoutResults:
     layout_results = html.Div([

@@ -22,7 +22,6 @@ def generate_df_all_patients(queryBarLogicObject, case):
         return df_final
 
 
-
 def generate_df_icd_code(queryBarLogicObject, value):
     return pd.read_sql(queryBarLogicObject.get_icd_code_from_name(value), con=database.engine)
 

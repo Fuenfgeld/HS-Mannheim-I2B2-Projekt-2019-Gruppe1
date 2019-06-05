@@ -35,6 +35,17 @@
     overflow: auto;
 }
 
+.DivXbutton{
+    text-align: left;
+    position: absolute;
+    top: 5.5%;
+    left: 0.3%;
+    height: 15.4%;
+    z-index: 3;
+
+
+}
+
 .DivNavigation {
     text-align: left;
     position: absolute;
@@ -74,5 +85,8 @@
     z-index: 2;
     border: solid;
 }
+
+
+
 
 
