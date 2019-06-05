@@ -1,0 +1,939 @@
+{
+  "name": "Diagnosis",
+  "children": {
+    "name": "Certain infectious and parasitic diseases (a00-b99)",
+    "children": {
+      "name": "Intestinal infectious diseases (a00-a09)"
+    },
+{
+  "name": "infections due to mycobacterium tuberculosis and mycobacterium bovis"
+},
+{
+"name": "Tuberculosis (a15-a19)"
+},
+{
+"name": "Certain zoonotic bacterial diseases (a20-a28)"
+},
+{
+"name": "Other bacterial diseases (a30-a49)"
+},
+{
+"name": "Infections with a predominantly sexual mode of transmission (a50-a64)"
+},
+{
+"name": "Other spirochetal diseases (a65-a69)"
+},
+{
+"name": "Other diseases caused by chlamydiae (a70-a74)"
+},
+{
+"name": "Rickettsioses (a75-a79)"
+},
+{
+"name": "Viral and prion infections of the central nervous system (a80-a89)"
+},
+{
+"name": "Arthropod-borne viral fevers and viral hemorrhagic fevers (a90-a99)"
+},
+{
+"name": "Viral infections characterized by skin and mucous membrane lesions (b00-b09)"
+},
+{
+"name": "Other human herpesviruses (b10)"
+},
+{
+"name": "Viral hepatitis (b15-b19)"
+},
+{
+"name": "Human immunodeficiency virus hiv disease (b20)"
+},
+{
+"name": "Other viral diseases (b25-b34)"
+},
+{
+"name": "Mycoses (b35-b49)"
+},
+{
+"name": "Protozoal diseases (b50-b64)"
+},
+{
+"name": "Helminthiases (b65-b83)"
+},
+{
+"name": "Pediculosis, acariasis and other infestations (b85-b89)"
+},
+{
+"name": "Sequelae of infectious and parasitic diseases (b90-b94)"
+},
+{
+"name": "Bacterial and viral infectious agents (b95-b97)"
+},
+{
+"name": "Other infectious diseases (b99)"
+}
+},
+{
+"name": "Neoplasms (c00-d49)",
+"children": {
+"name": "Malignant neoplasms (c00-c96)"
+},
+{
+"name": "Queyrat's erythroplasia"
+},
+{
+"name": "Bowen's disease"
+},
+{
+"name": "grade iii intraepithelial neoplasia"
+},
+{
+"name": "erythroplasia"
+},
+{
+"name": "In situ neoplasms (d00-d09)"
+},
+{
+"name": "Benign neoplasms, except benign neuroendocrine tumors (d10-d36)"
+},
+{
+"name": "Neoplasms of uncertain behavior, polycythemia vera and myelodysplastic syndromes (d37-d48)"
+},
+{
+"name": "Benign neuroendocrine tumors (d3a)"
+},
+{
+"name": "Neoplasms of unspecified behavior (d49)"
+}
+},
+{
+"name": "Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (d50-d89)",
+"children": {
+"name": "Nutritional anemias (d50-d53)"
+},
+{
+"name": "Hemolytic anemias (d55-d59)"
+},
+{
+"name": "Aplastic and other anemias and other bone marrow failure syndromes (d60-d64)"
+},
+{
+"name": "Coagulation defects, purpura and other hemorrhagic conditions (d65-d69)"
+},
+{
+"name": "Other disorders of blood and blood-forming organs (d70-d77)"
+},
+{
+"name": "Intraoperative and postprocedural complications of the spleen (d78)"
+},
+{
+"name": "sarcoidosis"
+},
+{
+"name": "defects in the complement system"
+},
+{
+"name": "immunodeficiency disorders, except human immunodeficiency virus hiv disease"
+},
+{
+"name": "Certain disorders involving the immune mechanism (d80-d89)"
+}
+},
+{
+"name": "Endocrine, nutritional and metabolic diseases (e00-e89)",
+"children":
+{
+"name": "Disorders of thyroid gland (e00-e07)"
+},
+{
+"name": "Diabetes mellitus (e08-e13)"
+},
+{
+"name": "Other disorders of glucose regulation and pancreatic internal secretion (e15-e16)"
+},
+{
+"name": "Disorders of other endocrine glands (e20-e35)"
+},
+{
+"name": "Intraoperative complications of endocrine system (e36)"
+},
+{
+"name": "Malnutrition (e40-e46)"
+},
+{
+"name": "Other nutritional deficiencies (e50-e64)"
+},
+{
+"name": "Overweight, obesity and other hyperalimentation (e65-e68)"
+},
+{
+"name": "Metabolic disorders (e70-e88)"
+},
+{
+"name": "Postprocedural endocrine and metabolic complications and disorders, not elsewhere classified (e89)"
+}
+},
+{
+"name": "Mental and behavioral disorders (f01-f99)",
+"children": {
+"name": "Mental disorders due to known physiological conditions (f01-f09)"
+},
+{
+"name": "Mental and behavioral disorders due to psychoactive substance use (f10-f19)"
+},
+{
+"name": "Schizophrenia, schizotypal, delusional, and other non-mood psychotic disorders (f20-f29)"
+},
+{
+"name": "Mood affective disorders (f30-f39)"
+},
+{
+"name": "Anxiety, dissociative, stress-related, somatoform and other nonpsychotic mental disorders (f40-f48)"
+},
+{
+"name": "Behavioral syndromes associated with physiological disturbances and physical factors (f50-f59)"
+},
+{
+"name": "Disorders of adult personality and behavior (f60-f69)"
+},
+{
+"name": "Mental retardation (f70-f79)"
+},
+{
+"name": "Pervasive and specific developmental disorders (f80-f89)"
+},
+{
+"name": "Behavioral and emotional disorders with onset usually occurring in childhood and adolescence (f90-f98)"
+},
+{
+"name": "Unspecified mental disorder (f99)"
+},
+{
+"name": "Mental and behavioral problems"
+}
+},
+{
+"name": "Diseases of the nervous system (g00-g99)",
+"children": {
+"name": "Inflammatory diseases of the central nervous system (g00-g09)"
+},
+{
+"name": "Systemic atrophies primarily affecting the central nervous system (g10-g14)"
+},
+{
+"name": "Extrapyramidal and movement disorders (g20-g26)"
+},
+{
+"name": "Other degenerative diseases of the nervous system (g30-g32)"
+},
+{
+"name": "Demyelinating diseases of the central nervous system (g35-g37)"
+},
+{
+"name": "Episodic and paroxysmal disorders (g40-g47)"
+},
+{
+"name": "Nerve, nerve root and plexus disorders (g50-g59)"
+},
+{
+"name": "Polyneuropathies and other disorders of the peripheral nervous system (g60-g65)"
+},
+{
+"name": "Diseases of myoneural junction and muscle (g70-g73)"
+},
+{
+"name": "Cerebral palsy and other paralytic syndromes (g80-g83)"
+},
+{
+"name": "Other disorders of the nervous system (g89-g99)"
+}
+},
+{
+"name": "Diseases of the eye and adnexa (h00-h59)",
+"children": {
+"name": "Other disorders of eye"
+},
+{
+"name": "Disorders of eyelid, lacrimal system and orbit (h00-h05)"
+},
+{
+"name": "Disorders of conjunctiva (h10-h11)"
+},
+{
+"name": "Disorders of sclera, cornea, iris and ciliary body (h15-h22)"
+},
+{
+"name": "Disorders of lens (h25-h28)"
+},
+{
+"name": "Disorders of choroid and retina (h30-h36)"
+},
+{
+"name": "Glaucoma (h40-h42)"
+},
+{
+"name": "Disorders of vitreous body and globe (h43-h44)"
+},
+{
+"name": "Disorders of optic nerve and visual pathways (h46-h47)"
+},
+{
+"name": "Disorders of ocular muscles, binocular movement, accommodation and refraction (h49-h52)"
+},
+{
+"name": "Visual disturbances and blindness (h53-h54)"
+},
+{
+"name": "Other disorders of eye and adnexa (h55-h57)"
+},
+{
+"name": "Intraoperative and postprocedural complications and disorders of eye and adnexa, not elsewhere classified (h59)"
+}
+},
+{
+"name": "Diseases of the ear and mastoid process (h60-h95)",
+"children": {
+"name": "Diseases of external ear (h60-h62)"
+},
+{
+"name": "Diseases of middle ear and mastoid (h65-h75)"
+},
+{
+"name": "Diseases of inner ear (h80-h83)"
+},
+{
+"name": "Other disorders of ear (h90-h94)"
+},
+{
+"name": "Intraoperative and postprocedural complications and disorders of ear and mastoid process, not elsewhere classified (h95)"
+}
+},
+{
+"name": "Diseases of the circulatory system (i00-i99)",
+"children": {
+"name": "Acute rheumatic fever (i00-i02)"
+},
+{
+"name": "Chronic rheumatic heart diseases (i05-i09)"
+},
+{
+"name": "Hypertensive diseases (i10-i15)"
+},
+{
+"name": "Ischemic heart diseases (i20-i25)"
+},
+{
+"name": "Pulmonary heart disease and diseases of pulmonary circulation (i26-i28)"
+},
+{
+"name": "Other forms of heart disease (i30-i52)"
+},
+{
+"name": "Cerebrovascular diseases (i60-i69)"
+},
+{
+"name": "Diseases of arteries, arterioles and capillaries (i70-i79)"
+},
+{
+"name": "Diseases of veins, lymphatic vessels and lymph nodes, not elsewhere classified. (i80-i89)"
+},
+{
+"name": "Other and unspecified disorders of the circulatory system (i95-i99)"
+}
+},
+{
+"name": "Diseases of the respiratory system (j00-j99)",
+"children": {
+"name": "Acute upper respiratory infections (j00-j06)"
+},
+{
+"name": "Influenza and pneumonia (j09-j18)"
+},
+{
+"name": "Other acute lower respiratory infections (j20-j22)"
+},
+{
+"name": "Other diseases of upper respiratory tract (j30-j39)"
+},
+{
+"name": "Chronic lower respiratory diseases (j40-j47)"
+},
+{
+"name": "Lung diseases due to external agents (j60-j70)"
+},
+{
+"name": "Other respiratory diseases principally affecting the interstitium (j80-j84)"
+},
+{
+"name": "Suppurative and necrotic conditions of the lower respiratory tract (j85-j86)"
+},
+{
+"name": "Other diseases of the pleura (j90-j94)"
+},
+{
+"name": "Intraoperative and postprocedural complications and disorders of respiratory system, not elsewhere classified (j95)"
+},
+{
+"name": "Other diseases of the respiratory system (j96-j99)"
+}
+},
+{
+"name": "Diseases of the digestive system (k00-k94)",
+"children": {
+"name": "Diseases of oral cavity and salivary glands (k00-k14)"
+},
+{
+"name": "Diseases of esophagus, stomach and duodenum (k20-k31)"
+},
+{
+"name": "Diseases of appendix (k35-k38)"
+},
+{
+"name": "recurrent hernia"
+},
+{
+"name": "Hernia (k40-k46)"
+},
+{
+"name": "acquired hernia"
+},
+{
+"name": "congenital except diaphragmatic or hiatus hernia"
+},
+{
+"name": "noninfective inflammatory bowel disease"
+},
+{
+"name": "Noninfective enteritis and colitis (k50-k52)"
+},
+{
+"name": "Other diseases of intestines (k55-k63)"
+},
+{
+"name": "Diseases of peritoneum and retroperitoneum (k65-k68)"
+},
+{
+"name": "Diseases of liver (k70-k77)"
+},
+{
+"name": "Disorders of gallbladder, biliary tract and pancreas (k80-k87)"
+},
+{
+"name": "Other diseases of the digestive system (k90-k94)"
+}
+},
+{
+"name": "Diseases of the skin and subcutaneous tissue (l00-l99)",
+"children":
+{
+"name": "Infections of the skin and subcutaneous tissue (l00-l08)"
+},
+{
+"name": "Bullous disorders (l10-l14)"
+},
+{
+"name": "Dermatitis and eczema (l20-l30)"
+},
+{
+"name": "Papulosquamous disorders (l40-l45)"
+},
+{
+"name": "Urticaria and erythema (l49-l54)"
+},
+{
+"name": "Radiation-related disorders of the skin and subcutaneous tissue (l55-l59)"
+},
+{
+"name": "Disorders of skin appendages (l60-l75)"
+},
+{
+"name": "Intraoperative and postprocedural complications of skin and subcutaneous tissue (l76)"
+},
+{
+"name": "Other disorders of the skin and subcutaneous tissue (l80-l99)"
+}
+},
+{
+"name": "Diseases of the musculoskeletal system and connective tissue (m00-m99)",
+"children": {
+"name": "Arthropathies (m00-m25)"
+},
+{
+"name": "Dentofacial anomalies including malocclusion and other disorders of jaw (m26-m27)"
+},
+{
+"name": "autoimmune disease nos"
+},
+{
+"name": "systemic collagen (vascular) disease"
+},
+{
+"name": "systemic autoimmune disease"
+},
+{
+"name": "collagen (vascular) disease nos"
+},
+{
+"name": "Systemic connective tissue disorders (m30-m36)"
+},
+{
+"name": "Deforming dorsopathies (m40-m43)"
+},
+{
+"name": "Spondylopathies (m45-m49)"
+},
+{
+"name": "Other dorsopathies (m50-m54)"
+},
+{
+"name": "Disorders of muscles (m60-m63)"
+},
+{
+"name": "Disorders of synovium and tendon (m65-m67)"
+},
+{
+"name": "Other soft tissue disorders (m70-m79)"
+},
+{
+"name": "Osteopathies and chondropathies (m80-m94)"
+},
+{
+"name": "Other disorders of the musculoskeletal system and connective tissue (m95)"
+},
+{
+"name": "Intraoperative and postprocedural complications and disorders of musculoskeletal system, not elsewhere classified (m96)"
+},
+{
+"name": "Biomechanical lesions, not elsewhere classified (m99)"
+}
+},
+{
+"name": "Diseases of the genitourinary system (n00-n99)",
+"children": {
+"name": "Glomerular diseases (n00-n08)"
+},
+{
+"name": "pyelonephritis"
+},
+{
+"name": "Renal tubulo-interstitial diseases (n10-n16)"
+},
+{
+"name": "Acute kidney failure and chronic kidney disease (n17-n19)"
+},
+{
+"name": "Urolithiasis (n20-n23)"
+},
+{
+"name": "Other disorders of kidney and ureter (n25-n29)"
+},
+{
+"name": "Other diseases of the urinary system (n30-n39)"
+},
+{
+"name": "Diseases of male genital organs (n40-n53)"
+},
+{
+"name": "Disorders of breast (n60-n65)"
+},
+{
+"name": "Inflammatory diseases of female pelvic organs (n70-n77)"
+},
+{
+"name": "Noninflammatory disorders of female genital tract (n80-n98)"
+},
+{
+"name": "Intraoperative and postprocedural complications and disorders of genitourinary system, not elsewhere classified (n99)"
+}
+},
+{
+"name": "Pregnancy, childbirth and the puerperium (o00-o99)",
+"children": {
+"name": "Pregnancy with abortive outcome (o00-o08)"
+},
+{
+"name": "Supervision of high risk pregnancy (o09)"
+},
+{
+"name": "Edema, proteinuria and hypertensive disorders in pregnancy, childbirth and the puerperium (o10-o16)"
+},
+{
+"name": "Other maternal disorders predominantly related to pregnancy (o20-o29)"
+},
+{
+"name": "Maternal care related to the fetus and amniotic cavity and possible delivery problems (o30-o48)"
+},
+{
+"name": "Complications of labor and delivery (o60-o77)"
+},
+{
+"name": "Encounter for delivery (o80-o82)"
+},
+{
+"name": "Complications predominantly related to the puerperium (o85-o92)"
+},
+{
+"name": "Other obstetric conditions, not elsewhere classified (o94-o9a)"
+}
+},
+{
+"name": "Certain conditions originating in the perinatal period (p00-p96)",
+"children": {
+"name": "Newborn affected by maternal factors and by complications of pregnancy, labor, and delivery (p00-p04)"
+},
+{
+"name": "Disorders of newborn related to length of gestation and fetal growth (p05-p08)"
+},
+{
+"name": "Abnormal findings on neonatal screening (p09)"
+},
+{
+"name": "Birth trauma (p10-p15)"
+},
+{
+"name": "Respiratory and cardiovascular disorders specific to the perinatal period (p19-p29)"
+},
+{
+"name": "Infections acquired in utero, during birth via the umbilicus, or during the first 28 days after birth"
+},
+{
+"name": "Infections specific to the perinatal period (p35-p39)"
+},
+{
+"name": "Hemorrhagic and hematological disorders of newborn (p50-p61)"
+},
+{
+"name": "transitory endocrine and metabolic disturbances caused by the infant's response to maternal endocrine and metabolic factors, or its adjustment to extrauterine environment"
+},
+{
+"name": "Transitory endocrine and metabolic disorders specific to newborn (p70-p74)"
+},
+{
+"name": "Digestive system disorders of newborn (p76-p78)"
+},
+{
+"name": "Conditions involving the integument and temperature regulation of newborn (p80-p83)"
+},
+{
+"name": "Other problems with newborn (p84)"
+},
+{
+"name": "Other disorders originating in the perinatal period (p90-p96)"
+}
+},
+{
+"name": "Congenital malformations, deformations and chromosomal abnormalities (q00-q99)",
+"children": {
+"name": "Congenital malformations of the nervous system (q00-q07)"
+},
+{
+"name": "Congenital malformations of eye, ear, face and neck (q10-q18)"
+},
+{
+"name": "Congenital malformations of the circulatory system (q20-q28)"
+},
+{
+"name": "Congenital malformations of the respiratory system (q30-q34)"
+},
+{
+"name": "Cleft lip and cleft palate (q35-q37)"
+},
+{
+"name": "Other congenital malformations of the digestive system (q38-q45)"
+},
+{
+"name": "Congenital malformations of genital organs (q50-q56)"
+},
+{
+"name": "Congenital malformations of the urinary system (q60-q64)"
+},
+{
+"name": "Congenital malformations and deformations of the musculoskeletal system (q65-q79)"
+},
+{
+"name": "Other congenital malformations (q80-q89)"
+},
+{
+"name": "Chromosomal abnormalities, not elsewhere classified (q90-q99)"
+}
+},
+{
+"name": "Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (r00-r99)",
+"children":
+{
+"name": "Symptoms and signs involving the circulatory and respiratory systems (r00-r09)"
+},
+{
+"name": "Symptoms and signs involving the digestive system and abdomen (r10-r19)"
+},
+{
+"name": "Symptoms and signs involving the skin and subcutaneous tissue (r20-r23)"
+},
+{
+"name": "Symptoms and signs involving the nervous and musculoskeletal systems (r25-r29)"
+},
+{
+"name": "Symptoms and signs involving the genitourinary system (r30-r39)"
+},
+{
+"name": "Symptoms and signs involving cognition, perception, emotional state and behavior (r40-r46)"
+},
+{
+"name": "Symptoms and signs involving speech and voice (r47-r49)"
+},
+{
+"name": "General symptoms and signs (r50-r69)"
+},
+{
+"name": "Abnormal findings on examination of blood, without diagnosis (r70-r79)"
+},
+{
+"name": "Abnormal findings on examination of urine, without diagnosis (r80-r82)"
+},
+{
+"name": "Abnormal findings on examination of other body fluids, substances and tissues, without diagnosis (r83-r89)"
+},
+{
+"name": "nonspecific abnormal findings on diagnostic imaging by positron emission tomography pet scan"
+},
+{
+"name": "nonspecific abnormal findings on diagnostic imaging by thermography"
+},
+{
+"name": "Abnormal findings on diagnostic imaging and in function studies, without diagnosis (r90-r94)"
+},
+{
+"name": "nonspecific abnormal findings on diagnostic imaging by magnetic resonance imaging mrinmr"
+},
+{
+"name": "nonspecific abnormal findings on diagnostic imaging by computerized axial tomography cat scan"
+},
+{
+"name": "nonspecific abnormal findings on diagnostic imaging by x-ray examination"
+},
+{
+"name": "nonspecific abnormal findings on diagnostic imaging by ultrasound echogram"
+},
+{
+"name": "Abnormal tumor markers (r97)"
+},
+{
+"name": "Ill-defined and unknown cause of mortality (r99)"
+}
+},
+{
+"name": "Injury, poisoning and certain other consequences of external causes (s00-t88)",
+"children": {
+"name": "Type of sporting injury"
+},
+{
+"name": "injuries of scalp"
+},
+{
+"name": "injuries of temporomandibular joint area"
+},
+{
+"name": "injuries of tongue"
+},
+{
+"name": "injuries of tooth"
+},
+{
+"name": "injuries of periocular area"
+},
+{
+"name": "injuries of palate"
+},
+{
+"name": "injuries of oral cavity"
+},
+{
+"name": "injuries of jaw"
+},
+{
+"name": "injuries of gum"
+},
+{
+"name": "injuries of face any part"
+},
+{
+"name": "injuries of eye"
+},
+{
+"name": "injuries of ear"
+},
+{
+"name": "Injuries to the head (s00-s09)"
+},
+{
+"name": "injuries of supraclavicular region"
+},
+{
+"name": "Injuries to the neck (s10-s19)"
+},
+{
+"name": "injuries of nape"
+},
+{
+"name": "injuries of throat"
+},
+{
+"name": "injuries of chest (wall)"
+},
+{
+"name": "Injuries to the thorax (s20-s29)"
+},
+{
+"name": "injuries of breast"
+},
+{
+"name": "injuries of interscapular area"
+},
+{
+"name": "injuries to the flank"
+},
+{
+"name": "Injuries to the abdomen, lower back, lumbar spine, pelvis and external genitals (s30-s39)"
+},
+{
+"name": "injuries to the abdominal wall"
+},
+{
+"name": "injuries to the anus"
+},
+{
+"name": "injuries to the buttock"
+},
+{
+"name": "injuries to the external genitalia"
+},
+{
+"name": "injuries to the groin"
+},
+{
+"name": "Injuries to the shoulder and upper arm (s40-s49)"
+},
+{
+"name": "injuries of axilla"
+},
+{
+"name": "injuries of scapular region"
+},
+{
+"name": "Injuries to the elbow and forearm (s50-s59)"
+},
+{
+"name": "Injuries to the wrist, hand and fingers (s60-s69)"
+},
+{
+"name": "Injuries to the hip and thigh (s70-s79)"
+},
+{
+"name": "Injuries to the knee and lower leg (s80-s89)"
+},
+{
+"name": "Injuries to the ankle and foot (s90-s99)"
+},
+{
+"name": "Injury, poisoning and certain other consequences of external causes (t07-t88)"
+}
+},
+{
+"name": "External causes of morbidity (v00-y99)",
+"children": {
+"name": "Accident caused by travel and motion"
+},
+{
+"name": "Other and unspecified environmental and accidental causes"
+},
+{
+"name": "Accidents (v00-x58)"
+},
+{
+"name": "Purposely self-inflicted injury"
+},
+{
+"name": "Suicide (attempted)"
+},
+{
+"name": "Intentional self-harm (x71-x83)"
+},
+{
+"name": "injuries inflicted by another person with intent to injure or kill, by any means"
+},
+{
+"name": "Assault (x92-y08)"
+},
+{
+"name": "homicide"
+},
+{
+"name": "Event of undetermined intent (y21-y33)"
+},
+{
+"name": "Undetermined intent is only for use when there is specific documentation in the record that the intent of the injury cannot be determined. if no such documentation is present, code to accidental (unintentional)"
+},
+{
+"name": "Legal intervention, operations of war, military operations, and terrorism (y35-y38)"
+},
+{
+"name": "Complications of medical and surgical care (y62-y84)"
+},
+{
+"name": "complications of medical devices"
+},
+{
+"name": "surgical and medical procedures as the cause of abnormal reaction of the patient, or of later complication, without mention of misadventure at the time of the procedure"
+},
+{
+"name": "Supplementary factors related to causes of morbidity classified elsewhere (y90-y99)"
+}
+},
+{
+"name": "Factors influencing health status and contact with health services (z00-z99)",
+"children": {
+"name": "Persons encountering health services for examinations (z00-z13)"
+},
+{
+"name": "Genetic carrier and genetic susceptibility to disease (z14-z15)"
+},
+{
+"name": "Infection with drug resistant microorganisms (z16)"
+},
+{
+"name": "Estrogen receptor status (z17)"
+},
+{
+"name": "Retained foreign body fragments (z18)"
+},
+{
+"name": "Persons with potential health hazards related to communicable diseases (z20-z28)"
+},
+{
+"name": "Persons encountering health services in circumstances related to reproduction (z30-z39)"
+},
+{
+"name": "Categories z40-z53 are intended for use to indicate a reason for care. they may be used for patients who have already been treated for a disease or injury, but who are receiving aftercare or prophylactic care, or care to consolidate the treatment, or to deal with a residual state"
+},
+{
+"name": "Encounters for other specific health care (z40-z53)"
+},
+{
+"name": "Persons with potential health hazards related to socioeconomic and psychosocial circumstances (z55-z65)"
+},
+{
+"name": "Do not resuscitate status (z66)"
+},
+{
+"name": "Blood type (z67)"
+},
+{
+"name": "Body mass index (bmi) (z68)"
+},
+{
+"name": "Persons encountering health services in other circumstances (z69-z76)"
+},
+{
+"name": "Persons with potential health hazards related to family and personal history and certain conditions influencing health status (z77-z99)"
+}
+}
+}
