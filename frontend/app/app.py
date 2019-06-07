@@ -103,7 +103,7 @@ def update_figure_sex_distribution(clicked, value):
                 labels=['Weiblich', 'Männlich'],
                 values=[count_female,
                         count_male],
-                marker=dict(colors=['#d0d0e1', '#4da6ff'],
+                marker=dict(colors=['#32544D', '#AFD287'],
                             line=dict(color='#a3a3c2', width=2)),
                 textfont={'size': 15},
                 textinfo='value'
@@ -127,7 +127,7 @@ def update_figure_sex_distribution(clicked, value):
                 labels=['Weiblich', 'Männlich'],
                 values=[count_female,
                         count_male],
-                marker=dict(colors=['#d0d0e1', '#4da6ff'],
+                marker=dict(colors=['#32544D', '#AFD287'],
                             line=dict(color='#a3a3c2', width=2)),
                 textfont={'size': 15},
                 textinfo='value'
@@ -136,6 +136,73 @@ def update_figure_sex_distribution(clicked, value):
 
             'layout': go.Layout(
                 title='Geschlechterverteilung'
+            )
+        }
+
+
+@app.callback(
+    Output('race-distribution', 'figure'),
+    [Input('clicked-button', 'children')],
+    [State('input-box', 'value')]
+)
+def update_figure_race_distribution(clicked, value):
+    last_clicked = clicked[-3:]
+    if last_clicked == 'nan' or last_clicked == 'del':
+        if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
+            queryBarLogicObject.icd_list_race_cd.clear()
+        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'race_cd')
+        count_white = df_patients.race_cd.str.count('white').sum()
+        count_asian = df_patients.race_cd.str.count('asian').sum()
+        count_black = df_patients.race_cd.str.count('black').sum()
+        count_hispanic = df_patients.race_cd.str.count('hispanic').sum()
+        count_indian = df_patients.race_cd.str.count('indian').sum()
+        return {
+            'data': [go.Pie(
+                labels=['white', 'asian', 'black', 'hispanic', 'indian'],
+                values=[count_white,
+                        count_asian,
+                        count_black,
+                        count_hispanic,
+                        count_indian],
+                marker=dict(colors=['#4C876A', '#307087', '#32544D', '#AFD287', '#E8F5AC'],
+                            line=dict(color='#a3a3c2', width=2)),
+                textfont={'size': 15},
+                textinfo='value'
+            )
+            ],
+
+            'layout': go.Layout(
+                title='Ethnische Herrkunft'
+            )
+        }
+    if last_clicked != 'nan' and (value is None or value is ''):
+        raise PreventUpdate('No Changing!')
+    if last_clicked == 'add':
+        df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+        queryBarLogicObject.append_icd_list_race_cd(df_code.loc[0].values[0])
+        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'race_cd')
+        count_white = df_patients.race_cd.str.count('white').sum()
+        count_asian = df_patients.race_cd.str.count('asian').sum()
+        count_black = df_patients.race_cd.str.count('black').sum()
+        count_hispanic = df_patients.race_cd.str.count('hispanic').sum()
+        count_indian = df_patients.race_cd.str.count('indian').sum()
+        return {
+            'data': [go.Pie(
+                labels=['white', 'asian', 'black', 'hispanic', 'indian'],
+                values=[count_white,
+                        count_asian,
+                        count_black,
+                        count_hispanic,
+                        count_indian],
+                marker=dict(colors=['#4C876A', '#307087', '#32544D', '#AFD287', '#E8F5AC'],
+                            line=dict(color='#a3a3c2', width=2)),
+                textfont={'size': 15},
+                textinfo='value'
+            )
+            ],
+
+            'layout': go.Layout(
+                title='Etnische Herkunft'
             )
         }
 
@@ -167,8 +234,8 @@ def update_figure_age_distribution(clicked, value):
                    age_until_84,
                    age_greater_85],
                 marker=dict(
-                    color=['#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff',
-                           '#4da6ff'],
+                    color=['#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D',
+                           '#32544D'],
                     line=dict(color='#a3a3c2', width=2)),
             ),
             ],
@@ -199,8 +266,8 @@ def update_figure_age_distribution(clicked, value):
                    age_until_84,
                    age_greater_85],
                 marker=dict(
-                    color=['#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff', '#4da6ff',
-                           '#4da6ff'],
+                    color=['#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D',
+                           '#32544D'],
                     line=dict(color='#a3a3c2', width=2)),
             ),
             ],
@@ -211,55 +278,55 @@ def update_figure_age_distribution(clicked, value):
         }
 
 
-@app.callback(
-    Output('language-distribution', 'figure'),
-    [Input('clicked-button', 'children')],
-    [State('input-box', 'value')]
-)
-def update_figure_language_distribution(clicked, value):
-    last_clicked = clicked[-3:]
-    if last_clicked == 'nan' or last_clicked == 'del':
-        if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
-            queryBarLogicObject.icd_list_language_cd.clear()
-        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'language_cd')
-        count_english = df_patients.language_cd.str.count('english').sum()
-        count_spanish = df_patients.language_cd.str.count('spanish').sum()
-        count_german = df_patients.language_cd.str.count('german').sum()
-        return {
-            'data': [go.Bar(
-                x=['Englisch', 'Spanisch', 'Deutsch'],
-                y=[count_english, count_spanish, count_german],
-                marker=dict(color=['#4da6ff', '#4da6ff', '#4da6ff'],
-                            line=dict(color='#a3a3c2', width=2)),
-            ),
-            ],
-
-            'layout': go.Layout(
-                title='Verteilung nach Muttersprache',
-            )
-        }
-    if last_clicked != 'nan' and (value is None or value is ''):
-        raise PreventUpdate('No Changing!')
-    if last_clicked == 'add':
-        df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
-        queryBarLogicObject.append_icd_list_language_cd(df_code.loc[0].values[0])
-        df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'language_cd')
-        count_english = df_patients.language_cd.str.count('english').sum()
-        count_spanish = df_patients.language_cd.str.count('spanish').sum()
-        count_german = df_patients.language_cd.str.count('german').sum()
-        return {
-            'data': [go.Bar(
-                x=['Englisch', 'Spanisch', 'Deutsch'],
-                y=[count_english, count_spanish, count_german],
-                marker=dict(color=['#4da6ff', '#4da6ff', '#4da6ff'],
-                            line=dict(color='#a3a3c2', width=2)),
-            ),
-            ],
-
-            'layout': go.Layout(
-                title='Verteilung nach Muttersprache',
-            )
-        }
+# @app.callback(
+#     Output('language-distribution', 'figure'),
+#     [Input('clicked-button', 'children')],
+#     [State('input-box', 'value')]
+# )
+# def update_figure_language_distribution(clicked, value):
+#     last_clicked = clicked[-3:]
+#     if last_clicked == 'nan' or last_clicked == 'del':
+#         if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
+#             queryBarLogicObject.icd_list_language_cd.clear()
+#         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'language_cd')
+#         count_english = df_patients.language_cd.str.count('english').sum()
+#         count_spanish = df_patients.language_cd.str.count('spanish').sum()
+#         count_german = df_patients.language_cd.str.count('german').sum()
+#         return {
+#             'data': [go.Bar(
+#                 x=['Englisch', 'Spanisch', 'Deutsch'],
+#                 y=[count_english, count_spanish, count_german],
+#                 marker=dict(color=['#4da6ff', '#4da6ff', '#4da6ff'],
+#                             line=dict(color='#a3a3c2', width=2)),
+#             ),
+#             ],
+#
+#             'layout': go.Layout(
+#                 title='Verteilung nach Muttersprache',
+#             )
+#         }
+#     if last_clicked != 'nan' and (value is None or value is ''):
+#         raise PreventUpdate('No Changing!')
+#     if last_clicked == 'add':
+#         df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+#         queryBarLogicObject.append_icd_list_language_cd(df_code.loc[0].values[0])
+#         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'language_cd')
+#         count_english = df_patients.language_cd.str.count('english').sum()
+#         count_spanish = df_patients.language_cd.str.count('spanish').sum()
+#         count_german = df_patients.language_cd.str.count('german').sum()
+#         return {
+#             'data': [go.Bar(
+#                 x=['Englisch', 'Spanisch', 'Deutsch'],
+#                 y=[count_english, count_spanish, count_german],
+#                 marker=dict(color=['#4da6ff', '#4da6ff', '#4da6ff'],
+#                             line=dict(color='#a3a3c2', width=2)),
+#             ),
+#             ],
+#
+#             'layout': go.Layout(
+#                 title='Verteilung nach Muttersprache',
+#             )
+#         }
 
 
 # Zuordnung der Buttons

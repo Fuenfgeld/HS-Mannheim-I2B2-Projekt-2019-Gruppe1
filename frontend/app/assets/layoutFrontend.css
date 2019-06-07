@@ -1,5 +1,5 @@
 .DivBanner {
-    background-color: rgb(109, 204, 64);
+    background-color: #AFD287;
     position: absolute;
     width: 99.5%;
     left: 0.25%;
@@ -9,6 +9,9 @@
     z-index: 2;
 }
 
+.Div {
+    border-color: #E8F5AC;
+}
 .DivBanner H5{
     text-align: left;
     color: white;
@@ -18,7 +21,7 @@
 .DivBanner Img{
     position: relative;
     float: right;
-    right: 1%;
+    right: 0.5%;
     height: 99%;
 }
 
@@ -40,10 +43,21 @@
     position: absolute;
     top: 5.5%;
     left: 0.3%;
-    height: 15.4%;
+    width: 5%;
+    height: 14.8%;
     z-index: 3;
+    color: #32544D;
+}
 
-
+.DivXbutton Img {
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 0.3%;
+    width: 100%;
+    height: 50%;
+    z-index: 3;
+    color: #32544D;
 }
 
 .DivNavigation {
@@ -58,8 +72,13 @@
     overflow: auto;
 }
 .DivSuchen{
-    margin-top: 1%;
+    margin-top: 1.5%;
     width: 99%;
+    margin-left: 0.5%;
+}
+
+.DivAdden {
+    margin-top: 1%;
     margin-left: 0.5%;
 }
 
@@ -85,6 +104,26 @@
     z-index: 2;
     border: solid;
 }
+
+.DivRaceDis {
+    text-align: left;
+
+    height: 49.25%;
+    width: 49.25%;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
+    margin-top: 1%;
+}
+
+.DivSexDis {
+    text-align: left;
+    float: right;
+    height: 49.25%;
+    width: 49.25%;
+    margin-top: 1%;
+}
+
+
 
 
 

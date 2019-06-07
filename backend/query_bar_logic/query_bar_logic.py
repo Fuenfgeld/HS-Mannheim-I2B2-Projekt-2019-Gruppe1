@@ -8,6 +8,7 @@ class queryBar:
         self.icd_list_sex_cd = []
         self.icd_list_language_cd = []
         self.icd_list_age_in_years_num = []
+        self.icd_list_race_cd = []
         self.name_list = []
 
     def get_icd_code_from_name(self, name):
@@ -24,6 +25,12 @@ class queryBar:
 
     def delete_icd_list_sex_cd_items(self):
         self.icd_list_sex_cd.clear()
+
+    def append_icd_list_race_cd(self, code):
+        self.icd_list_race_cd.append(code)
+
+    def delete_icd_list_race_cd_items(self):
+        self.icd_list_race_cd.clear()
 
     def append_icd_list_language_cd(self, code):
         self.icd_list_language_cd.append(code)
@@ -88,3 +95,12 @@ class queryBar:
         elif len(self.icd_list_age_in_years_num) == 2:
             return sql_builder.build_SQL_i2b2_observation_fact_2_criteria(self.icd_list_age_in_years_num[0],
                                                                           self.icd_list_age_in_years_num[1])
+
+    def get_all_patients_within_icd_list_race_cd(self):
+        if len(self.icd_list_race_cd) == 0:
+            return sql_builder.build_SQL_i2b2_patient_dimension_patient_num()
+        elif len(self.icd_list_race_cd) == 1:
+            return sql_builder.build_SQL_i2b2_observation_fact_1_criterium(self.icd_list_race_cd[0])
+        elif len(self.icd_list_race_cd) == 2:
+            return sql_builder.build_SQL_i2b2_observation_fact_2_criteria(self.icd_list_race_cd[0],
+                                                                          self.icd_list_race_cd[1])
