@@ -29,7 +29,9 @@ app.layout = html.Div([
     bannerObject.layout_banner,
 
     navigationBarObject.layout_navigation,
+
     queryBarObject.layout_button,
+
     queryBarObject.layout_query_bar,
 
     resultsObject.layout_results
