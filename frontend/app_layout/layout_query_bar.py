@@ -1,4 +1,5 @@
 import dash_html_components as html
+from backend.button import and_or
 
 
 class layoutQueryBar:
@@ -6,7 +7,7 @@ class layoutQueryBar:
     layout_query_bar = html.Div([
 
             html.Div(id='query-bar', children=''),
-            # html.Button(id='con-button')
+            and_or.root_layout
         ], className='DivAbfrageleiste')
 
 
