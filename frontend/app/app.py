@@ -160,7 +160,7 @@ def update_figure_race_distribution(clicked, value):
         count_indian = df_patients.race_cd.str.count('indian').sum()
         return {
             'data': [go.Pie(
-                labels=['white', 'asian', 'black', 'hispanic', 'indian'],
+                labels=['Europäisch', 'Asiatisch', 'Afrikanisch', 'Hispanisch', 'Indisch'],
                 values=[count_white,
                         count_asian,
                         count_black,
@@ -174,7 +174,7 @@ def update_figure_race_distribution(clicked, value):
             ],
 
             'layout': go.Layout(
-                title='Ethnische Herrkunft'
+                title='Ethnische Herkunft'
             )
         }
     if last_clicked != 'nan' and (value is None or value is ''):
@@ -190,7 +190,7 @@ def update_figure_race_distribution(clicked, value):
         count_indian = df_patients.race_cd.str.count('indian').sum()
         return {
             'data': [go.Pie(
-                labels=['white', 'asian', 'black', 'hispanic', 'indian'],
+                labels=['Europäisch', 'Asiatisch', 'Afrikanisch', 'Hispanisch', 'Indisch'],
                 values=[count_white,
                         count_asian,
                         count_black,
