@@ -6,10 +6,13 @@ def SQL_i2b2_demodata_observation_fact_1_criterium():
 
 
 #Two criteria query
-def SQL_i2b2_demodata_observation_fact_2_criteria():
+def SQL_i2b2_demodata_observation_fact_2_criteria_and():
     return 'SELECT distinct p1.patient_num FROM i2b2demodata.observation_fact as p1 ' \
            'join i2b2demodata.observation_fact as p2 ' \
            'on p1.patient_num = p2.patient_num ' \
+
+def SQL_i2b2_demodata_observation_fact_2_criteria_or():
+    return 'SELECT distinct patient_num FROM i2b2demodata.observation_fact '
 
 
 #get only the patient_num column from patient_dimension

@@ -9,8 +9,12 @@ def build_SQL_i2b2_observation_fact_1_criterium(criterium):
     return sql_strings.SQL_i2b2_demodata_observation_fact_1_criterium() + f'where i2b2.c_basecode = \'{criterium}\''
 
 def build_SQL_i2b2_observation_fact_2_criteria(criterium1, criterium2, connection):
-    return sql_strings.SQL_i2b2_demodata_observation_fact_2_criteria() + f'where p1.concept_cd = \'{criterium1}\' ' \
-                                                                        f'{connection} p2.concept_cd = \'{criterium2}\''
+    if connection == ' AND ':
+        return sql_strings.SQL_i2b2_demodata_observation_fact_2_criteria_and() + f'where p1.concept_cd = \'{criterium1}\' ' \
+                                                                        f'and p2.concept_cd = \'{criterium2}\''
+    elif connection == ' OR ':
+        return sql_strings.SQL_i2b2_demodata_observation_fact_2_criteria_or() + f'where concept_cd = \'{criterium1}\' ' \
+                                                                        f'or concept_cd = \'{criterium2}\''
 
 
 # def build_SQL_i2b2_observation_fact_3_criteria(criterium1, criterium2, criterium3):
