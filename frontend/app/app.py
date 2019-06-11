@@ -15,7 +15,6 @@ from backend.data_frame_logic import data_frame_logic
 from backend.graph_logic import age_graph_builder
 from backend.graph_logic import sex_graph_builder
 from backend.graph_logic import race_graph_builder
-from backend.button import and_or
 from backend.graph_logic import language_graph_builder
 
 # Objekte zur Anzeige der Seite
@@ -45,36 +44,6 @@ app.layout = html.Div([
 app.css.append_css({
     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
 })
-
-
-@app.callback(
-    Output('btn_name', 'children'),
-    [
-        Input('btn_1', 'n_clicks'),
-
-    ]
-)
-def btn_click_callback(nclick_bt1):
-    # If you have more than one Input, then you need to add this
-    # otherwise before the button is clicked its value by default is None
-    if nclick_bt1 is None:
-        nclick_bt1 = 0
-    answer = ""
-    if len(queryBarLogicObject.name_list)==3:
-        answer = "AND"
-
-    if nclick_bt1 % 2 == 0:
-        and_or.callbacks_vars.update_n_clicks(nclick_bt1, 1)
-        if len(queryBarLogicObject.name_list)==3:
-            queryBarLogicObject.name_list[1]="AND"
-            answer = "AND"
-    elif nclick_bt1 % 2 == 1:
-        and_or.callbacks_vars.update_n_clicks(nclick_bt1, 1)
-        if len(queryBarLogicObject.name_list)==3:
-            queryBarLogicObject.name_list[1]="OR"
-            answer = "OR"
-
-    return answer
 
 
 @app.callback(
@@ -209,11 +178,10 @@ def update_figure_age_distribution(clicked, value):
 @app.callback(
     Output('clicked-button', 'children'),
     [Input('del-button', 'n_clicks'),
-     Input('add-button', 'n_clicks'),
-     Input('btn_name', 'n_clicks')],
+     Input('add-button', 'n_clicks')],
     [State('clicked-button', 'children')]
 )
-def update_clicked(del_clicks, add_clicks, btn_clicks, prev_clicks):
+def update_clicked(del_clicks, add_clicks, prev_clicks):
     prev_clicks = dict([i.split(':') for i in prev_clicks.split(' ')])
     last_clicked = 'nan'
 
@@ -221,10 +189,8 @@ def update_clicked(del_clicks, add_clicks, btn_clicks, prev_clicks):
         last_clicked = 'del'
     elif add_clicks > int(prev_clicks['add']):
         last_clicked = 'add'
-    elif btn_clicks > int(prev_clicks['btn']):
-        last_clicked = 'btn'
 
-    cur_clicks = 'del:{} add:{} btn:{} last:{}'.format(del_clicks, add_clicks, btn_clicks, last_clicked)
+    cur_clicks = 'del:{} add:{} last:{}'.format(del_clicks, add_clicks, last_clicked)
 
     return cur_clicks
 
