@@ -2,7 +2,6 @@ import dash
 import dash_html_components as html
 from dash.exceptions import PreventUpdate
 from dash.dependencies import Output, Input, State
-import plotly.graph_objs as go
 
 # imports der Klassen zur Anzeige der Seite
 from frontend.app_layout import layout_banner
@@ -13,6 +12,10 @@ from frontend.app_layout import layout_results
 # imports für Logik und Datenbankanbindung
 from backend.query_bar_logic import query_bar_logic
 from backend.data_frame_logic import data_frame_logic
+from backend.graph_logic import age_graph_builder
+from backend.graph_logic import sex_graph_builder
+from backend.graph_logic import race_graph_builder
+from backend.graph_logic import language_graph_builder
 
 # Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
@@ -98,48 +101,14 @@ def update_figure_sex_distribution(clicked, value):
         if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
             queryBarLogicObject.icd_list_sex_cd.clear()
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
-        count_male = df_patients.sex_cd.str.count('M').sum()
-        count_female = df_patients.sex_cd.str.count('F').sum()
-        return {
-            'data': [go.Pie(
-                labels=['Weiblich', 'Männlich'],
-                values=[count_female,
-                        count_male],
-                marker=dict(colors=['#32544D', '#AFD287'],
-                            line=dict(color='#a3a3c2', width=2)),
-                textfont={'size': 15},
-                textinfo='value'
-            )
-            ],
-
-            'layout': go.Layout(
-                title='Geschlechterverteilung'
-            )
-        }
+        return sex_graph_builder.build_sex_graph(df_patients)
     if last_clicked != 'nan' and (value is None or value is ''):
         raise PreventUpdate('No Changing!')
     if last_clicked == 'add':
         df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
         queryBarLogicObject.append_icd_list_sex_cd(df_code.loc[0].values[0])
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
-        count_male = df_patients.sex_cd.str.count('M').sum()
-        count_female = df_patients.sex_cd.str.count('F').sum()
-        return {
-            'data': [go.Pie(
-                labels=['Weiblich', 'Männlich'],
-                values=[count_female,
-                        count_male],
-                marker=dict(colors=['#32544D', '#AFD287'],
-                            line=dict(color='#a3a3c2', width=2)),
-                textfont={'size': 15},
-                textinfo='value'
-            )
-            ],
-
-            'layout': go.Layout(
-                title='Geschlechterverteilung'
-            )
-        }
+        return sex_graph_builder.build_sex_graph(df_patients)
 
 
 @app.callback(
@@ -153,60 +122,14 @@ def update_figure_race_distribution(clicked, value):
         if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
             queryBarLogicObject.icd_list_race_cd.clear()
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'race_cd')
-        count_white = df_patients.race_cd.str.count('white').sum()
-        count_asian = df_patients.race_cd.str.count('asian').sum()
-        count_black = df_patients.race_cd.str.count('black').sum()
-        count_hispanic = df_patients.race_cd.str.count('hispanic').sum()
-        count_indian = df_patients.race_cd.str.count('indian').sum()
-        return {
-            'data': [go.Pie(
-                labels=['Europäisch', 'Asiatisch', 'Afrikanisch', 'Hispanisch', 'Indisch'],
-                values=[count_white,
-                        count_asian,
-                        count_black,
-                        count_hispanic,
-                        count_indian],
-                marker=dict(colors=['#4C876A', '#307087', '#32544D', '#AFD287', '#E8F5AC'],
-                            line=dict(color='#a3a3c2', width=2)),
-                textfont={'size': 15},
-                textinfo='value'
-            )
-            ],
-
-            'layout': go.Layout(
-                title='Ethnische Herkunft'
-            )
-        }
+        return race_graph_builder.build_race_graph(df_patients)
     if last_clicked != 'nan' and (value is None or value is ''):
         raise PreventUpdate('No Changing!')
     if last_clicked == 'add':
         df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
         queryBarLogicObject.append_icd_list_race_cd(df_code.loc[0].values[0])
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'race_cd')
-        count_white = df_patients.race_cd.str.count('white').sum()
-        count_asian = df_patients.race_cd.str.count('asian').sum()
-        count_black = df_patients.race_cd.str.count('black').sum()
-        count_hispanic = df_patients.race_cd.str.count('hispanic').sum()
-        count_indian = df_patients.race_cd.str.count('indian').sum()
-        return {
-            'data': [go.Pie(
-                labels=['Europäisch', 'Asiatisch', 'Afrikanisch', 'Hispanisch', 'Indisch'],
-                values=[count_white,
-                        count_asian,
-                        count_black,
-                        count_hispanic,
-                        count_indian],
-                marker=dict(colors=['#4C876A', '#307087', '#32544D', '#AFD287', '#E8F5AC'],
-                            line=dict(color='#a3a3c2', width=2)),
-                textfont={'size': 15},
-                textinfo='value'
-            )
-            ],
-
-            'layout': go.Layout(
-                title='Etnische Herkunft'
-            )
-        }
+        return race_graph_builder.build_race_graph(df_patients)
 
 
 @app.callback(
@@ -220,64 +143,14 @@ def update_figure_age_distribution(clicked, value):
         if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
             queryBarLogicObject.icd_list_age_in_years_num.clear()
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
-        age_until_9 = (((df_patients['age_in_years_num']).ge(0)) & ((df_patients['age_in_years_num']).le(9))).sum()
-        age_until_17 = (((df_patients['age_in_years_num']).ge(10)) & ((df_patients['age_in_years_num']).le(17))).sum()
-        age_until_34 = (((df_patients['age_in_years_num']).ge(18)) & ((df_patients['age_in_years_num']).le(34))).sum()
-        age_until_44 = (((df_patients['age_in_years_num']).ge(35)) & ((df_patients['age_in_years_num']).le(44))).sum()
-        age_until_54 = (((df_patients['age_in_years_num']).ge(45)) & ((df_patients['age_in_years_num']).le(54))).sum()
-        age_until_64 = (((df_patients['age_in_years_num']).ge(55)) & ((df_patients['age_in_years_num']).le(64))).sum()
-        age_until_74 = (((df_patients['age_in_years_num']).ge(65)) & ((df_patients['age_in_years_num']).le(74))).sum()
-        age_until_84 = (((df_patients['age_in_years_num']).ge(75)) & ((df_patients['age_in_years_num']).le(84))).sum()
-        age_greater_85 = ((df_patients['age_in_years_num']).ge(85)).sum()
-        return {
-            'data': [go.Bar(
-                x=['0-9', '10-17', '18-34', '35-44', '45-54', '55-64', '65-74', '75-84', '>=85'],
-                y=[age_until_9, age_until_17, age_until_34, age_until_44, age_until_54, age_until_64, age_until_74,
-                   age_until_84,
-                   age_greater_85],
-                marker=dict(
-                    color=['#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D',
-                           '#32544D'],
-                    line=dict(color='#a3a3c2', width=2)),
-            ),
-            ],
-
-            'layout': go.Layout(
-                title='Altersverteilung',
-            )
-        }
+        return age_graph_builder.build_age_graph(df_patients)
     if last_clicked != 'nan' and (value is None or value is ''):
         raise PreventUpdate('No Changing!')
     if last_clicked == 'add':
         df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
         queryBarLogicObject.append_icd_list_age_in_years_num(df_code.loc[0].values[0])
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
-        age_until_9 = (((df_patients['age_in_years_num']).ge(0)) & ((df_patients['age_in_years_num']).le(9))).sum()
-        age_until_17 = (((df_patients['age_in_years_num']).ge(10)) & ((df_patients['age_in_years_num']).le(17))).sum()
-        age_until_34 = (((df_patients['age_in_years_num']).ge(18)) & ((df_patients['age_in_years_num']).le(34))).sum()
-        age_until_44 = (((df_patients['age_in_years_num']).ge(35)) & ((df_patients['age_in_years_num']).le(44))).sum()
-        age_until_54 = (((df_patients['age_in_years_num']).ge(45)) & ((df_patients['age_in_years_num']).le(54))).sum()
-        age_until_64 = (((df_patients['age_in_years_num']).ge(55)) & ((df_patients['age_in_years_num']).le(64))).sum()
-        age_until_74 = (((df_patients['age_in_years_num']).ge(65)) & ((df_patients['age_in_years_num']).le(74))).sum()
-        age_until_84 = (((df_patients['age_in_years_num']).ge(75)) & ((df_patients['age_in_years_num']).le(84))).sum()
-        age_greater_85 = ((df_patients['age_in_years_num']).ge(85)).sum()
-        return {
-            'data': [go.Bar(
-                x=['0-9', '10-17', '18-34', '35-44', '45-54', '55-64', '65-74', '75-84', '>=85'],
-                y=[age_until_9, age_until_17, age_until_34, age_until_44, age_until_54, age_until_64, age_until_74,
-                   age_until_84,
-                   age_greater_85],
-                marker=dict(
-                    color=['#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D',
-                           '#32544D'],
-                    line=dict(color='#a3a3c2', width=2)),
-            ),
-            ],
-
-            'layout': go.Layout(
-                title='Altersverteilung',
-            )
-        }
+        return age_graph_builder.build_age_graph(df_patients)
 
 
 # @app.callback(
@@ -291,44 +164,14 @@ def update_figure_age_distribution(clicked, value):
 #         if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
 #             queryBarLogicObject.icd_list_language_cd.clear()
 #         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'language_cd')
-#         count_english = df_patients.language_cd.str.count('english').sum()
-#         count_spanish = df_patients.language_cd.str.count('spanish').sum()
-#         count_german = df_patients.language_cd.str.count('german').sum()
-#         return {
-#             'data': [go.Bar(
-#                 x=['Englisch', 'Spanisch', 'Deutsch'],
-#                 y=[count_english, count_spanish, count_german],
-#                 marker=dict(color=['#4da6ff', '#4da6ff', '#4da6ff'],
-#                             line=dict(color='#a3a3c2', width=2)),
-#             ),
-#             ],
-#
-#             'layout': go.Layout(
-#                 title='Verteilung nach Muttersprache',
-#             )
-#         }
+#         return language_graph_builder.build_language_graph(df_patients)
 #     if last_clicked != 'nan' and (value is None or value is ''):
 #         raise PreventUpdate('No Changing!')
 #     if last_clicked == 'add':
 #         df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
 #         queryBarLogicObject.append_icd_list_language_cd(df_code.loc[0].values[0])
 #         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'language_cd')
-#         count_english = df_patients.language_cd.str.count('english').sum()
-#         count_spanish = df_patients.language_cd.str.count('spanish').sum()
-#         count_german = df_patients.language_cd.str.count('german').sum()
-#         return {
-#             'data': [go.Bar(
-#                 x=['Englisch', 'Spanisch', 'Deutsch'],
-#                 y=[count_english, count_spanish, count_german],
-#                 marker=dict(color=['#4da6ff', '#4da6ff', '#4da6ff'],
-#                             line=dict(color='#a3a3c2', width=2)),
-#             ),
-#             ],
-#
-#             'layout': go.Layout(
-#                 title='Verteilung nach Muttersprache',
-#             )
-#         }
+#         return language_graph_builder.build_language_graph(df_patients)
 
 
 # Zuordnung der Buttons
