@@ -6,6 +6,7 @@ class layoutQueryBar:
     layout_query_bar = html.Div([
 
             html.Div(id='query-bar', children=''),
+            # html.Button(id='con-button')
         ], className='DivAbfrageleiste')
 
 

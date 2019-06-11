@@ -11,12 +11,6 @@ def SQL_i2b2_demodata_observation_fact_2_criteria():
            'join i2b2demodata.observation_fact as p2 ' \
            'on p1.patient_num = p2.patient_num ' \
 
-#Three criteria query
-# def SQL_i2b2_demodata_observation_fact_3_criteria():
-#     return 'SELECT distinct p1.patient_num FROM i2b2demodata.observation_fact as p1 ' \
-#            'join i2b2demodata.observation_fact as p2 ' \
-#            'on p1.patient_num = p2.patient_num ' \
-
 
 #get only the patient_num column from patient_dimension
 def SQL_i2b2_demodata_patient_dimension_patient_num():
