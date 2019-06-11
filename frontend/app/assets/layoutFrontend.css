@@ -46,7 +46,29 @@
     width: 5%;
     height: 14.8%;
     z-index: 3;
-    color: #32544D;
+    background: #ffffff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f4efeb));
+    background: -moz-linear-gradient(top, #ffffff, #f4efeb);
+    background: linear-gradient(to bottom, #ffffff, #f4efeb);
+}
+
+.DivXbutton:hover,
+
+.DivXbutton:focus {
+    border: 1px solid #f4efeb;
+    background: #ffffff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cdc8c6));
+    background: -moz-linear-gradient(top, #ffffff, #cdc8c6);
+    background: linear-gradient(to bottom, #ffffff, #cdc8c6);
+    color: #111111;
+    text-decoration: none;
+}
+
+.DivXbutton:active {
+    background: #aba7a5;
+    background: -webkit-gradient(linear, left top, left bottom, from(#aba7a5), to(#aba7a5));
+    background: -moz-linear-gradient(top, #aba7a5, #aba7a5);
+    background: linear-gradient(to bottom, #aba7a5, #aba7a5);
 }
 
 .DivXbutton Img {

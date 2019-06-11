@@ -1,4 +1,5 @@
 from backend.sql_logic import sql_builder
+import dash_html_components as html
 
 
 class queryBar:
