@@ -3,7 +3,9 @@ import dash_html_components as html
 
 class layoutQueryBar:
     layout_button = html.Button(id='del-button', children=html.Img(src="/assets/papierkorb.png"), n_clicks=0, className='DivXbutton')
-    layout_query_bar = html.Div(id='query-bar', children='', className='DivAbfrageleiste')
+    layout_query_bar = html.Div(id='query-bar', className='DivAbfrageleiste')
+
+
 
 
 
