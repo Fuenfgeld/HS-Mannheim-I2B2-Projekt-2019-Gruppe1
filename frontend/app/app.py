@@ -59,7 +59,6 @@ app.css.append_css({
 )
 def update_criteria_divs(clicked, n_clicks, value):
     last_clicked = clicked[-3:]
-    print(last_clicked)
     if last_clicked == 'nan':
         return True, '', {'display': 'none'}, html.H5(''), True, ''
     if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
