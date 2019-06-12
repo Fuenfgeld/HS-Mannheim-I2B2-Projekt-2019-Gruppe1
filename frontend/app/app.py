@@ -33,7 +33,13 @@ app.layout = html.Div([
 
     navigationBarObject.layout_navigation,
 
-    queryBarObject.layout_button,
+    queryBarObject.layout_delete_button,
+
+    queryBarObject.layout_criteria_one,
+
+    queryBarObject.layout_connection1_button,
+
+    queryBarObject.layout_criteria_two,
 
     queryBarObject.layout_query_bar,
 
@@ -46,28 +52,81 @@ app.css.append_css({
 })
 
 
-@app.callback(
-    Output('query-bar', 'children'),
+# @app.callback(
+#     Output('query-bar', 'children'),
+#     [Input('clicked-button', 'children')],
+#     [State('input-box', 'value')]
+# )
+# def update_query_bar(clicked, value):
+#     last_clicked = clicked[-3:]
+#     if last_clicked == 'nan':
+#         return 'Abfrageleiste'
+#     if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
+#         queryBarLogicObject.name_list.clear()
+#         return 'Abfrageleiste'
+#     if last_clicked != 'nan' and (value is None or value is ''):
+#         return 'Bitte Wert eingeben!'
+#     if last_clicked == 'add':
+#         queryBarLogicObject.append_name_list(value)
+#         result = '{}'.format(
+#             queryBarLogicObject.print_name_list())
+#         return result
+
+@app.callback([
+    Output('criteria1-div', 'hidden'),
+    Output('criteria1-div', 'children'),
+    Output('criteria2-div', 'hidden'),
+    Output('criteria2-div', 'children')],
     [Input('clicked-button', 'children')],
     [State('input-box', 'value')]
 )
-def button_action(clicked, value):
+def update_criteria1_div(clicked, value):
     last_clicked = clicked[-3:]
     if last_clicked == 'nan':
-        return 'Abfrageleiste'
+        return True, '', True, ''
     if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
         queryBarLogicObject.name_list.clear()
-        return 'Abfrageleiste'
+        return True, '', True, ''
     if last_clicked != 'nan' and (value is None or value is ''):
-        return 'Bitte Wert eingeben!'
+        return True, '', True, ''
     if last_clicked == 'add':
-        queryBarLogicObject.append_name_list(value)
-        result = '{}'.format(
-            queryBarLogicObject.print_name_list())
-        return result
+        if len(queryBarLogicObject.name_list) == 0:
+            queryBarLogicObject.append_name_list(value)
+            return False, value, True, ''
+        if len(queryBarLogicObject.name_list) == 1:
+            queryBarLogicObject.append_name_list(value)
+            return False, queryBarLogicObject.name_list[0], False, value
+        else:
+            raise PreventUpdate('No Changing!')
+
+
+# @app.callback([
+#     Output('criteria2-div', 'hidden'),
+#     Output('criteria2-div', 'children')],
+#     [Input('clicked-button', 'children')],
+#     [State('input-box', 'value')]
+# )
+# def update_criteria1_div(clicked, value):
+#     last_clicked = clicked[-3:]
+#     if last_clicked == 'nan':
+#         return True, ''
+#     if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
+#         queryBarLogicObject.name_list.clear()
+#         return True, ''
+#     if last_clicked != 'nan' and (value is None or value is ''):
+#         return True, ''
+#     if last_clicked == 'add':
+#         if len(queryBarLogicObject.name_list) == 1:
+#             print(queryBarLogicObject.name_list)
+#             queryBarLogicObject.append_name_list(value)
+#             result = '{}'.format(value)
+#             return False, result
+#         else:
+#             raise PreventUpdate('No Changing!')
 
 
 @app.callback(
+
     Output('decimal', 'children'),
     [Input('clicked-button', 'children')],
     [State('input-box', 'value')]
