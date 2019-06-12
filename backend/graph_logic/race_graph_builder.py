@@ -9,7 +9,7 @@ def build_race_graph(df_patients):
     count_indian = df_patients.race_cd.str.count('indian').sum()
     return {
         'data': [go.Pie(
-            labels=['Europäisch', 'Asiatisch', 'Afrikanisch', 'Hispanisch', 'Indisch'],
+            labels=['Europ.', 'Asia.', 'Afrik.', 'Hispa.', 'Indi.'],
             values=[count_white,
                     count_asian,
                     count_black,

@@ -8,22 +8,22 @@ from backend.result_logic import result_merge
 # used in app.py for the graphs
 def generate_df_all_patients(queryBarLogicObject, case):
     if case is 'decimal':
-        return pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list_decimal(), con=database.engine)
+        return pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list(), con=database.engine)
     elif case is 'sex_cd':
-        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list_sex_cd(), con=database.engine)
+        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list(), con=database.engine)
         df_final = result_merge.merge_two_df(df_temp, case)
         return df_final
     elif case is 'language_cd':
-        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list_language_cd(), con=database.engine)
+        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list(), con=database.engine)
         df_final = result_merge.merge_two_df(df_temp, case)
         return df_final
     elif case is 'age_in_years_num':
-        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list_age_in_years_num(),
+        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list(),
                               con=database.engine)
         df_final = result_merge.merge_two_df(df_temp, case)
         return df_final
     elif case is 'race_cd':
-        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list_race_cd(), con=database.engine)
+        df_temp = pd.read_sql(queryBarLogicObject.get_all_patients_within_icd_list(), con=database.engine)
         df_final = result_merge.merge_two_df(df_temp, case)
         return df_final
 
