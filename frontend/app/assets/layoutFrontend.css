@@ -73,12 +73,41 @@
     overflow-x: auto;
 }
 
+.DivKriterium3 {
+    text-align: center;
+    font-size: medium;
+    position: absolute;
+    font-family: Verdana;
+    width: 15%;
+    height: 40%;
+    margin-top: 2.5%;
+    margin-left: 55%;
+    z-index: 3;
+    border-radius: 4px;
+    background-color: gainsboro;
+    overflow-x: auto;
+}
+
 .DivVerbindung1Button {
     position: absolute;
     text-align-all: center;
     font-family: Verdana;
     margin-top: 1.75%;
     margin-left: 21%;
+    width: 8%;
+    height: 60%;
+    z-index: 3;
+    border-radius: 50%;
+    border: none;
+    background-color: #AFD287;
+}
+
+.DivVerbindung2Button {
+    position: absolute;
+    text-align-all: center;
+    font-family: Verdana;
+    margin-top: 1.75%;
+    margin-left: 46%;
     width: 8%;
     height: 60%;
     z-index: 3;
@@ -131,7 +160,7 @@
     color: #32544D;
 }
 
-.DivSearch {
+.DivEingabeUndAdden {
     text-align: left;
     position: absolute;
     font-family: Verdana;
@@ -145,7 +174,7 @@
     overflow: auto;
 }
 
-.DivTree {
+.DivBaum {
     text-align: left;
     position: absolute;
     font-family: Verdana;
@@ -159,17 +188,17 @@
     overflow: auto;
 }
 
-.DivSuchen {
+.DivEingabe {
     margin-top: 2%;
-    width: 80%;
+    width: 83.5%;
     margin-left: 0.5%;
     background-color: white;
 }
 
-.DivAdden {
+.DivAddButton {
     margin-top: 3%;
     margin-left: 0.5%;
-    background-color: white;
+    background-color: lightgrey;
 }
 
 .DivErgebnis {
@@ -196,7 +225,6 @@
 }
 
 .DivSexDis {
-    text-align: left;
     position: relative;
     height: 49.25%;
     width: 49.25%;
@@ -204,10 +232,15 @@
 }
 
 .DivRaceDis {
-    text-align: left;
     position: relative;
     float: right;
     height: 49.25%;
     width: 49.25%;
+}
+
+.DivAgeDis {
+    position: relative;
+    width: 100%;
+    top: -12%;
 }
 

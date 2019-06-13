@@ -34,3 +34,7 @@ class queryBar:
         elif len(self.icd_list) == 2:
             return sql_builder.build_SQL_i2b2_observation_fact_2_criteria(self.icd_list[0],
                                                                           self.icd_list[1], self.name_list[1])
+        elif len(self.icd_list) == 3:
+            return sql_builder.build_SQL_i2b2_observation_fact_3_criteria(self.icd_list[0], self.icd_list[1],
+                                                                          self.icd_list[2], self.name_list[1],
+                                                                          self.name_list[3])

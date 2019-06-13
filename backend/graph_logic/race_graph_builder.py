@@ -1,7 +1,9 @@
 import plotly.graph_objs as go
+from backend.data_frame_logic import data_frame_logic
 
 
-def build_race_graph(df_patients):
+def build_race_graph(queryBarLogicObject):
+    df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'race_cd')
     count_white = df_patients.race_cd.str.count('white').sum()
     count_asian = df_patients.race_cd.str.count('asian').sum()
     count_black = df_patients.race_cd.str.count('black').sum()

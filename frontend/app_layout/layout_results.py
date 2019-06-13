@@ -6,15 +6,12 @@ colors = {
     'text': '#111111'
 }
 
-# sexObject = graph_sex_distribution.graphSexDistribution()
-# languageObject = graph_language_distribution.graphLanguageDistribution()
-# resultDecimalObject = layout_result_decimal.layoutResultDecimal()
 
 class layoutResults:
     layout_results = html.Div([
         html.Div(id='decimal', children='', className='DivGesamtanzahl'),
         dcc.Graph(id='race-distribution', className='DivRaceDis'),
         dcc.Graph(id='sex-distribution', className='DivSexDis'),
-        dcc.Graph(id='age-distribution'),
+        dcc.Graph(id='age-distribution', className='DivAgeDis'),
         # dcc.Graph(id='language-distribution')
     ], className="DivErgebnis")

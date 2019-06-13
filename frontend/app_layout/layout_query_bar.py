@@ -8,6 +8,9 @@ class layoutQueryBar:
         html.Div(id='criteria1-div', children='', className='DivKriterium1', hidden=True),
         html.Button(id='con1-button', children=html.H5('AND'), n_clicks=0,
                     className='DivVerbindung1Button', style={'display': 'none'}),
-        html.Div(id='criteria2-div', children='', className='DivKriterium2', hidden=True)
+        html.Div(id='criteria2-div', children='', className='DivKriterium2', hidden=True),
+        html.Button(id='con2-button', children=html.H5('AND'), n_clicks=0,
+                    className='DivVerbindung2Button', style={'display': 'none'}),
+        html.Div(id='criteria3-div', children='', className='DivKriterium3', hidden=True)
         ], className='DivAbfrageleiste')
 

@@ -15,6 +15,7 @@ from backend.data_frame_logic import data_frame_logic
 from backend.graph_logic import age_graph_builder
 from backend.graph_logic import sex_graph_builder
 from backend.graph_logic import race_graph_builder
+from backend.graph_logic import decimal_logic
 from backend.graph_logic import language_graph_builder
 
 # Objekte zur Anzeige der Seite
@@ -31,7 +32,7 @@ app.layout = html.Div([
 
     bannerObject.layout_banner,
 
-    navigationBarObject.layoutSearchBar,
+    navigationBarObject.layout_search_bar,
 
     navigationBarObject.layout_navigation,
 
@@ -47,6 +48,8 @@ app.css.append_css({
     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
 })
 
+con_list = []
+
 
 @app.callback([
     Output('criteria1-div', 'hidden'),
@@ -54,84 +57,141 @@ app.css.append_css({
     Output('con1-button', 'style'),
     Output('con1-button', 'children'),
     Output('criteria2-div', 'hidden'),
-    Output('criteria2-div', 'children')],
-    [Input('clicked-button', 'children'),
-     Input('con1-button', 'n_clicks')],
-    [State('input-box', 'value')]
-)
-def update_criteria_divs(clicked, n_clicks, value):
-    last_clicked = clicked[-3:]
-    if last_clicked == 'nan':
-        return True, '', {'display': 'none'}, html.H5(''), True, ''
-    if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
-        queryBarLogicObject.name_list.clear()
-        return True, '', {'display': 'none'}, html.H5(''), True, ''
-    if last_clicked == 'co1':
-        if n_clicks % 2 == 1:
-            return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
-                   queryBarLogicObject.name_list[2]
-        if n_clicks % 2 == 0:
-            return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
-                   queryBarLogicObject.name_list[2]
-    if last_clicked != 'nan' and (value is None or value is ''):
-        raise PreventUpdate('No Changing!')
-    if last_clicked == 'add':
-        if len(queryBarLogicObject.name_list) == 0:
-            queryBarLogicObject.append_name_list(value)
-            return False, value, {'display': 'none'}, html.H5(''), True, ''
-        if len(queryBarLogicObject.name_list) == 1:
-            queryBarLogicObject.append_name_list(value)
-            return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, value
-        else:
-            raise PreventUpdate('No Changing!')
-
-
-@app.callback([
-
+    Output('criteria2-div', 'children'),
+    Output('con2-button', 'style'),
+    Output('con2-button', 'children'),
+    Output('criteria3-div', 'hidden'),
+    Output('criteria3-div', 'children'),
     Output('decimal', 'children'),
     Output('sex-distribution', 'figure'),
     Output('race-distribution', 'figure'),
     Output('age-distribution', 'figure')],
-    [Input('clicked-button', 'children'),
-     Input('con1-button', 'n_clicks')],
-    [State('input-box', 'value')]
+    [Input('clicked-button', 'children')],
+    [State('input-box', 'value'),
+     State('criteria3-div', 'hidden')]
 )
-def update_results(clicked, n_clicks, value):
+def update_all(clicked, value, hidden):
     last_clicked = clicked[-3:]
     if last_clicked == 'nan' or last_clicked == 'del':
         if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
+            queryBarLogicObject.name_list.clear()
             queryBarLogicObject.icd_list.clear()
-        df_patients_decimal = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'decimal')
-        count_patients = len(df_patients_decimal)
-        df_patients_sex = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
-        df_patients_race = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'race_cd')
-        df_patients_age = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
-        return html.H5('Anzahl Patienten: ' + str(count_patients)), sex_graph_builder.build_sex_graph(df_patients_sex), \
-               race_graph_builder.build_race_graph(df_patients_race), age_graph_builder.build_age_graph(df_patients_age)
+            if hidden:
+                con_list[0] = 'AND'
+            if not hidden:
+                con_list[0] = 'AND'
+                con_list[1] = 'AND'
+        return True, '', {'display': 'none'}, html.H5(''), True, '', {'display': 'none'}, html.H5(''), \
+               True, '', decimal_logic.build_decimal(queryBarLogicObject), \
+               sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
     if last_clicked != 'nan' and (value is None or value is ''):
         raise PreventUpdate('No Changing!')
     if last_clicked == 'co1':
-        if n_clicks % 2 == 1:
+        if (con_list[0] == 'AND') & hidden:
+            con_list[0] = 'OR'
             queryBarLogicObject.name_list[1] = ' OR '
-        if n_clicks % 2 == 0:
+            return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
+                   queryBarLogicObject.name_list[2], {'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+        if (con_list[0] == 'OR') & hidden:
+            con_list[0] = 'AND'
             queryBarLogicObject.name_list[1] = ' AND '
-        df_patients_decimal = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'decimal')
-        count_patients = len(df_patients_decimal)
-        df_patients_sex = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
-        df_patients_race = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'race_cd')
-        df_patients_age = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
-        return html.H5('Anzahl Patienten: ' + str(count_patients)), sex_graph_builder.build_sex_graph(df_patients_sex), \
-               race_graph_builder.build_race_graph(df_patients_race), age_graph_builder.build_age_graph(df_patients_age)
+            return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
+                   queryBarLogicObject.name_list[2], {'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+        if (con_list[0] == 'AND') & (not hidden):
+            if con_list[1] == 'AND':
+                con_list[0] = 'OR'
+                queryBarLogicObject.name_list[1] = ' OR '
+                return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, \
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+            if con_list[1] == 'OR':
+                con_list[0] = 'OR'
+                queryBarLogicObject.name_list[1] = ' OR '
+                return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('OR'), False, \
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+        if (con_list[0] == 'OR') & (not hidden):
+            if con_list[1] == 'AND':
+                con_list[0] = 'AND'
+                queryBarLogicObject.name_list[1] = ' AND '
+                return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, \
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+            if con_list[1] == 'OR':
+                con_list[0] = 'AND'
+                queryBarLogicObject.name_list[1] = ' AND '
+                return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('OR'), False, \
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+    if last_clicked == 'co2':
+        if con_list[0] == 'AND':
+            if con_list[1] == 'AND':
+                con_list[1] = 'OR'
+                queryBarLogicObject.name_list[3] = ' OR '
+                return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('OR'), False, \
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+            if con_list[1] == 'OR':
+                con_list[1] = 'AND'
+                queryBarLogicObject.name_list[3] = ' AND '
+                return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, \
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+        if con_list[0] == 'OR':
+            if con_list[1] == 'AND':
+                con_list[1] = 'OR'
+                queryBarLogicObject.name_list[3] = ' OR '
+                return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('OR'), False, \
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+            if con_list[1] == 'OR':
+                con_list[1] = 'AND'
+                queryBarLogicObject.name_list[3] = ' AND '
+                return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, \
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
     if last_clicked == 'add':
-        df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
-        queryBarLogicObject.append_icd_list(df_code.loc[0].values[0])
-        df_patients_decimal = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'decimal')
-        count_patients = len(df_patients_decimal)
-        df_patients_sex = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
-        df_patients_race = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'race_cd')
-        df_patients_age = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
-        return html.H5('Anzahl Patienten: ' + str(count_patients)), sex_graph_builder.build_sex_graph(df_patients_sex), \
-               race_graph_builder.build_race_graph(df_patients_race), age_graph_builder.build_age_graph(df_patients_age)
+        if len(queryBarLogicObject.name_list) == 0:
+            queryBarLogicObject.append_name_list(value)
+            df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+            queryBarLogicObject.append_icd_list(df_code.loc[0].values[0])
+            return False, value, {'display': 'none'}, html.H5(''), True, '', {'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+
+        if len(queryBarLogicObject.name_list) == 1:
+            queryBarLogicObject.append_name_list(value)
+            con_list.append('AND')
+            df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+            queryBarLogicObject.append_icd_list(df_code.loc[0].values[0])
+            return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, value, {
+                'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+        if len(queryBarLogicObject.name_list) == 3:
+            queryBarLogicObject.append_name_list(value)
+            df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+            queryBarLogicObject.append_icd_list(df_code.loc[0].values[0])
+            con_list.append('AND')
+            if con_list[0] == 'AND':
+                return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, value, decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+            if con_list[0] == 'OR':
+                return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, value, decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+        else:
+            raise PreventUpdate('No Changing!')
 
 
 # Zuordnung der Buttons
@@ -139,10 +199,11 @@ def update_results(clicked, n_clicks, value):
     Output('clicked-button', 'children'),
     [Input('del-button', 'n_clicks'),
      Input('add-button', 'n_clicks'),
-     Input('con1-button', 'n_clicks')],
+     Input('con1-button', 'n_clicks'),
+     Input('con2-button', 'n_clicks')],
     [State('clicked-button', 'children')]
 )
-def update_clicked(del_clicks, add_clicks, con1_clicks, prev_clicks):
+def update_clicked(del_clicks, add_clicks, con1_clicks, con2_clicks, prev_clicks):
     prev_clicks = dict([i.split(':') for i in prev_clicks.split(' ')])
     last_clicked = 'nan'
 
@@ -152,8 +213,11 @@ def update_clicked(del_clicks, add_clicks, con1_clicks, prev_clicks):
         last_clicked = 'add'
     elif con1_clicks > int(prev_clicks['co1']):
         last_clicked = 'co1'
+    elif con2_clicks > int(prev_clicks['co2']):
+        last_clicked = 'co2'
 
-    cur_clicks = 'del:{} add:{} co1:{} last:{}'.format(del_clicks, add_clicks, con1_clicks, last_clicked)
+    cur_clicks = 'del:{} add:{} co1:{} co2:{} last:{}'.format(del_clicks, add_clicks, con1_clicks, con2_clicks,
+                                                              last_clicked)
 
     return cur_clicks
 

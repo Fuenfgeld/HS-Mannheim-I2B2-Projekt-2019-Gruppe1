@@ -2,7 +2,7 @@ import plotly.graph_objs as go
 from backend.data_frame_logic import data_frame_logic
 
 
-def build_age_graph(df_patients):
+def build_age_graph(queryBarLogicObject):
     df_over_all = data_frame_logic.generate_df_age_in_years_num_patient_dimension()
     age_until_9_over_all = (((df_over_all['age_in_years_num']).ge(0)) & ((df_over_all['age_in_years_num']).le(9))).sum()
     age_until_17_over_all = (
@@ -32,6 +32,8 @@ def build_age_graph(df_patients):
             color=['#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC',
                   '#E8F5AC'],
             line=dict(color='#a3a3c2', width=2)))
+
+    df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
 
     age_until_9 = (((df_patients['age_in_years_num']).ge(0)) & ((df_patients['age_in_years_num']).le(9))).sum()
     age_until_17 = (((df_patients['age_in_years_num']).ge(10)) & ((df_patients['age_in_years_num']).le(17))).sum()
