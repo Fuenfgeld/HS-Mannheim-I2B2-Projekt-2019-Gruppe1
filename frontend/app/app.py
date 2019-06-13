@@ -31,6 +31,8 @@ app.layout = html.Div([
 
     bannerObject.layout_banner,
 
+    navigationBarObject.layoutSearchBar,
+    # navigationBarObject.layoutADDbutton,
     navigationBarObject.layout_navigation,
 
     queryBarObject.layout_delete_button,
