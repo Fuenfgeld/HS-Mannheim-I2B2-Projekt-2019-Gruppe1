@@ -22,9 +22,16 @@ navigationBarObject = layout_navigation_bar.layoutNavigationBar()
 resultsObject = layout_results.layoutResults()
 queryBarLogicObject = query_bar_logic.queryBar()
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=
+                ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'],
+                external_scripts=['https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js',
+                                  'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js',
+                                  
+                                  ])
+
 
 # Visualisierung der Seite
+
 app.layout = html.Div([
 
     bannerObject.layout_banner,
@@ -49,15 +56,26 @@ app.css.append_css({
 # def update_div(secondLevelIDList):
 #     return
 
+
+
+@app.callback(
+    Output('input-box', 'value'),
+    [Input('clear', 'n_clicks')],
+)
+def clear_input(n_clicks):
+    if n_clicks is not None:
+        return ''
+
+# callback for the filling of the query bar
 @app.callback(
     Output('query-bar', 'children'),
-    [Input('button', 'n_clicks')],
+    [Input('button', 'n_clicks'),],
      [State('input-box', 'value')])
 def update_output(n_clicks, value):
     print(n_clicks, value)
     if n_clicks is None:
         return 'Abfrageleiste'
-    if n_clicks is not None and (value is None):
+    if n_clicks is not None:
         return 'Bitte Wert eingeben!'
     else:
         queryBarLogicObject.append_name_list(value)
@@ -66,17 +84,20 @@ def update_output(n_clicks, value):
         return result
 
 
+# callback for the change of graphs
 @app.callback(
     Output('decimal', 'children'),
     [Input('button', 'n_clicks')],
     [State('input-box', 'value')])
 def update_output(n_clicks, value):
-    if n_clicks is None:
+    if n_clicks is None or value is '':
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'decimal')
         count_patients = len(df_patients)
         return html.H5('Anzahl Patienten: ' + str(count_patients))
     if n_clicks is not None and (value is None or value is ''):
         raise PreventUpdate('No Changing!')
+
+
     else:
         df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
         queryBarLogicObject.append_icd_list_decimal(df_code.loc[0].values[0])
@@ -85,6 +106,7 @@ def update_output(n_clicks, value):
         return html.H5('Anzahl Patienten: ' + str(count_patients))
 
 
+# another callback for the grap
 @app.callback(
     Output('sex-distribution', 'figure'),
     [Input('button', 'n_clicks')],
