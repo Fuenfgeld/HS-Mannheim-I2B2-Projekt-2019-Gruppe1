@@ -14,6 +14,7 @@
 }
 .DivBanner H5{
     text-align: left;
+    font-family: Verdana;
     color: white;
     margin-left: 1%;
     display: inline-block;
@@ -43,11 +44,12 @@
 
 .DivKriterium1 {
     text-align: center;
+    font-size: medium;
     position: absolute;
-    font-size: 70%;
+    font-family: Verdana;
     width: 15%;
     height: 40%;
-    margin-top:2.5%;
+    margin-top: 2.5%;
     margin-left: 5%;
     z-index: 3;
     border-radius: 4px;
@@ -57,8 +59,9 @@
 
 .DivKriterium2 {
     text-align: center;
+    font-size: medium;
     position: absolute;
-    font-size: 70%;
+    font-family: Verdana;
     width: 15%;
     height: 40%;
     margin-top: 2.5%;
@@ -72,6 +75,7 @@
 .DivVerbindung1Button {
     position: absolute;
     text-align-all: center;
+    font-family: Verdana;
     margin-top: 1.75%;
     margin-left: 21%;
     width: 8%;
@@ -85,6 +89,7 @@
 .DivXbutton{
     text-align: left;
     position: absolute;
+    font-family: Verdana;
     top: 6%;
     left: 0.1%;
     padding: 1.5%;
@@ -129,6 +134,7 @@
 .DivNavigation {
     text-align: left;
     position: absolute;
+    font-family: Verdana;
     width: 49.5%;
     height: 81.5%;
     z-index: 1;
@@ -163,6 +169,7 @@
 .DivGesamtanzahl {
     text-align: center;
     position: relative;
+    font-family: Verdana;
     height: 7%;
     width: 98.5%;
     left: 0.5%;
@@ -171,20 +178,19 @@
     border: none;
 }
 
-.DivRaceDis {
+.DivSexDis {
     text-align: left;
     height: 49.25%;
     width: 49.25%;
-    margin-top: 1%;
+    margin-left: -5%;
     overflow: auto;
 }
 
-.DivSexDis {
+.DivRaceDis {
     text-align: left;
     float: right;
     height: 49.25%;
     width: 49.25%;
-    margin-top: 1%;
 }
 
 
