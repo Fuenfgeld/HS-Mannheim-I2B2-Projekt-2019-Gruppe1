@@ -72,7 +72,7 @@ def update_criteria_divs(clicked, n_clicks, value):
             return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
                    queryBarLogicObject.name_list[2]
     if last_clicked != 'nan' and (value is None or value is ''):
-        return True, '', {'display': 'none'}, html.H5(''), True, ''
+        raise PreventUpdate('N')
     if last_clicked == 'add':
         if len(queryBarLogicObject.name_list) == 0:
             queryBarLogicObject.append_name_list(value)
