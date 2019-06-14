@@ -17,6 +17,9 @@ def SQL_i2b2_demodata_patient_dimension_sex_cd():
 def SQL_i2b2_demodata_patient_dimension_race_cd():
     return f'select race_cd, patient_num from i2b2demodata.patient_dimension'
 
+def SQL_i2b2_demodata_patient_dimension_income_cd():
+    return f'select income_cd, patient_num from i2b2demodata.patient_dimension'
+
 
 def SQL_i2b2_demodata_patient_dimension_language_cd():
     return f'select language_cd, patient_num from i2b2demodata.patient_dimension'
