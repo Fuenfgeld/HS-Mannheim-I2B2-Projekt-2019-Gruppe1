@@ -18,6 +18,7 @@ from backend.graph_logic import race_graph_builder
 from backend.graph_logic import decimal_logic
 from backend.graph_logic import income_graph_builder
 from backend.graph_logic import language_graph_builder
+from backend.graph_logic import besides_diagnoses_graph_builder
 
 # Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
@@ -70,7 +71,8 @@ con_list.append('AND')
     Output('race-distribution', 'figure'),
     Output('age-distribution', 'figure'),
     Output('income-distribution', 'figure'),
-    Output('language-distribution', 'figure')],
+    Output('language-distribution', 'figure'),
+    Output('besides-diagnoses', 'figure')],
     [Input('clicked-button', 'children')],
     [State('input-box', 'value'),
      State('criteria3-div', 'hidden')]
@@ -89,7 +91,8 @@ def update_all(clicked, value, hidden):
                race_graph_builder.build_race_graph(queryBarLogicObject), \
                age_graph_builder.build_age_graph(queryBarLogicObject), \
                income_graph_builder.build_income_graph(queryBarLogicObject), \
-               language_graph_builder.build_language_graph(queryBarLogicObject)
+               language_graph_builder.build_language_graph(queryBarLogicObject), \
+               besides_diagnoses_graph_builder.build_besides_diagnoses_graph(queryBarLogicObject)
     if last_clicked != 'nan' and (value is None or value is ''):
         raise PreventUpdate('No Changing!')
     if last_clicked == 'co1':
@@ -211,8 +214,7 @@ def update_all(clicked, value, hidden):
     if last_clicked == 'add':
         if len(queryBarLogicObject.name_list) == 0:
             queryBarLogicObject.append_name_list(value)
-            df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
-            queryBarLogicObject.append_icd_list(df_code.loc[0].values[0])
+            queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
             return False, value, {'display': 'none'}, html.H5(''), True, '', {'display': 'none'}, html.H5(''), \
                    True, '', decimal_logic.build_decimal(queryBarLogicObject), \
                    sex_graph_builder.build_sex_graph(queryBarLogicObject), \
@@ -223,8 +225,7 @@ def update_all(clicked, value, hidden):
 
         if len(queryBarLogicObject.name_list) == 1:
             queryBarLogicObject.append_name_list(value)
-            df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
-            queryBarLogicObject.append_icd_list(df_code.loc[0].values[0])
+            queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
             return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, value, {
                 'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), \
                    sex_graph_builder.build_sex_graph(queryBarLogicObject), \
@@ -234,8 +235,7 @@ def update_all(clicked, value, hidden):
                    language_graph_builder.build_language_graph(queryBarLogicObject)
         if len(queryBarLogicObject.name_list) == 3:
             queryBarLogicObject.append_name_list(value)
-            df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
-            queryBarLogicObject.append_icd_list(df_code.loc[0].values[0])
+            queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
             if con_list[0] == 'AND':
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
                        queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, value, \

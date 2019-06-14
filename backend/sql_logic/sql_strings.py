@@ -37,3 +37,13 @@ def SQL_i2b2_demodata_observation_fact_c_name():
 #get ICD9-Code from name
 def SQL_i2b2_metadata_i2b2_c_basecode():
     return 'select distinct c_basecode from i2b2metadata.i2b2 '
+
+def SQL_i2b2_demodata_observation_fact_number():
+    return 'select count(concept_cd) as ccd from i2b2demodata.observation_fact ' \
+           'where concept_cd like \'ICD9:%%\' ' \
+           'group by concept_cd order by ccd desc limit 10'
+
+def SQL_i2b2_demodata_oservation_fact_icd():
+    return 'select concept_cd from i2b2demodata.observation_fact ' \
+           'where concept_cd like \'ICD9:%%\' ' \
+           'group by concept_cd order by count(concept_cd) desc limit 10'

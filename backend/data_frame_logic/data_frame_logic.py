@@ -32,6 +32,7 @@ def generate_df_all_patients(queryBarLogicObject, case):
         return df_final
 
 
+
 def generate_df_icd_code(queryBarLogicObject, value):
     return pd.read_sql(queryBarLogicObject.get_icd_code_from_name(value), con=database.engine)
 
@@ -50,3 +51,9 @@ def generate_df_race_cd_patient_dimension():
 
 def generate_df_income_cd_patient_dimension():
     return pd.read_sql(sql_strings.SQL_i2b2_demodata_patient_dimension_income_cd(), con=database.engine)
+
+def generate_df_diag_all_observatio_fact_number():
+    return pd.read_sql(sql_strings.SQL_i2b2_demodata_observation_fact_number(), con=database.engine)
+
+def generate_df_diag_all_observatio_fact_icd():
+    return pd.read_sql(sql_strings.SQL_i2b2_demodata_oservation_fact_icd(), con=database.engine)
