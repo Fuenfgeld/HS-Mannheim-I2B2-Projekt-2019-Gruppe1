@@ -42,6 +42,9 @@ app.layout = html.Div([
 
     queryBarObject.layout_query_bar,
 
+    resultsObject.layout_checkout,
+    resultsObject.layout_decimal,
+
     resultsObject.layout_results
 
 ])
@@ -49,6 +52,60 @@ app.layout = html.Div([
 app.css.append_css({
     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
 })
+
+@app.callback(
+    Output('sex-distribution', 'style'),
+    [Input('checklistSEX', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['on']:
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
+
+@app.callback(
+    Output('race-distribution', 'style'),
+    [Input('checklistRace', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['on']:
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
+
+@app.callback(
+    Output('age-distribution', 'style'),
+    [Input('checklistAGE', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['on']:
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
+
+@app.callback(
+    Output('income-distribution', 'style'),
+    [Input('checklistIncome', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['off']:
+        return {'display': 'none'}
+    else:
+        return {'display': 'block'}
+
+@app.callback(
+    Output('language-distribution', 'style'),
+    [Input('checklistLanguage', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['off']:
+        return {'display': 'none'}
+    else:
+        return {'display': 'block'}
+
+@app.callback(
+    Output('besides-diagnoses', 'style'),
+    [Input('checklistBesides', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['on']:
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
 
 con_list = []
 con_list.append('AND')
