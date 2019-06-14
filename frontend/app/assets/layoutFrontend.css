@@ -9,9 +9,9 @@
     z-index: 2;
 }
 
-.Div {
-    border-color: #E8F5AC;
-}
+/*.Div {*/
+/*    border-color: #E8F5AC;*/
+/*}*/
 
 .DivBanner H5 {
     text-align: left;
@@ -55,7 +55,9 @@
     z-index: 3;
     border-radius: 4px;
     background-color: gainsboro;
-    overflow-x: auto;
+    white-space: nowrap;
+    overflow: auto;
+    overflow-y: hidden;
 }
 
 .DivKriterium2 {
@@ -70,7 +72,9 @@
     z-index: 3;
     border-radius: 4px;
     background-color: gainsboro;
-    overflow-x: auto;
+    white-space: nowrap;
+    overflow: auto;
+    overflow-y: hidden;
 }
 
 .DivKriterium3 {
@@ -85,7 +89,9 @@
     z-index: 3;
     border-radius: 4px;
     background-color: gainsboro;
-    overflow-x: auto;
+    white-space: nowrap;
+    overflow: auto;
+    overflow-y: hidden;
 }
 
 .DivVerbindung1Button {
@@ -119,34 +125,24 @@
 .DivXbutton {
     text-align: left;
     position: absolute;
-    font-family: Verdana;
-    top: 6%;
+    top: 6.5%;
     left: 0.1%;
     padding: 1.5%;
-    height: 12%;
+    height: 11%;
     z-index: 3;
-    background: #ffffff;
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f4efeb));
-    background: -moz-linear-gradient(top, #ffffff, #f4efeb);
-    background: linear-gradient(to bottom, #ffffff, #f4efeb);
+    background: lightgrey;
 }
 
 .DivXbutton:hover,
 .DivXbutton:focus {
     border: 1px solid #f4efeb;
-    background: #ffffff;
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cdc8c6));
-    background: -moz-linear-gradient(top, #ffffff, #cdc8c6);
-    background: linear-gradient(to bottom, #ffffff, #cdc8c6);
+    background: #AFD287;
     color: #111111;
     text-decoration: none;
 }
 
 .DivXbutton:active {
-    background: #aba7a5;
-    background: -webkit-gradient(linear, left top, left bottom, from(#aba7a5), to(#aba7a5));
-    background: -moz-linear-gradient(top, #aba7a5, #aba7a5);
-    background: linear-gradient(to bottom, #aba7a5, #aba7a5);
+    background: lime;
 }
 
 .DivXbutton Img {
@@ -198,7 +194,20 @@
 .DivAddButton {
     margin-top: 3%;
     margin-left: 0.5%;
+    font-size: 90%;
     background-color: lightgrey;
+}
+
+.DivAddButton:hover,
+.DivAddButton:focus {
+    border: 1px solid #f4efeb;
+    background: #AFD287;
+    color: #111111;
+    text-decoration: none;
+}
+
+.DivAddButton:active {
+    background: lime;
 }
 
 .DivErgebnis {
@@ -244,3 +253,10 @@
     top: -12%;
 }
 
+.modebar {
+    display: none !important;
+}
+
+._dash-undo-redo {
+  display: none;
+}

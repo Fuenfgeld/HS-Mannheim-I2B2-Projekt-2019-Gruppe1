@@ -1,4 +1,5 @@
 from backend.sql_logic import sql_builder
+from backend.data_frame_logic import data_frame_logic
 
 
 class queryBar:
@@ -10,8 +11,9 @@ class queryBar:
     def get_icd_code_from_name(self, name):
         return sql_builder.build_SQL_i2b2_metadata_i2b2_code(name)
 
-    def append_icd_list(self, code):
-        self.icd_list.append(code)
+    def append_icd_list(self, queryBarLogicObject, value):
+        df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+        self.icd_list.append(df_code.loc[0].values[0])
 
     def delete_icd_list_items(self):
         self.icd_list.clear()

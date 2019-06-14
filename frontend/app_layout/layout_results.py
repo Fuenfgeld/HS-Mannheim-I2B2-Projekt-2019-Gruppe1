@@ -15,4 +15,5 @@ class layoutResults:
         dcc.Graph(id='age-distribution', className='DivAgeDis'),
         dcc.Graph(id='income-distribution'),
         dcc.Graph(id='language-distribution')
+        # dcc.Graph(id='besides-diagnoses', style={'display': 'none'})
     ], className="DivErgebnis")
