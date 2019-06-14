@@ -9,7 +9,7 @@ def build_language_graph(queryBarLogicObject):
     count_german_all = df_patients_all.language_cd.str.count('german').sum()
 
     trace1 = go.Bar(
-        x=['Englisch', 'Spansich', 'Deutsch'],
+        x=['Englisch', 'Spanisch', 'Deutsch'],
         y=[count_english_all, count_spanish_all, count_german_all],
         name='Grundgesamtheit',
         marker=dict(
@@ -21,7 +21,7 @@ def build_language_graph(queryBarLogicObject):
     count_spanish = df_patients.language_cd.str.count('spanish').sum()
     count_german = df_patients.language_cd.str.count('german').sum()
     trace2 = go.Bar(
-        x=['Englisch', 'Spansich', 'Deutsch'],
+        x=['Englisch', 'Spanisch', 'Deutsch'],
         y=[count_english, count_spanish, count_german],
         name='Aktuelle Kohorte',
         marker=dict(

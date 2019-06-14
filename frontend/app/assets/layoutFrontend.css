@@ -9,10 +9,6 @@
     z-index: 2;
 }
 
-/*.Div {*/
-/*    border-color: #E8F5AC;*/
-/*}*/
-
 .DivBanner H5 {
     text-align: left;
     font-family: Verdana;
@@ -249,8 +245,23 @@
 
 .DivAgeDis {
     position: relative;
+    height: 80%;
     width: 100%;
     top: -12%;
+}
+
+.DivIncomeDis {
+    position: relative;
+    height: 80%;
+    width: 100%;
+    top: -20%;
+}
+
+.DivLanguageDis {
+    position: relative;
+    height: 80%;
+    width: 100%;
+    top: -29%;
 }
 
 .modebar {
