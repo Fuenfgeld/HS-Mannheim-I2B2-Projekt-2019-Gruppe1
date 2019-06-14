@@ -16,13 +16,14 @@ function func() {
 // }
 
 function update_search_bar(){
-   let result;
+
+/*   let result;
    let short_result;
    result = document.getElementById('jstree-result').textContent;
    short_result = result.substring(9);
    short_result = short_result.substr(short_result.indexOf('-'));
    short_result = short_result.substring(1);
-   document.getElementById('input-box').value = short_result;
+   document.getElementById('input-box').value = short_result;*/
 
 
 

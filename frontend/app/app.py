@@ -57,14 +57,43 @@ app.css.append_css({
 #     return
 
 
+# callback for the javascript execution
+@app.callback(
+    Output('javascript', 'run'),
+    [Input('js-button', 'n_clicks')]
+)
+def add_event_listener(clicks):
+    if clicks is not None:
+        return """   
+        alert('lmao')
+        document.getElementById('js-button').addEventListener('dblclick',function(evt){
+        alert('L M A O')
+        setProps({ 
+            'event': {'x':evt.x, 
+                      'y':evt.y }
+        })
+        )}
+        })
+        console.log(evt)
+        ));
+        """
 
 @app.callback(
     Output('input-box', 'value'),
-    [Input('clear', 'n_clicks')],
+    [Input('javascript', 'event')]
 )
-def clear_input(n_clicks):
-    if n_clicks is not None:
-        return ''
+def some_func(x):
+    print('\n Event: ', x)
+    return str(x)
+
+# callback for the input field
+# @app.callback(
+#     Output('input-box', 'value'),
+#     [Input('clear', 'n_clicks')],
+# )
+# def clear_input(n_clicks):
+#     if n_clicks is not None:
+#         return ''
 
 # callback for the filling of the query bar
 @app.callback(
@@ -75,7 +104,7 @@ def update_output(n_clicks, value):
     print(n_clicks, value)
     if n_clicks is None:
         return 'Abfrageleiste'
-    if n_clicks is not None:
+    if n_clicks is not None or value is '':
         return 'Bitte Wert eingeben!'
     else:
         queryBarLogicObject.append_name_list(value)

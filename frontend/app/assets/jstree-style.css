@@ -403,9 +403,12 @@ stuff
 }
 
 .jstree-default .jstree-search {
-    font-style: italic;
-    color: #8b0000;
-    font-weight: 700
+    font-weight: bold;
+    color: black;
+    background: #ccffe6;
+    border-style: none;
+
+    /*font-weight: 700*/
 }
 
 .jstree-default .jstree-no-checkboxes .jstree-checkbox {
