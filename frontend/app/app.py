@@ -211,8 +211,7 @@ def update_all(clicked, value, hidden):
     if last_clicked == 'add':
         if len(queryBarLogicObject.name_list) == 0:
             queryBarLogicObject.append_name_list(value)
-            df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
-            queryBarLogicObject.append_icd_list(df_code.loc[0].values[0])
+            queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
             return False, value, {'display': 'none'}, html.H5(''), True, '', {'display': 'none'}, html.H5(''), \
                    True, '', decimal_logic.build_decimal(queryBarLogicObject), \
                    sex_graph_builder.build_sex_graph(queryBarLogicObject), \
@@ -223,8 +222,7 @@ def update_all(clicked, value, hidden):
 
         if len(queryBarLogicObject.name_list) == 1:
             queryBarLogicObject.append_name_list(value)
-            df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
-            queryBarLogicObject.append_icd_list(df_code.loc[0].values[0])
+            queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
             return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, value, {
                 'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), \
                    sex_graph_builder.build_sex_graph(queryBarLogicObject), \
@@ -234,8 +232,7 @@ def update_all(clicked, value, hidden):
                    language_graph_builder.build_language_graph(queryBarLogicObject)
         if len(queryBarLogicObject.name_list) == 3:
             queryBarLogicObject.append_name_list(value)
-            df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
-            queryBarLogicObject.append_icd_list(df_code.loc[0].values[0])
+            queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
             if con_list[0] == 'AND':
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
                        queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, value, \

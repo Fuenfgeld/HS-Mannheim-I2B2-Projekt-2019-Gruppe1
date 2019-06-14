@@ -13,7 +13,7 @@ class layoutResults:
         dcc.Graph(id='race-distribution', className='DivRaceDis'),
         dcc.Graph(id='sex-distribution', className='DivSexDis'),
         dcc.Graph(id='age-distribution', className='DivAgeDis'),
-        dcc.Graph(id='income-distribution'),
-        dcc.Graph(id='language-distribution')
+        dcc.Graph(id='income-distribution', className='DivIncomeDis'),
+        dcc.Graph(id='language-distribution', className='DivLanguageDis'),
         # dcc.Graph(id='besides-diagnoses', style={'display': 'none'})
     ], className="DivErgebnis")
