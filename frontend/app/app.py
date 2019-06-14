@@ -49,7 +49,8 @@ app.css.append_css({
 })
 
 con_list = []
-
+con_list.append('AND')
+con_list.append('AND')
 
 @app.callback([
     Output('criteria1-div', 'hidden'),
@@ -76,15 +77,13 @@ def update_all(clicked, value, hidden):
         if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
             queryBarLogicObject.name_list.clear()
             queryBarLogicObject.icd_list.clear()
-            if hidden:
-                con_list[0] = 'AND'
-            if not hidden:
-                con_list[0] = 'AND'
-                con_list[1] = 'AND'
+            con_list[0] = 'AND'
+            con_list[1] = 'AND'
         return True, '', {'display': 'none'}, html.H5(''), True, '', {'display': 'none'}, html.H5(''), \
                True, '', decimal_logic.build_decimal(queryBarLogicObject), \
                sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+            queryBarLogicObject)
     if last_clicked != 'nan' and (value is None or value is ''):
         raise PreventUpdate('No Changing!')
     if last_clicked == 'co1':
@@ -92,44 +91,58 @@ def update_all(clicked, value, hidden):
             con_list[0] = 'OR'
             queryBarLogicObject.name_list[1] = ' OR '
             return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
-                   queryBarLogicObject.name_list[2], {'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                   queryBarLogicObject.name_list[2], {'display': 'none'}, html.H5(
+                ''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(
+                queryBarLogicObject), \
+                   race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                queryBarLogicObject)
         if (con_list[0] == 'OR') & hidden:
             con_list[0] = 'AND'
             queryBarLogicObject.name_list[1] = ' AND '
             return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
-                   queryBarLogicObject.name_list[2], {'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                   queryBarLogicObject.name_list[2], {'display': 'none'}, html.H5(
+                ''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(
+                queryBarLogicObject), \
+                   race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                queryBarLogicObject)
         if (con_list[0] == 'AND') & (not hidden):
             if con_list[1] == 'AND':
                 con_list[0] = 'OR'
                 queryBarLogicObject.name_list[1] = ' OR '
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
                        queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, \
-                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(
+                    queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                       race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                    queryBarLogicObject)
             if con_list[1] == 'OR':
                 con_list[0] = 'OR'
                 queryBarLogicObject.name_list[1] = ' OR '
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
                        queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('OR'), False, \
-                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(
+                    queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                       race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                    queryBarLogicObject)
         if (con_list[0] == 'OR') & (not hidden):
             if con_list[1] == 'AND':
                 con_list[0] = 'AND'
                 queryBarLogicObject.name_list[1] = ' AND '
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
                        queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, \
-                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(
+                    queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                       race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                    queryBarLogicObject)
             if con_list[1] == 'OR':
                 con_list[0] = 'AND'
                 queryBarLogicObject.name_list[1] = ' AND '
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
                        queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('OR'), False, \
-                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(
+                    queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                       race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                    queryBarLogicObject)
     if last_clicked == 'co2':
         if con_list[0] == 'AND':
             if con_list[1] == 'AND':
@@ -137,56 +150,73 @@ def update_all(clicked, value, hidden):
                 queryBarLogicObject.name_list[3] = ' OR '
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
                        queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('OR'), False, \
-                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(
+                    queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                       race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                    queryBarLogicObject)
             if con_list[1] == 'OR':
                 con_list[1] = 'AND'
                 queryBarLogicObject.name_list[3] = ' AND '
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
                        queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, \
-                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(
+                    queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                       race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                    queryBarLogicObject)
         if con_list[0] == 'OR':
             if con_list[1] == 'AND':
                 con_list[1] = 'OR'
                 queryBarLogicObject.name_list[3] = ' OR '
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
                        queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('OR'), False, \
-                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(
+                    queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                       race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                    queryBarLogicObject)
             if con_list[1] == 'OR':
                 con_list[1] = 'AND'
                 queryBarLogicObject.name_list[3] = ' AND '
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
                        queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, \
-                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                       queryBarLogicObject.name_list[4], decimal_logic.build_decimal(
+                    queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                       race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                    queryBarLogicObject)
     if last_clicked == 'add':
         if len(queryBarLogicObject.name_list) == 0:
             queryBarLogicObject.append_name_list(value)
             queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
-            return False, value, {'display': 'none'}, html.H5(''), True, '', {'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+            return False, value, {'display': 'none'}, html.H5(''), True, '', {'display': 'none'}, html.H5(
+                ''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(
+                queryBarLogicObject), \
+                   race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                queryBarLogicObject)
 
         if len(queryBarLogicObject.name_list) == 1:
             queryBarLogicObject.append_name_list(value)
             queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
-            con_list.append('AND')
             return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, value, {
-                'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(
+                queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                   race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                queryBarLogicObject)
         if len(queryBarLogicObject.name_list) == 3:
             queryBarLogicObject.append_name_list(value)
             queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
-            con_list.append('AND')
             if con_list[0] == 'AND':
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
-                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, value, decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5(
+                    'AND'), False, value, decimal_logic.build_decimal(
+                    queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                       race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                    queryBarLogicObject)
             if con_list[0] == 'OR':
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
-                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, value, decimal_logic.build_decimal(queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
-               race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(queryBarLogicObject)
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5(
+                    'AND'), False, value, decimal_logic.build_decimal(
+                    queryBarLogicObject), sex_graph_builder.build_sex_graph(queryBarLogicObject), \
+                       race_graph_builder.build_race_graph(queryBarLogicObject), age_graph_builder.build_age_graph(
+                    queryBarLogicObject)
         else:
             raise PreventUpdate('No Changing!')
 
