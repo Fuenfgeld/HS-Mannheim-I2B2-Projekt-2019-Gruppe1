@@ -8,7 +8,6 @@ colors = {
 
 
 class layoutResults:
-
         layout_checkout = \
             html.Div(children=[
                 dcc.Checklist(
@@ -48,5 +47,5 @@ class layoutResults:
             dcc.Graph(id='age-distribution', className='DivAgeDis'),
             dcc.Graph(id='income-distribution', style={'display': 'none'}),
             dcc.Graph(id='language-distribution', style={'display': 'none'}),
-            dcc.Graph(id='besides-diagnoses', style={'display': 'block'})
+            #dcc.Graph(id='besides-diagnoses')
         ], className="DivErgebnis")

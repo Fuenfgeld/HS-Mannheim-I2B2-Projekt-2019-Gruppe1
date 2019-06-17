@@ -12,7 +12,7 @@ class testSQLBuilder(unittest.TestCase):
     def test_build_SQL_i2b2_observation_fact_2_criteria(self):
         import backend.sql_logic.sql_builder as sqlb
 
-        self.assertIsInstance(sqlb.build_SQL_i2b2_observation_fact_2_criteria('ICD9:724.2', 'ICD9:724.2'), str)
+        self.assertIsInstance(sqlb.build_SQL_i2b2_observation_fact_2_criteria('ICD9:724.2', 'ICD9:724.2', 'AND'), str)
 
 
     def test_build_SQL_i2b2_metadata_i2b2_code(self):
