@@ -6,7 +6,6 @@ colors = {
     'text': '#111111'
 }
 
-
 class layoutResults:
 
         layout_checkout = \
@@ -14,28 +13,40 @@ class layoutResults:
                 dcc.Checklist(
                     id='checklistSEX',
                     options=[{'label': 'Geschlecht', 'value': 'on'}],
-                    values=['on'], className='DivSexRaceCheckbox'),
+                    values=['on'],
+                    style={'display': 'inline-block'},
+                    className='DivCheckbox'),
                 dcc.Checklist(
                     id='checklistRace',
                     options=[{'label': 'Herkunft', 'value': 'on'}],
-                    values=['on'], className='DivSexRaceCheckbox'),
+                    values=['on'],
+                    style={'display': 'inline-block'},
+                    className='DivCheckbox'),
                 dcc.Checklist(
                     id='checklistAGE',
                     options=[{'label': 'Alter', 'value': 'on'}],
-                    values=['on'], className='DivAgeCheckbox'),
+                    values=['on'],
+                    style={'display': 'inline-block'},
+                    className='DivCheckbox'),
                 dcc.Checklist(
                     id='checklistIncome',
                     options=[{'label': 'Einkommen', 'value': 'on'}],
-                    values=['off'], className='DivIncomeCheckbox'),
+                    values=['off'],
+                    style={'display': 'inline-block'},
+                    className='DivCheckbox'),
                 dcc.Checklist(
                     id='checklistLanguage',
                     options=[{'label': 'Sprache', 'value': 'on'}],
-                    values=['off'], className='DivLanguCheckbox'),
-                dcc.Checklist(
-                    id='checklistBesides',
-                    options=[{'label': 'Nebendia.', 'value': 'on'}],
-                    values=['on'], className='DivBesideCheckbox'),
-            ], className='DivGesamtanzahlChecklist')
+                    values=['off'],
+                    style={'display': 'inline-block'},
+                    className='DivCheckbox'),
+                # dcc.Checklist(
+                #     id='checklistBesides',
+                #     options=[{'label': 'Nebendia.', 'value': 'on'}],
+                #     values=['on'], className='DivBesideCheckbox'),
+            ],
+
+                className='DivGesamtanzahlChecklist')
 
         layout_decimal = html.Div([
             html.Div(id='decimal', children=''),
@@ -48,5 +59,5 @@ class layoutResults:
             dcc.Graph(id='age-distribution', className='DivAgeDis'),
             dcc.Graph(id='income-distribution', style={'display': 'none'}),
             dcc.Graph(id='language-distribution', style={'display': 'none'}),
-            dcc.Graph(id='besides-diagnoses', style={'display': 'block'})
+            # dcc.Graph(id='besides-diagnoses', style={'display': 'block'})
         ], className="DivErgebnis")

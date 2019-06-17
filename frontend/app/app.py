@@ -98,14 +98,14 @@ def update_radiobutton(visibility_state):
     else:
         return {'display': 'block'}
 
-@app.callback(
-    Output('besides-diagnoses', 'style'),
-    [Input('checklistBesides', 'values')])
-def update_radiobutton(visibility_state):
-    if visibility_state == ['on']:
-        return {'display': 'block'}
-    else:
-        return {'display': 'none'}
+# @app.callback(
+#     Output('besides-diagnoses', 'style'),
+#     [Input('checklistBesides', 'values')])
+# def update_radiobutton(visibility_state):
+#     if visibility_state == ['on']:
+#         return {'display': 'block'}
+#     else:
+#         return {'display': 'none'}
 
 con_list = []
 con_list.append('AND')
@@ -129,7 +129,8 @@ con_list.append('AND')
     Output('age-distribution', 'figure'),
     Output('income-distribution', 'figure'),
     Output('language-distribution', 'figure'),
-    Output('besides-diagnoses', 'figure')],
+    # Output('besides-diagnoses', 'figure')
+    ],
     [Input('clicked-button', 'children')],
     [State('input-box', 'value'),
      State('criteria3-div', 'hidden')]
@@ -149,7 +150,7 @@ def update_all(clicked, value, hidden):
                age_graph_builder.build_age_graph(queryBarLogicObject), \
                income_graph_builder.build_income_graph(queryBarLogicObject), \
                language_graph_builder.build_language_graph(queryBarLogicObject), \
-               besides_diagnoses_graph_builder.build_besides_diagnoses_graph(queryBarLogicObject)
+               # besides_diagnoses_graph_builder.build_besides_diagnoses_graph(queryBarLogicObject)
     if last_clicked != 'nan' and (value is None or value is ''):
         raise PreventUpdate('No Changing!')
     if last_clicked == 'co1':

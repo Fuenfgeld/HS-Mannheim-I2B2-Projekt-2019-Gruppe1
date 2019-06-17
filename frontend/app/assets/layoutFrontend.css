@@ -203,7 +203,7 @@
 }
 
 .DivAddButton:active {
-    background: lime;
+    background: white;
 }
 
 .DivErgebnis {
@@ -233,7 +233,6 @@
     border-bottom: lightgray;
     border-bottom-style: solid;
     background-color: #AFD287;
-
 }
 
 .DivGesamtanzahlChecklist {
@@ -250,46 +249,33 @@
     border-left: lightgray;
     border-left-style: solid;
 }
-.DivBesideCheckbox {
-    margin-left: 70%;
-    margin-top: 0%;
-}
-.DivLanguCheckbox {
-    margin-left: 70%;
-    margin-top: -13.2%;
-}
-.DivAgeCheckbox {
-    margin-left: 37%;
-    margin-top: -13.2%;
-}
-.DivIncomeCheckbox {
-    margin-left: 37%;
-    margin-top: 0%;
-}
-.DivSexRaceCheckbox {
-    margin-left: 5%;
 
+.DivCheckbox {
+    margin-left: 5%;
 }
+
 
 .DivSexDis {
     position: relative;
+    z-index: 2;
     height: 49.25%;
     width: 49.25%;
-    overflow: auto;
 }
 
 .DivRaceDis {
     position: relative;
     float: right;
+    z-index: 1;
     height: 49.25%;
     width: 49.25%;
+    overflow: auto;
 }
 
 .DivAgeDis {
     position: relative;
     height: 80%;
     width: 100%;
-    top: -12%;
+
 }
 
 .DivIncomeDis {
