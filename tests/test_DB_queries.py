@@ -9,7 +9,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_get_level_first_level(self):
         testQuery = db.Queries()
-        methodDataFrame = db.Queries.get_level(testQuery, )
+        methodDataFrame = db.Queries.get_level(testQuery, 1)
         testDataFrame = psql.read_sql(
             "select c_name as name, c_path as path, c_basecode as icdcode, c_hlevel as level, c_fullname as fullname "
             f"from i2b2metadata.icd10_icd9 where c_hlevel = 1 and c_basecode like 'ICD%' "
@@ -116,7 +116,3 @@ class MyTestCase(unittest.TestCase):
             con=testQuery.connection)
 
         methodDataFrame == testDataFrame
-
-
-if __name__ == '__main__':
-    unittest.main()
