@@ -57,36 +57,9 @@ app.css.append_css({
 #     return
 
 
-# callback for the javascript execution
-@app.callback(
-    Output('javascript', 'run'),
-    [Input('js-button', 'n_clicks')]
-)
-def add_event_listener(clicks):
-    if clicks is not None:
-        return """   
-        alert('lmao')
-        document.getElementById('js-button').addEventListener('dblclick',function(evt){
-        alert('L M A O')
-        setProps({ 
-            'event': {'x':evt.x, 
-                      'y':evt.y }
-        })
-        )}
-        })
-        console.log(evt)
-        ));
-        """
 
-@app.callback(
-    Output('input-box', 'value'),
-    [Input('javascript', 'event')]
-)
-def some_func(x):
-    print('\n Event: ', x)
-    return str(x)
 
-# callback for the input field
+# # callback for the input field
 # @app.callback(
 #     Output('input-box', 'value'),
 #     [Input('clear', 'n_clicks')],
@@ -95,10 +68,34 @@ def some_func(x):
 #     if n_clicks is not None:
 #         return ''
 
+
+
+
+##############################
+# part to activate the working javascript returning
+
+# @app.callback(
+#     Output('input-box', 'className'),
+#     [Input('javascript', 'event')])
+# def myfun(x):
+#     if x is not None:
+#         string = str(x)[7:-12]
+#         print(string)
+#         return str(string)
+
+####################################
 # callback for the filling of the query bar
+# @app.callback(
+#     Output('input-box','className'),
+#     [Input('input-box','value')]
+# )
+# def update_value(className):
+#     print('Ill get this', className)
+#     return className
+
 @app.callback(
     Output('query-bar', 'children'),
-    [Input('button', 'n_clicks'),],
+    [Input('button', 'n_clicks')],
      [State('input-box', 'value')])
 def update_output(n_clicks, value):
     print(n_clicks, value)
@@ -107,7 +104,7 @@ def update_output(n_clicks, value):
     if n_clicks is not None or value is '':
         return 'Bitte Wert eingeben!'
     else:
-        queryBarLogicObject.append_name_list(value)
+        queryBarLogicObject.append_name_list(str(value).rstrip())
         result = '{}'.format(
             queryBarLogicObject.print_name_list())
         return result
@@ -128,7 +125,7 @@ def update_output(n_clicks, value):
 
 
     else:
-        df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, value)
+        df_code = data_frame_logic.generate_df_icd_code(queryBarLogicObject, str(value).rstrip())
         queryBarLogicObject.append_icd_list_decimal(df_code.loc[0].values[0])
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'decimal')
         count_patients = len(df_patients)
@@ -139,7 +136,7 @@ def update_output(n_clicks, value):
 @app.callback(
     Output('sex-distribution', 'figure'),
     [Input('button', 'n_clicks')],
-    [State('input-box', 'value')])
+    [State('input-box', 'className')])
 def update_graph(n_clicks, value):
     if n_clicks is None:
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'sex_cd')
@@ -190,7 +187,7 @@ def update_graph(n_clicks, value):
 @app.callback(
     Output('age-distribution', 'figure'),
     [Input('button', 'n_clicks')],
-    [State('input-box', 'value')])
+    [State('input-box', 'className')])
 def update_graph(n_clicks, value):
     if n_clicks is None:
         df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')

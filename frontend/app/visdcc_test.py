@@ -39,7 +39,7 @@ app.layout = html.Div([
         generate_html_table_from_df(df, id='datatable'),
         style={'width': '40%'}
     ),
-    html.Div(id='output_div')
+    html.Div(id='output_div', className='Pineapple')
 ])
 
 
@@ -49,13 +49,14 @@ app.layout = html.Div([
 def myfun(x):
     if x is None: return ''
     return '''
-    var target = $('#datatable')[0]
-    target.addEventListener('click', function() {
-        Document.getElemntbyid('javascript').even
-        alert('lmao')
-        
+    var target = document.getElementById('output_div')
+    target.addEventListener('click', function(evt) {
+        setProps({ 
+            'event': {'x':$(event.target).innerHtml,
+                      'y':evt.y }
+        })
     })
-    console.log(this)
+    console.log(evt)
     '''
 
 
