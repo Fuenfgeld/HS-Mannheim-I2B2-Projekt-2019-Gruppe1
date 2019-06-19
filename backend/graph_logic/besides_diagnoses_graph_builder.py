@@ -46,11 +46,7 @@ def build_besides_diagnoses_graph(queryBarLogicObject):
         marker=dict(
             color=['#4C876A', '#307087', '#32544D', '#AFD287', '#E8F5AC'],
             line=dict(color='#a3a3c2', width=2),
-
-
-
         )
-
     )
 
     return {
@@ -58,9 +54,7 @@ def build_besides_diagnoses_graph(queryBarLogicObject):
         'layout': go.Layout(
             title='Nebendiagnosen',
             xaxis={},
-            yaxis=go.layout.YAxis(
-                    font=dict(size=80)
-                )
+            yaxis={}
 
         ),
 
