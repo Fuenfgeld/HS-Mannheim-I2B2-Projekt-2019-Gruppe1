@@ -27,13 +27,16 @@ def build_income_graph(queryBarLogicObject):
         name='Aktuelle Kohorte',
         marker=dict(
             color=['#32544D', '#32544D', '#32544D'],
-            line=dict(color='#a3a3c2', width=2)))
+            line=dict(color='#a3a3c2', width=2),
+
+            ))
 
     return {
         'data': [trace1, trace2],
 
         'layout': go.Layout(
             barmode='group',
-            title='Verteilung nach Einkommen',
+            title='Einkommensverteilung',
+
         )
     }

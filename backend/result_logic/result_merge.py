@@ -13,3 +13,5 @@ def merge_two_df(df, case):
         return pd.merge(df, data_frame_logic.generate_df_race_cd_patient_dimension(), how='inner', on='patient_num')
     elif case == 'income_cd':
         return pd.merge(df, data_frame_logic.generate_df_income_cd_patient_dimension(), how='inner', on='patient_num')
+    elif case == 'concept_cd':
+        return pd.merge(df, data_frame_logic.generate_df_only_pat_num(), how='inner', on='patient_num')

@@ -1,41 +1,67 @@
 import plotly.graph_objs as go
-from backend.data_frame_logic import data_frame_logic
+import plotly.plotly as py
 import pandas as pd
+import colorlover as cl
+
+from backend.data_frame_logic import data_frame_logic
 from config import database
 
+
 def build_besides_diagnoses_graph(queryBarLogicObject):
-    df_diag_num = data_frame_logic.generate_df_diag_all_observatio_fact_number()
+    df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'concept_cd')
 
-    df_diag_icd = data_frame_logic.generate_df_diag_all_observatio_fact_icd()
+    diag_name = df_patients['concept_cd'].value_counts().keys().to_list()
+    diag_num = df_patients['concept_cd'].value_counts().tolist()
 
-    df_diag_icd_name = pd.read_sql('select distinct c_basecode as concept_cd, c_name from i2b2.i2b2metadata.icd10_icd9', con=database.engine)
+    string_name1 = f'select distinct c_name from i2b2metadata.icd10_icd9 where c_basecode = \'{diag_name[0]}\''
+    string_name2 = f'select distinct c_name from i2b2metadata.icd10_icd9 where c_basecode = \'{diag_name[1]}\''
+    string_name3 = f'select distinct c_name from i2b2metadata.icd10_icd9 where c_basecode = \'{diag_name[2]}\''
+    string_name4 = f'select distinct c_name from i2b2metadata.icd10_icd9 where c_basecode = \'{diag_name[3]}\''
+    string_name5 = f'select distinct c_name from i2b2metadata.icd10_icd9 where c_basecode = \'{diag_name[4]}\''
 
-    df_10_icd_name = pd.merge(df_diag_icd, df_diag_icd_name, how='inner', on='concept_cd')
+    name1_df = pd.read_sql(string_name1, con=database.engine)
+    name2_df = pd.read_sql(string_name2, con=database.engine)
+    name3_df = pd.read_sql(string_name3, con=database.engine)
+    name4_df = pd.read_sql(string_name4, con=database.engine)
+    name5_df = pd.read_sql(string_name5, con=database.engine)
 
-    print(df_10_icd_name)
-    print(df_diag_num)
+    number1 = diag_num[0]
+    number2 = diag_num[1]
+    number3 = diag_num[2]
+    number4 = diag_num[3]
+    number5 = diag_num[4]
 
-    name1 = df_10_icd_name.loc[0].values[1]
-    name2 = df_10_icd_name.loc[1].values[1]
-    name3 = df_10_icd_name.loc[2].values[1]
+    name1 = name1_df.loc[0].values[0]
+    name2 = name2_df.loc[0].values[0]
+    name3 = name3_df.loc[0].values[0]
+    name4 = name4_df.loc[0].values[0]
+    name5 = name5_df.loc[0].values[0]
 
-    number1 = df_diag_num.loc[0].values[0]
-    number2 = df_diag_num.loc[1].values[0]
-    number3 = df_diag_num.loc[2].values[0]
+    trace = go.Bar(
+        x=[number1, number2, number3, number4, number5],
+        y=[f'\'{name1}\'', f'\'{name2}\'', f'\'{name3}\'', f'\'{name4}\'',
+           f'\'{name5}\''],
 
-    trace1 = go.Bar(
-        y=[number1, number2, number3],
-        x=[name1, name2, name3],
-        name='Aktuelle Kohorte',
+        orientation='h',
         marker=dict(
-            color=['#E8F5AC', '#E8F5AC', '#E8F5AC'],
-            line=dict(color='#a3a3c2', width=2)))
+            color=['#4C876A', '#307087', '#32544D', '#AFD287', '#E8F5AC'],
+            line=dict(color='#a3a3c2', width=2),
+
+
+
+        )
+
+    )
 
     return {
-        'data': [trace1],
-
+        'data': [trace],
         'layout': go.Layout(
-            barmode='group',
-            title='Einkommen-Verteilung',
-        )
+            title='Nebendiagnosen',
+            xaxis={},
+            yaxis=go.layout.YAxis(
+                    font=dict(size=80)
+                )
+
+        ),
+
     }

@@ -33,5 +33,5 @@ def build_language_graph(queryBarLogicObject):
 
         'layout': go.Layout(
             barmode='group',
-            title='Verteilung nach Muttersprache',
+            title='Muttersprachsverteilung',
         )}

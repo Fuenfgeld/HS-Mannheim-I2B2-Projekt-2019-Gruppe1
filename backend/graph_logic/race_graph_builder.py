@@ -9,6 +9,7 @@ def build_race_graph(queryBarLogicObject):
     count_black = df_patients.race_cd.str.count('black').sum()
     count_hispanic = df_patients.race_cd.str.count('hispanic').sum()
     count_indian = df_patients.race_cd.str.count('indian').sum()
+
     return {
         'data': [go.Pie(
             labels=['Europ.', 'Asia.', 'Afrik.', 'Hispa.', 'Indi.'],
@@ -19,8 +20,7 @@ def build_race_graph(queryBarLogicObject):
                     count_indian],
             marker=dict(colors=['#4C876A', '#307087', '#32544D', '#AFD287', '#E8F5AC'],
                         line=dict(color='#a3a3c2', width=2)),
-            textfont={'size': 15},
-            textinfo='value'
+            textfont={'size': 15}
         )
         ],
 
