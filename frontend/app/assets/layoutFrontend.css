@@ -254,29 +254,31 @@
     margin-left: 5%;
 }
 
-
 .DivSexDis {
     position: relative;
     z-index: 2;
+    /*float: left;*/
     height: 49.25%;
     width: 49.25%;
 }
 
 .DivRaceDis {
     position: relative;
-    float: right;
     z-index: 1;
+    /*float: right;*/
     height: 49.25%;
     width: 49.25%;
     overflow: auto;
 }
 
+
 .DivAgeDis {
     position: relative;
+    /*top: 45%;*/
     height: 80%;
     width: 100%;
-
 }
+
 
 .DivIncomeDis {
     position: relative;

@@ -54,10 +54,10 @@ class layoutResults:
 
         layout_results = html.Div([
 
-            dcc.Graph(id='race-distribution', className='DivRaceDis'),
-            dcc.Graph(id='sex-distribution', className='DivSexDis'),
+            html.Div(dcc.Graph(id='sex-distribution'), style={'width': '50%', 'display': 'inline-block'}),
+            html.Div(dcc.Graph(id='race-distribution'), style={'width': '50%', 'display': 'inline-block'}),
             dcc.Graph(id='age-distribution', className='DivAgeDis'),
             dcc.Graph(id='income-distribution', style={'display': 'none'}),
             dcc.Graph(id='language-distribution', style={'display': 'none'}),
             # dcc.Graph(id='besides-diagnoses', style={'display': 'block'})
-        ], className="DivErgebnis")
+        ], className="DivErgebnis", style={'width': '50%', 'display': 'inline-block'})
