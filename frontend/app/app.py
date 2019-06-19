@@ -42,6 +42,9 @@ app.layout = html.Div([
 
     queryBarObject.layout_query_bar,
 
+    resultsObject.layout_checkout,
+    resultsObject.layout_decimal,
+
     resultsObject.layout_results
 
 ])
@@ -49,6 +52,60 @@ app.layout = html.Div([
 app.css.append_css({
     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
 })
+
+@app.callback(
+    Output('sex-distribution', 'style'),
+    [Input('checklistSEX', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['on']:
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
+
+@app.callback(
+    Output('race-distribution', 'style'),
+    [Input('checklistRace', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['on']:
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
+
+@app.callback(
+    Output('age-distribution', 'style'),
+    [Input('checklistAGE', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['on']:
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
+
+@app.callback(
+    Output('income-distribution', 'style'),
+    [Input('checklistIncome', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['off']:
+        return {'display': 'none'}
+    else:
+        return {'display': 'block'}
+
+@app.callback(
+    Output('language-distribution', 'style'),
+    [Input('checklistLanguage', 'values')])
+def update_radiobutton(visibility_state):
+    if visibility_state == ['off']:
+        return {'display': 'none'}
+    else:
+        return {'display': 'block'}
+
+# @app.callback(
+#     Output('besides-diagnoses', 'style'),
+#     [Input('checklistBesides', 'values')])
+# def update_radiobutton(visibility_state):
+#     if visibility_state == ['on']:
+#         return {'display': 'block'}
+#     else:
+#         return {'display': 'none'}
 
 con_list = []
 con_list.append('AND')
@@ -72,7 +129,8 @@ con_list.append('AND')
     Output('age-distribution', 'figure'),
     Output('income-distribution', 'figure'),
     Output('language-distribution', 'figure'),
-    Output('besides-diagnoses', 'figure')],
+    # Output('besides-diagnoses', 'figure')
+    ],
     [Input('clicked-button', 'children')],
     [State('input-box', 'value'),
      State('criteria3-div', 'hidden')]
@@ -92,7 +150,7 @@ def update_all(clicked, value, hidden):
                age_graph_builder.build_age_graph(queryBarLogicObject), \
                income_graph_builder.build_income_graph(queryBarLogicObject), \
                language_graph_builder.build_language_graph(queryBarLogicObject), \
-               besides_diagnoses_graph_builder.build_besides_diagnoses_graph(queryBarLogicObject)
+               # besides_diagnoses_graph_builder.build_besides_diagnoses_graph(queryBarLogicObject)
     if last_clicked != 'nan' and (value is None or value is ''):
         raise PreventUpdate('No Changing!')
     if last_clicked == 'co1':
@@ -302,3 +360,4 @@ def update_clicked(del_clicks, add_clicks, con1_clicks, con2_clicks, prev_clicks
 
 if __name__ == "__main__":
     app.run_server(debug=True, port=5001)
+
