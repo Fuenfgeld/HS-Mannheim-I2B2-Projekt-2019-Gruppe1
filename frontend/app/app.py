@@ -1,24 +1,21 @@
 import dash
 import dash_html_components as html
-from dash.exceptions import PreventUpdate
 from dash.dependencies import Output, Input, State
+from dash.exceptions import PreventUpdate
 
-# imports der Klassen zur Anzeige der Seite
-from frontend.app_layout import layout_banner
-from frontend.app_layout import layout_query_bar
-from frontend.app_layout import layout_navigation_bar
-from frontend.app_layout import layout_results
-
-# imports für Logik und Datenbankanbindung
-from backend.query_bar_logic import query_bar_logic
-from backend.data_frame_logic import data_frame_logic
 from backend.graph_logic import age_graph_builder
-from backend.graph_logic import sex_graph_builder
-from backend.graph_logic import race_graph_builder
 from backend.graph_logic import decimal_logic
 from backend.graph_logic import income_graph_builder
 from backend.graph_logic import language_graph_builder
-from backend.graph_logic import besides_diagnoses_graph_builder
+from backend.graph_logic import race_graph_builder
+from backend.graph_logic import sex_graph_builder
+# imports für Logik und Datenbankanbindung
+from backend.query_bar_logic import query_bar_logic
+# imports der Klassen zur Anzeige der Seite
+from frontend.app_layout import layout_banner
+from frontend.app_layout import layout_navigation_bar
+from frontend.app_layout import layout_query_bar
+from frontend.app_layout import layout_results
 
 # Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
@@ -27,7 +24,11 @@ navigationBarObject = layout_navigation_bar.layoutNavigationBar()
 resultsObject = layout_results.layoutResults()
 queryBarLogicObject = query_bar_logic.queryBar()
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=
+['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'],
+                external_scripts=['https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js',
+                                  'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js',
+                                  ])
 
 # Visualisierung der Seite
 app.layout = html.Div([
@@ -52,6 +53,23 @@ app.layout = html.Div([
 app.css.append_css({
     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
 })
+
+
+# callback for event
+@app.callback(
+    Output('input-box', 'value'),
+    [Input('javascript', 'event'),
+     Input('clear', 'n_clicks'),
+     Input('add-button', 'n_clicks')])
+def myfunc(x, clear_clicks, add_clicks):
+    if clear_clicks is not None:
+        return ''
+
+    if add_clicks is not None:
+        if x is not None:
+            string = str(x)[7:-12]
+            print(string)
+            return str(string)
 
 @app.callback(
     Output('sex-distribution', 'style'),
@@ -132,13 +150,18 @@ con_list.append('AND')
     # Output('besides-diagnoses', 'figure')
     ],
     [Input('clicked-button', 'children')],
-    [State('input-box', 'value'),
+    [State('input-box', 'className'),
+     State('input-box', 'value'),
      State('criteria3-div', 'hidden')]
 )
-def update_all(clicked, value, hidden):
+def update_all(clicked, className, value, hidden):
     last_clicked = clicked[-3:]
+
+    if className is not value:
+        className = value
+
     if last_clicked == 'nan' or last_clicked == 'del':
-        if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
+        if last_clicked == 'del' or (last_clicked == 'del' and (className is None or className is '')):
             queryBarLogicObject.name_list.clear()
             queryBarLogicObject.icd_list.clear()
             con_list[0] = 'AND'
@@ -151,7 +174,7 @@ def update_all(clicked, value, hidden):
                income_graph_builder.build_income_graph(queryBarLogicObject), \
                language_graph_builder.build_language_graph(queryBarLogicObject), \
                # besides_diagnoses_graph_builder.build_besides_diagnoses_graph(queryBarLogicObject)
-    if last_clicked != 'nan' and (value is None or value is ''):
+    if last_clicked != 'nan' and (className is None or className is ''):
         raise PreventUpdate('No Changing!')
     if last_clicked == 'co1':
         if (con_list[0] == 'AND') & hidden:
@@ -271,9 +294,9 @@ def update_all(clicked, value, hidden):
                        language_graph_builder.build_language_graph(queryBarLogicObject)
     if last_clicked == 'add':
         if len(queryBarLogicObject.name_list) == 0:
-            queryBarLogicObject.append_name_list(value)
-            queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
-            return False, value, {'display': 'none'}, html.H5(''), True, '', {'display': 'none'}, html.H5(''), \
+            queryBarLogicObject.append_name_list(className)
+            queryBarLogicObject.append_icd_list(queryBarLogicObject, className)
+            return False, className, {'display': 'none'}, html.H5(''), True, '', {'display': 'none'}, html.H5(''), \
                    True, '', decimal_logic.build_decimal(queryBarLogicObject), \
                    sex_graph_builder.build_sex_graph(queryBarLogicObject), \
                    race_graph_builder.build_race_graph(queryBarLogicObject), \
@@ -282,9 +305,9 @@ def update_all(clicked, value, hidden):
                    language_graph_builder.build_language_graph(queryBarLogicObject)
 
         if len(queryBarLogicObject.name_list) == 1:
-            queryBarLogicObject.append_name_list(value)
-            queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
-            return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, value, {
+            queryBarLogicObject.append_name_list(className)
+            queryBarLogicObject.append_icd_list(queryBarLogicObject, className)
+            return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, className, {
                 'display': 'none'}, html.H5(''), True, '', decimal_logic.build_decimal(queryBarLogicObject), \
                    sex_graph_builder.build_sex_graph(queryBarLogicObject), \
                    race_graph_builder.build_race_graph(queryBarLogicObject), \
@@ -292,11 +315,11 @@ def update_all(clicked, value, hidden):
                    income_graph_builder.build_income_graph(queryBarLogicObject), \
                    language_graph_builder.build_language_graph(queryBarLogicObject)
         if len(queryBarLogicObject.name_list) == 3:
-            queryBarLogicObject.append_name_list(value)
-            queryBarLogicObject.append_icd_list(queryBarLogicObject, value)
+            queryBarLogicObject.append_name_list(className)
+            queryBarLogicObject.append_icd_list(queryBarLogicObject, className)
             if con_list[0] == 'AND':
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('AND'), False, \
-                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, value, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, className, \
                        decimal_logic.build_decimal(queryBarLogicObject), \
                        sex_graph_builder.build_sex_graph(queryBarLogicObject), \
                        race_graph_builder.build_race_graph(queryBarLogicObject), \
@@ -305,7 +328,7 @@ def update_all(clicked, value, hidden):
                        language_graph_builder.build_language_graph(queryBarLogicObject)
             if con_list[0] == 'OR':
                 return False, queryBarLogicObject.name_list[0], {'display': 'block'}, html.H5('OR'), False, \
-                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, value, \
+                       queryBarLogicObject.name_list[2], {'display': 'block'}, html.H5('AND'), False, className, \
                        decimal_logic.build_decimal(queryBarLogicObject), \
                        sex_graph_builder.build_sex_graph(queryBarLogicObject), \
                        race_graph_builder.build_race_graph(queryBarLogicObject), \

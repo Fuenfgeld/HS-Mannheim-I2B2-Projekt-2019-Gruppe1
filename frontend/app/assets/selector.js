@@ -15,7 +15,7 @@ function update_search_bar(){
    short_result = result.substring(9);
    short_result = short_result.substr(short_result.indexOf('-'));
    short_result = short_result.substring(1);
-   document.getElementById('input-box').textContent = short_result;
+   document.getElementById('input-box').className = short_result;
    document.getElementById('input-box').value = short_result;
    // document.getElementById('query-bar').textContent = short_result;
    // document.getElementById('query-bar').value = short_result;

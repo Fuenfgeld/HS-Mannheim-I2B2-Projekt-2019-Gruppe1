@@ -299,3 +299,55 @@
 ._dash-undo-redo {
   display: none;
 }
+
+.well_col-sm-6{
+    text-decoration: none;
+    font-size: 200px;
+}
+
+Div:link{
+    text-decoration: none;
+}
+
+
+.jstree-hovered{
+    color: black;
+    text-decoration: none;
+}
+
+.jstree-anchor{
+    color: black;
+    text-decoration: none;
+    margin-left: 5px;
+    font-size: large;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: #adebad;
+
+}
+
+.jstree-children{
+    list-style-type: none;
+    list-style-position: inside;
+
+
+}
+
+.jstree-anchor:active{
+    color: red;
+}
+
+
+.jstree-anchor:hover{
+    color:#008000;
+}
+
+.jstree-anchor:empty{
+    font-size: 200px;
+}
+
+.jstree-leaf{
+font-style: italic;
+    opacity: 0.7;
+}
