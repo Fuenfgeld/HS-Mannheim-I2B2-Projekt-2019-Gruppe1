@@ -24,10 +24,10 @@ let interval;
 let n = new Date()
 
 
-$('#input-box').on("keyup change onload", function () {
+$('#input-box').on("keyup change", function () {
     interval = new Date();
     interval = interval - n
-    if(document.getElementById('input-box').value.length >= 4 && interval >= 600 ) {
+    if(document.getElementById('input-box').value.length >= 4 && interval >= 400 ) {
 
         $('#jstree-tree').jstree(true).search($(this).val())
     }

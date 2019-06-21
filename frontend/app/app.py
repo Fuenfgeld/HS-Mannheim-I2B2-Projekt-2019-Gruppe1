@@ -160,6 +160,11 @@ def update_all(clicked, className, value, hidden):
     if className is not value:
         className = value
 
+    # if value is className:
+    #     value=className
+
+    className = str(className).rstrip()
+
     if last_clicked == 'nan' or last_clicked == 'del':
         if last_clicked == 'del' or (last_clicked == 'del' and (className is None or className is '')):
             queryBarLogicObject.name_list.clear()
