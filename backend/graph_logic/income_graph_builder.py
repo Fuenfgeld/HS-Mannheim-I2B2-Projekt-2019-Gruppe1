@@ -11,7 +11,7 @@ def build_income_graph(queryBarLogicObject):
     trace1 = go.Bar(
         x=['Niedrig', 'Mittel', 'Hoch'],
         y=[income1_all, income2_all, income3_all],
-        name='Grundgesamtheit',
+        name='Gesamt',
         marker=dict(
             color=['#E8F5AC', '#E8F5AC', '#E8F5AC'],
             line=dict(color='#a3a3c2', width=2)))
@@ -24,7 +24,7 @@ def build_income_graph(queryBarLogicObject):
     trace2 = go.Bar(
         x=['Niedrig', 'Mittel', 'Hoch'],
         y=[income1, income2, income3],
-        name='Aktuelle Kohorte',
+        name='Kohorte',
         marker=dict(
             color=['#32544D', '#32544D', '#32544D'],
             line=dict(color='#a3a3c2', width=2),
@@ -36,7 +36,7 @@ def build_income_graph(queryBarLogicObject):
 
         'layout': go.Layout(
             barmode='group',
-            title='Einkommensverteilung',
+            title='Einkommen',
 
         )
     }

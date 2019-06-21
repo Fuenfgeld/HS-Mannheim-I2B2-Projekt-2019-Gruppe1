@@ -11,7 +11,7 @@ def build_language_graph(queryBarLogicObject):
     trace1 = go.Bar(
         x=['Englisch', 'Spanisch', 'Deutsch'],
         y=[count_english_all, count_spanish_all, count_german_all],
-        name='Grundgesamtheit',
+        name='Gesamt',
         marker=dict(
             color=['#E8F5AC', '#E8F5AC', '#E8F5AC'],
             line=dict(color='#a3a3c2', width=2)))
@@ -23,7 +23,7 @@ def build_language_graph(queryBarLogicObject):
     trace2 = go.Bar(
         x=['Englisch', 'Spanisch', 'Deutsch'],
         y=[count_english, count_spanish, count_german],
-        name='Aktuelle Kohorte',
+        name='Kohorte',
         marker=dict(
             color=['#32544D', '#32544D', '#32544D'],
             line=dict(color='#a3a3c2', width=2)))
@@ -33,5 +33,5 @@ def build_language_graph(queryBarLogicObject):
 
         'layout': go.Layout(
             barmode='group',
-            title='Muttersprachsverteilung',
+            title='Muttersprache',
         )}

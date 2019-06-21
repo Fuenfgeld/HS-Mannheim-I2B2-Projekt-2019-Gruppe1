@@ -6,7 +6,6 @@ import colorlover as cl
 from backend.data_frame_logic import data_frame_logic
 from config import database
 
-
 def build_besides_diagnoses_graph(queryBarLogicObject):
     df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'concept_cd')
 
@@ -39,7 +38,7 @@ def build_besides_diagnoses_graph(queryBarLogicObject):
 
     trace = go.Bar(
         x=[number1, number2, number3, number4, number5],
-        y=[f'\'{name1}\'', f'\'{name2}\'', f'\'{name3}\'', f'\'{name4}\'',
+        y=[f'\'{(name1)}\'', f'\'{name2}\'', f'\'{name3}\'', f'\'{name4}\'',
            f'\'{name5}\''],
 
         orientation='h',
@@ -54,8 +53,9 @@ def build_besides_diagnoses_graph(queryBarLogicObject):
         'layout': go.Layout(
             title='Nebendiagnosen',
             xaxis={},
-            yaxis={}
+            margin=go.layout.Margin(l=400, r=20),
+            yaxis=go.layout.YAxis(automargin=True, autorange='reversed')
 
-        ),
+        )
 
     }

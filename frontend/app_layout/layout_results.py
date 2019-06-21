@@ -46,7 +46,6 @@ class layoutResults:
                     style={'display': 'inline-block'},
                     values=['on'], className='DivCheckbox'),
             ],
-
                 className='DivGesamtanzahlChecklist')
 
         layout_decimal = html.Div([
@@ -54,10 +53,19 @@ class layoutResults:
         ], className='DivGesamtanzahl')
 
         layout_results = html.Div([
-            html.Div(dcc.Graph(id='sex-distribution'), style={'width': '50%', 'display': 'inline-block'}),
-            html.Div(dcc.Graph(id='race-distribution'), style={'width': '50%', 'display': 'inline-block'}),
-            dcc.Graph(id='age-distribution', className='DivAgeDis'),
-            dcc.Graph(id='income-distribution', style={'display': 'none'}),
-            dcc.Graph(id='language-distribution', style={'display': 'none'}),
-            dcc.Graph(id='besides-diagnoses')
-        ], className="DivErgebnis", style={'width': '50%', 'display': 'inline-block'})
+            html.Div(dcc.Graph(id='sex-distribution'),
+                     style={'width': '29%', 'display': 'inline-block'},
+                     className='DivSexDis'),
+            html.Div(dcc.Graph(id='race-distribution'),
+                     style={'width': '29%', 'display': 'inline-block'},
+                     className='DivRaceDis'),
+            html.Div(dcc.Graph(id='age-distribution'), style={'width': '42%', 'display': 'inline-block'}),
+            html.Div(dcc.Graph(id='income-distribution'),
+                     style={'display': 'inline-block'},
+
+                     className='DivLanguageDis'),
+            html.Div(dcc.Graph(id='language-distribution'),
+                     style={'display': 'inline-block'},
+                     className='DivLanguageDis'),
+            html.Div(dcc.Graph(id='besides-diagnoses'))
+        ], className="DivErgebnis", style={'width': '70%', 'display': 'inline-block'})

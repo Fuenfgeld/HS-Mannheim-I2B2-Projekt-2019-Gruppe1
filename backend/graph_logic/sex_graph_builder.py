@@ -10,7 +10,7 @@ def build_sex_graph(queryBarLogicObject):
 
     return {
         'data': [go.Pie(
-            labels=['Weiblich', 'Männlich'],
+            labels=['Weib.', 'Männ.'],
             values=[count_female,
                     count_male],
             marker=dict(colors=['#32544D', '#AFD287'],
@@ -20,6 +20,6 @@ def build_sex_graph(queryBarLogicObject):
         ],
 
         'layout': go.Layout(
-            title='Geschlechterverteilung'
+            title='Geschlecht'
         )
     }

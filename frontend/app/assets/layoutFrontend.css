@@ -46,11 +46,13 @@
     font-family: Verdana;
     width: 15%;
     height: 40%;
-    margin-top: 2.5%;
+    margin-top: 2%;
     margin-left: 5%;
     z-index: 3;
+    border-style: solid;
+    border-color: #AFD287;
     border-radius: 4px;
-    background-color: gainsboro;
+    background-color: white;
     white-space: nowrap;
     overflow: auto;
     overflow-y: hidden;
@@ -63,11 +65,12 @@
     font-family: Verdana;
     width: 15%;
     height: 40%;
-    margin-top: 2.5%;
+    margin-top: 2%;
     margin-left: 30%;
     z-index: 3;
+    border-style: solid;
+    border-color: #AFD287;
     border-radius: 4px;
-    background-color: gainsboro;
     white-space: nowrap;
     overflow: auto;
     overflow-y: hidden;
@@ -80,11 +83,12 @@
     font-family: Verdana;
     width: 15%;
     height: 40%;
-    margin-top: 2.5%;
+    margin-top: 2%;
     margin-left: 55%;
     z-index: 3;
+    border-style: solid;
+    border-color: #AFD287;
     border-radius: 4px;
-    background-color: gainsboro;
     white-space: nowrap;
     overflow: auto;
     overflow-y: hidden;
@@ -94,28 +98,52 @@
     position: absolute;
     text-align-all: center;
     font-family: Verdana;
-    margin-top: 1.75%;
+    margin-top: 1.5%;
     margin-left: 21%;
     width: 8%;
     height: 60%;
     z-index: 3;
     border-radius: 50%;
     border: none;
-    background-color: #AFD287;
+    background-color: lightgray;
+}
+
+.DivVerbindung1Button:hover,
+.DivVerbindung1Button:focus {
+    border: 1px solid #f4efeb;
+    background: darkgrey;
+    color: #111111;
+    text-decoration: none;
+}
+
+.DivVerbindung1Button:active {
+    background: whitesmoke;
 }
 
 .DivVerbindung2Button {
     position: absolute;
     text-align-all: center;
     font-family: Verdana;
-    margin-top: 1.75%;
+    margin-top: 1.5%;
     margin-left: 46%;
     width: 8%;
     height: 60%;
     z-index: 3;
     border-radius: 50%;
     border: none;
-    background-color: #AFD287;
+    background-color: lightgray;
+}
+
+.DivVerbindung2Button:hover,
+.DivVerbindung2Button:focus {
+    border: 1px solid #f4efeb;
+    background: darkgrey;
+    color: #111111;
+    text-decoration: none;
+}
+
+.DivVerbindung2Button:active {
+    background: whitesmoke;
 }
 
 .DivXbutton {
@@ -132,13 +160,13 @@
 .DivXbutton:hover,
 .DivXbutton:focus {
     border: 1px solid #f4efeb;
-    background: #AFD287;
+    background: darkgrey;
     color: #111111;
     text-decoration: none;
 }
 
 .DivXbutton:active {
-    background: lime;
+    background: whitesmoke;
 }
 
 .DivXbutton Img {
@@ -156,7 +184,7 @@
     text-align: left;
     position: absolute;
     font-family: Verdana;
-    width: 49.5%;
+    width: 33.5%;
     height: 9%;
     z-index: 1;
     left: 0.1%;
@@ -170,7 +198,7 @@
     text-align: left;
     position: absolute;
     font-family: Verdana;
-    width: 49.5%;
+    width: 33.5%;
     height: 73%;
     z-index: 1;
     left: 0.1%;
@@ -182,7 +210,7 @@
 
 .DivEingabe {
     margin-top: 2%;
-    width: 83.5%;
+    width: 68.5%;
     margin-left: 0.5%;
     background-color: white;
 }
@@ -197,22 +225,21 @@
 .DivAddButton:hover,
 .DivAddButton:focus {
     border: 1px solid #f4efeb;
-    background: #AFD287;
+    background: darkgrey;
     color: #111111;
     text-decoration: none;
 }
 
 .DivAddButton:active {
-    background: white;
+    background: whitesmoke;
 }
 
 .DivErgebnis {
     text-align: left;
     position: absolute;
-    width: 49.5%;
+    width: 115%;
     height: 74%;
-    z-index: 1;
-    left: 50%;
+    left: 30%;
     top: 25.9%;
     overflow: auto;
 }
@@ -223,8 +250,8 @@
     font-family: Verdana;
     height: 7%;
     top: 18.4%;
-    width: 22%;
-    left: 49.6%;
+    width: 29%;
+    left: 33.6%;
     z-index: 2;
     border-left: lightgray;
     border-left-style: solid;
@@ -241,13 +268,15 @@
     font-family: Verdana;
     height: 7%;
     top: 18.4%;
-    width: 27.5%;
-    left: 71.6%;
+    width: 36.4%;
+    left: 62.9%;
     z-index: 2;
     border-bottom: lightgray;
     border-bottom-style: solid;
     border-left: lightgray;
     border-left-style: solid;
+    border-right: lightgray;
+    border-right-style: solid;
 }
 
 .DivCheckbox {
@@ -255,43 +284,41 @@
 }
 
 .DivSexDis {
-    position: relative;
-    z-index: 2;
-    /*float: left;*/
-    height: 49.25%;
-    width: 49.25%;
+    /*position: absolute;*/
+    /*z-index: 1;*/
+
+    /*width: 49.25%;*/
+    /*margin-top: -20%;*/
 }
 
 .DivRaceDis {
-    position: relative;
-    z-index: 1;
-    /*float: right;*/
-    height: 49.25%;
-    width: 49.25%;
-    overflow: auto;
+    /*position: relative;*/
+    /*z-index: 1;*/
+    /*height: 40.25%;*/
+    /*width: 49.25%;*/
+    /*top: -45%;*/
+    /*overflow: auto;*/
 }
 
 
 .DivAgeDis {
-    position: relative;
-    /*top: 45%;*/
-    height: 80%;
-    width: 100%;
+    /*position: relative;*/
+    /*z-index: 2;*/
+    /*top: -10%;*/
+    /*height: 70%;*/
+    /*width: 90%;*/
+    /*left: -10%;*/
 }
 
 
 .DivIncomeDis {
-    position: relative;
-    height: 80%;
-    width: 100%;
-    top: -20%;
+
+
 }
 
 .DivLanguageDis {
-    position: relative;
-    height: 80%;
-    width: 100%;
-    top: -29%;
+    width: 49.9%;
+
 }
 
 .modebar {

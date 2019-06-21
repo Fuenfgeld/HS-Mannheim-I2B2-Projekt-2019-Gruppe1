@@ -60,6 +60,11 @@ def build_age_graph(queryBarLogicObject):
 
         'layout': go.Layout(
             barmode='group',
-            title='Altersverteilung',
-        )
+            title='Alter',
+            legend=dict(
+                x=0.5,
+                y=1.0,
+            )
+        ),
+
     }
