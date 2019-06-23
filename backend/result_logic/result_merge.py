@@ -9,3 +9,9 @@ def merge_two_df(df, case):
         return pd.merge(df, data_frame_logic.generate_df_language_cd_patient_dimension(), how='inner', on='patient_num')
     elif case == 'age_in_years_num':
         return pd.merge(df, data_frame_logic.generate_df_age_in_years_num_patient_dimension(), how='inner', on='patient_num')
+    elif case == 'race_cd':
+        return pd.merge(df, data_frame_logic.generate_df_race_cd_patient_dimension(), how='inner', on='patient_num')
+    elif case == 'income_cd':
+        return pd.merge(df, data_frame_logic.generate_df_income_cd_patient_dimension(), how='inner', on='patient_num')
+    elif case == 'concept_cd':
+        return pd.merge(df, data_frame_logic.generate_df_only_pat_num(), how='inner', on='patient_num')

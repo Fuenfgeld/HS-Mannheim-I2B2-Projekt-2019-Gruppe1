@@ -1,92 +1,333 @@
 .DivBanner {
-    background-color: rgb(109, 204, 64);
+    background-color: #AFD287;
     position: absolute;
     width: 99.5%;
     left: 0.25%;
     top: 0.1%;
     bottom: 0.1%;
-    height: 4.8%;
+    height: 6%;
     z-index: 2;
 }
 
-.DivBanner H5{
+.DivBanner H5 {
     text-align: left;
+    font-family: Verdana;
     color: white;
+    margin-left: 1%;
     display: inline-block;
 }
 
-.DivBanner Img{
+.DivBanner Img {
     position: relative;
     float: right;
-    right: 1%;
+    right: 0%;
     height: 99%;
 }
 
 .DivAbfrageleiste {
     text-align: center;
     position: absolute;
+    display: inline-block;
     font-size: 200%;
     width: 99.5%;
-    height: 15.4%;
+    height: 13%;
     z-index: 2;
     left: 0.1%;
     top: 5%;
-    border: solid;
+    border-bottom: lightgrey;
+    border-bottom-style: solid;
     overflow: auto;
 }
 
-.DivXbutton{
-    text-align: left;
+.DivKriterium1 {
+    text-align: center;
+    font-size: medium;
     position: absolute;
-    top: 5.5%;
-    left: 0.3%;
-    height: 15.4%;
+    font-family: Verdana;
+    width: 15%;
+    height: 40%;
+    margin-top: 2%;
+    margin-left: 5%;
     z-index: 3;
-
-
+    border-style: solid;
+    border-color: #AFD287;
+    border-radius: 4px;
+    background-color: white;
+    white-space: nowrap;
+    overflow: auto;
+    overflow-y: hidden;
 }
 
-.DivNavigation {
+.DivKriterium2 {
+    text-align: center;
+    font-size: medium;
+    position: absolute;
+    font-family: Verdana;
+    width: 15%;
+    height: 40%;
+    margin-top: 2%;
+    margin-left: 30%;
+    z-index: 3;
+    border-style: solid;
+    border-color: #AFD287;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: auto;
+    overflow-y: hidden;
+}
+
+.DivKriterium3 {
+    text-align: center;
+    font-size: medium;
+    position: absolute;
+    font-family: Verdana;
+    width: 15%;
+    height: 40%;
+    margin-top: 2%;
+    margin-left: 55%;
+    z-index: 3;
+    border-style: solid;
+    border-color: #AFD287;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: auto;
+    overflow-y: hidden;
+}
+
+.DivVerbindung1Button {
+    position: absolute;
+    text-align-all: center;
+    font-family: Verdana;
+    margin-top: 1.5%;
+    margin-left: 21%;
+    width: 8%;
+    height: 60%;
+    z-index: 3;
+    border-radius: 50%;
+    border: none;
+    background-color: lightgray;
+}
+
+.DivVerbindung1Button:hover,
+.DivVerbindung1Button:focus {
+    border: 1px solid #f4efeb;
+    background: darkgrey;
+    color: #111111;
+    text-decoration: none;
+}
+
+.DivVerbindung1Button:active {
+    background: whitesmoke;
+}
+
+.DivVerbindung2Button {
+    position: absolute;
+    text-align-all: center;
+    font-family: Verdana;
+    margin-top: 1.5%;
+    margin-left: 46%;
+    width: 8%;
+    height: 60%;
+    z-index: 3;
+    border-radius: 50%;
+    border: none;
+    background-color: lightgray;
+}
+
+.DivVerbindung2Button:hover,
+.DivVerbindung2Button:focus {
+    border: 1px solid #f4efeb;
+    background: darkgrey;
+    color: #111111;
+    text-decoration: none;
+}
+
+.DivVerbindung2Button:active {
+    background: whitesmoke;
+}
+
+.DivXbutton {
     text-align: left;
     position: absolute;
-    width: 49.5%;
-    height: 78.5%;
+    top: 6.5%;
+    left: 0.1%;
+    padding: 1.5%;
+    height: 11%;
+    z-index: 3;
+    background: lightgrey;
+}
+
+.DivXbutton:hover,
+.DivXbutton:focus {
+    border: 1px solid #f4efeb;
+    background: darkgrey;
+    color: #111111;
+    text-decoration: none;
+}
+
+.DivXbutton:active {
+    background: whitesmoke;
+}
+
+.DivXbutton Img {
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 0.3%;
+    width: 100%;
+    height: 50%;
+    z-index: 3;
+    color: #32544D;
+}
+
+.DivEingabeUndAdden {
+    text-align: left;
+    position: absolute;
+    font-family: Verdana;
+    width: 33.5%;
+    height: 9%;
     z-index: 1;
     left: 0.1%;
-    top: 21%;
-    border: solid;
+    top: 18%;
+    border-right: lightgrey;
+    border-right-style: solid;
     overflow: auto;
 }
-.DivSuchen{
-    margin-top: 1%;
-    width: 99%;
+
+.DivBaum {
+    text-align: left;
+    position: absolute;
+    font-family: Verdana;
+    width: 33.5%;
+    height: 73%;
+    z-index: 1;
+    left: 0.1%;
+    top: 27%;
+    border-right: lightgrey;
+    border-right-style: solid;
+    overflow: auto;
+}
+
+.DivEingabe {
+    margin-top: 2%;
+    width: 68.5%;
     margin-left: 0.5%;
+    background-color: white;
+}
+
+.DivAddButton {
+    margin-top: 2%;
+    margin-left: 0.5%;
+    font-size: 90%;
+    background-color: lightgrey;
+}
+
+.DivAddButton:hover,
+.DivAddButton:focus {
+    border: 1px solid #f4efeb;
+    background: darkgrey;
+    color: #111111;
+    text-decoration: none;
+}
+
+.DivAddButton:active {
+    background: whitesmoke;
 }
 
 .DivErgebnis {
     text-align: left;
     position: absolute;
-    width: 49.5%;
-    height: 78.5%;
-    z-index: 1;
-    left: 50%;
-    top: 21%;
-    border: solid;
+    width: 115%;
+    height: 74%;
+    left: 30%;
+    top: 25.9%;
     overflow: auto;
 }
 
 .DivGesamtanzahl {
     text-align: center;
-    position: relative;
+    position: absolute;
+    font-family: Verdana;
     height: 7%;
-    width: 98.5%;
-    left: 0.5%;
-    margin-top: 1%;
+    top: 18.4%;
+    width: 29%;
+    left: 33.6%;
     z-index: 2;
-    border: solid;
+    border-left: lightgray;
+    border-left-style: solid;
+    border-right: lightgray;
+    border-right-style: solid;
+    border-bottom: lightgray;
+    border-bottom-style: solid;
+    background-color: #AFD287;
+}
+
+.DivGesamtanzahlChecklist {
+    text-align: left;
+    position: absolute;
+    font-family: Verdana;
+    height: 7%;
+    top: 18.4%;
+    width: 36.4%;
+    left: 62.9%;
+    z-index: 2;
+    border-bottom: lightgray;
+    border-bottom-style: solid;
+    border-left: lightgray;
+    border-left-style: solid;
+    border-right: lightgray;
+    border-right-style: solid;
+}
+
+.DivCheckbox {
+    margin-left: 5%;
+}
+
+.DivSexDis {
+    /*position: absolute;*/
+    /*z-index: 1;*/
+
+    /*width: 49.25%;*/
+    /*margin-top: -20%;*/
+}
+
+.DivRaceDis {
+    /*position: relative;*/
+    /*z-index: 1;*/
+    /*height: 40.25%;*/
+    /*width: 49.25%;*/
+    /*top: -45%;*/
+    /*overflow: auto;*/
 }
 
 
+.DivAgeDis {
+    /*position: relative;*/
+    /*z-index: 2;*/
+    /*top: -10%;*/
+    /*height: 70%;*/
+    /*width: 90%;*/
+    /*left: -10%;*/
+}
 
 
+.DivIncomeDis {
 
+
+}
+
+.DivLanguageDis {
+    width: 49.9%;
+
+}
+
+.modebar {
+    display: none !important;
+}
+
+._dash-undo-redo {
+  display: none;
+}
+
+.DivBeDis {
+}
