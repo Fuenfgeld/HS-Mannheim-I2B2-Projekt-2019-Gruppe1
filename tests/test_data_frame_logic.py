@@ -4,8 +4,8 @@ import unittest
 class testDataFrameLogic(unittest.TestCase):
 
     def test_generate_df_all_patient(self):
-        import backend.data_frame_logic.data_frame_logic as dfl
-        from backend.query_bar_logic import query_bar_logic
+        import deprecated.data_frame_logic as dfl
+        from deprecated import query_bar_logic
         queryBarObject = query_bar_logic.queryBar()
 
         self.assertEqual(dfl.generate_df_all_patients(queryBarObject, 'dezimal'), None)
@@ -19,8 +19,8 @@ class testDataFrameLogic(unittest.TestCase):
 
 
     def test_generate_df_icd_code(self):
-        import backend.data_frame_logic.data_frame_logic as dfl
-        from backend.query_bar_logic import query_bar_logic
+        import deprecated.data_frame_logic as dfl
+        from deprecated import query_bar_logic
         queryBarObject = query_bar_logic.queryBar()
 
         self.assertEqual(len(dfl.generate_df_icd_code(queryBarObject, 'Lumbago')), 1)
@@ -28,45 +28,45 @@ class testDataFrameLogic(unittest.TestCase):
 
 
     def test_generate_df_sex_cd_patients_dimension(self):
-        import backend.data_frame_logic.data_frame_logic as dfl
+        import deprecated.data_frame_logic as dfl
 
         self.assertEqual(len(dfl.generate_df_sex_cd_patient_dimension()), 134)
         self.assertIsInstance(len(dfl.generate_df_sex_cd_patient_dimension()), int)
 
 
     def test_generate_df_language_cd_patient_dimension(self):
-        import backend.data_frame_logic.data_frame_logic as dfl
+        import deprecated.data_frame_logic as dfl
 
         self.assertEqual(len(dfl.generate_df_language_cd_patient_dimension()), 134)
         self.assertIsInstance(len(dfl.generate_df_language_cd_patient_dimension()), int)
 
 
     def test_generate_df_age_in_year_num_patient_dimension(self):
-        import backend.data_frame_logic.data_frame_logic as dfl
+        import deprecated.data_frame_logic as dfl
 
         self.assertEqual(len(dfl.generate_df_age_in_years_num_patient_dimension()), 134)
         self.assertIsInstance(len(dfl.generate_df_age_in_years_num_patient_dimension()), int)
 
     def test_generate_df_race_cd_patient_dimension(self):
-        import backend.data_frame_logic.data_frame_logic as dfl
+        import deprecated.data_frame_logic as dfl
 
         self.assertEqual(len(dfl.generate_df_race_cd_patient_dimension()), 134)
         self.assertIsInstance(len(dfl.generate_df_race_cd_patient_dimension()), int)
 
     def test_generate_df_income_cd_patient_dimension(self):
-        import backend.data_frame_logic.data_frame_logic as dfl
+        import deprecated.data_frame_logic as dfl
 
         self.assertEqual(len(dfl.generate_df_income_cd_patient_dimension()), 134)
         self.assertIsInstance(len(dfl.generate_df_income_cd_patient_dimension()), int)
 
     def test_generate_df_diag_all_observation_fact_number(self):
-        import backend.data_frame_logic.data_frame_logic as dfl
+        import deprecated.data_frame_logic as dfl
 
         self.assertEqual(len(dfl.generate_df_diag_all_observation_fact_number()), 10)
         self.assertIsInstance(len(dfl.generate_df_diag_all_observation_fact_number()), int)
 
     def test_generate_df_diag_all_observation_fact_icd(self):
-        import backend.data_frame_logic.data_frame_logic as dfl
+        import deprecated.data_frame_logic as dfl
 
         self.assertEqual(len(dfl.generate_df_diag_all_observation_fact_icd()), 10)
         self.assertIsInstance(len(dfl.generate_df_diag_all_observation_fact_icd()), int)

@@ -1,5 +1,4 @@
-from backend.sql_logic import sql_builder
-from backend.data_frame_logic import data_frame_logic
+from deprecated import data_frame_logic, sql_builder
 
 
 class queryBar:

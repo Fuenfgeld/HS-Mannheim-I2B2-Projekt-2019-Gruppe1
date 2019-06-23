@@ -4,7 +4,7 @@ import unittest
 class testQueryBar(unittest.TestCase):
 
     def test_get_icd_code_from_name(self):
-        from backend.query_bar_logic import query_bar_logic
+        from deprecated import query_bar_logic
         queryBarLogicObject = query_bar_logic.queryBar()
 
         name = 'Lumbago'
@@ -13,7 +13,7 @@ class testQueryBar(unittest.TestCase):
                                                                            'i2b2metadata.i2b2 where c_name = \'Lumbago\'')
 
     def test_append_icd_list(self):
-        from backend.query_bar_logic import query_bar_logic
+        from deprecated import query_bar_logic
         queryBarLogicObject = query_bar_logic.queryBar()
 
         code = 'Lumbago'
@@ -27,7 +27,7 @@ class testQueryBar(unittest.TestCase):
 
 
     def test_delete_list_items(self):
-        from backend.query_bar_logic import query_bar_logic
+        from deprecated import query_bar_logic
         queryBarLogicObject = query_bar_logic.queryBar()
 
         queryBarLogicObject.delete_icd_list_items()
@@ -36,7 +36,7 @@ class testQueryBar(unittest.TestCase):
 
 
     def test_append_name_list(self):
-        from backend.query_bar_logic import query_bar_logic
+        from deprecated import query_bar_logic
         queryBarLogicObject = query_bar_logic.queryBar()
 
         name = 'Lumbago'
@@ -50,7 +50,7 @@ class testQueryBar(unittest.TestCase):
 
 
     def test_delete_name_list_items(self):
-        from backend.query_bar_logic import query_bar_logic
+        from deprecated import query_bar_logic
         queryBarLogicObject = query_bar_logic.queryBar()
 
         queryBarLogicObject.delete_name_list_items()
@@ -60,7 +60,7 @@ class testQueryBar(unittest.TestCase):
 
     # vorläufig
     def test_get_all_patients_within_icd_list(self):
-        from backend.query_bar_logic import query_bar_logic
+        from deprecated import query_bar_logic
         queryBarLogicObject = query_bar_logic.queryBar()
 
         queryBarLogicObject.get_all_patients_within_icd_list()
@@ -68,7 +68,7 @@ class testQueryBar(unittest.TestCase):
 
 
     def test_get_all_patients_within_icd_list_1(self):
-        from backend.query_bar_logic import query_bar_logic
+        from deprecated import query_bar_logic
         queryBarLogicObject = query_bar_logic.queryBar()
 
         queryBarLogicObject.icd_list.append('ICD9:724.2')
@@ -76,7 +76,7 @@ class testQueryBar(unittest.TestCase):
         self.assertIsInstance((queryBarLogicObject.name_list), list)
 
     def test_get_all_patients_within_icd_list_2(self):
-        from backend.query_bar_logic import query_bar_logic
+        from deprecated import query_bar_logic
         queryBarLogicObject = query_bar_logic.queryBar()
 
         queryBarLogicObject.icd_list.append('ICD9:724.2')
@@ -89,7 +89,7 @@ class testQueryBar(unittest.TestCase):
         self.assertIsInstance((queryBarLogicObject.name_list), list)
 
     def test_get_all_patients_within_icd_list_3(self):
-        from backend.query_bar_logic import query_bar_logic
+        from deprecated import query_bar_logic
         queryBarLogicObject = query_bar_logic.queryBar()
 
         queryBarLogicObject.icd_list.append('ICD9:724.2')

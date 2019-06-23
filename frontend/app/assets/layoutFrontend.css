@@ -2,8 +2,8 @@
     background-color: #AFD287;
     position: absolute;
     width: 99.5%;
-    left: 0.25%;
-    top: 0.1%;
+    left: 0.01%;
+    top: 0.01%;
     bottom: 0.1%;
     height: 6%;
     z-index: 2;
@@ -20,8 +20,8 @@
 .DivBanner Img {
     position: relative;
     float: right;
-    right: 0%;
-    height: 99%;
+    right: 0.01%;
+    height: 100%;
 }
 
 .DivAbfrageleiste {
@@ -29,10 +29,10 @@
     position: absolute;
     display: inline-block;
     font-size: 200%;
-    width: 99.5%;
+    width: 100%;
     height: 13%;
     z-index: 2;
-    left: 0.1%;
+    left: 0.01%;
     top: 5%;
     border-bottom: lightgrey;
     border-bottom-style: solid;
@@ -99,12 +99,12 @@
     text-align-all: center;
     font-family: Verdana;
     margin-top: 1.5%;
-    margin-left: 21%;
+    margin-left: 21.2%;
     width: 8%;
     height: 60%;
     z-index: 3;
     border-radius: 50%;
-    border: none;
+    border: 0.5px solid darkgray;
     background-color: lightgray;
 }
 
@@ -125,12 +125,12 @@
     text-align-all: center;
     font-family: Verdana;
     margin-top: 1.5%;
-    margin-left: 46%;
+    margin-left: 46.2%;
     width: 8%;
     height: 60%;
     z-index: 3;
     border-radius: 50%;
-    border: none;
+    border: 0.5px solid darkgray;
     background-color: lightgray;
 }
 
@@ -184,7 +184,7 @@
     text-align: left;
     position: absolute;
     font-family: Verdana;
-    width: 33.5%;
+    width: 44.5%;
     height: 9%;
     z-index: 1;
     left: 0.1%;
@@ -198,9 +198,9 @@
     text-align: left;
     position: absolute;
     font-family: Verdana;
-    width: 33.5%;
+    width: 44.5%;
     height: 73%;
-    z-index: 1;
+    z-index: 2;
     left: 0.1%;
     top: 27%;
     border-right: lightgrey;
@@ -210,7 +210,7 @@
 
 .DivEingabe {
     margin-top: 2%;
-    width: 68.5%;
+    width: 80.5%;
     margin-left: 0.5%;
     background-color: white;
 }
@@ -237,9 +237,10 @@
 .DivErgebnis {
     text-align: left;
     position: absolute;
-    width: 115%;
+    width: 55%;
+    z-index: 1;
     height: 74%;
-    left: 30%;
+    left: 45%;
     top: 25.9%;
     overflow: auto;
 }
@@ -250,8 +251,8 @@
     font-family: Verdana;
     height: 7%;
     top: 18.4%;
-    width: 29%;
-    left: 33.6%;
+    width: 22%;
+    left: 44.6%;
     z-index: 2;
     border-left: lightgray;
     border-left-style: solid;
@@ -268,66 +269,58 @@
     font-family: Verdana;
     height: 7%;
     top: 18.4%;
-    width: 36.4%;
-    left: 62.9%;
+    width: 33.2%;
+    left: 66.6%;
     z-index: 2;
     border-bottom: lightgray;
     border-bottom-style: solid;
     border-left: lightgray;
     border-left-style: solid;
-    border-right: lightgray;
-    border-right-style: solid;
 }
 
 .DivCheckbox {
     margin-left: 5%;
 }
 
-.DivSexDis {
-    /*position: absolute;*/
-    /*z-index: 1;*/
+/*.DivSexDis {*/
+/*    position: relative;*/
+/*    z-index: 2;*/
+/*    !*float: left;*!*/
+/*    height: 49.25%;*/
+/*    width: 49.25%;*/
+/*}*/
 
-    /*width: 49.25%;*/
-    /*margin-top: -20%;*/
-}
-
-.DivRaceDis {
-    /*position: relative;*/
-    /*z-index: 1;*/
-    /*height: 40.25%;*/
-    /*width: 49.25%;*/
-    /*top: -45%;*/
-    /*overflow: auto;*/
-}
-
-
-.DivAgeDis {
-    /*position: relative;*/
-    /*z-index: 2;*/
-    /*top: -10%;*/
-    /*height: 70%;*/
-    /*width: 90%;*/
-    /*left: -10%;*/
-}
+/*.DivRaceDis {*/
+/*    position: relative;*/
+/*    z-index: 1;*/
+/*    !*float: right;*!*/
+/*    height: 49.25%;*/
+/*    width: 49.25%;*/
+/*    overflow: auto;*/
+/*}*/
 
 
-.DivIncomeDis {
+/*.DivAgeDis {*/
+/*    height: 70%;*/
+/*    width: 90%;*/
+/*}*/
 
 
-}
+/*.DivIncomeDis {*/
+/*    position: relative;*/
+/*    height: 80%;*/
+/*    width: 100%;*/
+/*    top: -20%;*/
+/*}*/
 
-.DivLanguageDis {
-    width: 49.9%;
-
-}
+/*.DivLanguageDis {*/
+/*    width: 50%;*/
+/*}*/
 
 .modebar {
     display: none !important;
 }
 
 ._dash-undo-redo {
-  display: none;
-}
-
-.DivBeDis {
+    display: none;
 }

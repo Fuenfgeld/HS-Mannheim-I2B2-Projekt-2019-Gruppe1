@@ -1,13 +1,15 @@
 import plotly.graph_objs as go
-import plotly.plotly as py
 import pandas as pd
-import colorlover as cl
 
-from backend.data_frame_logic import data_frame_logic
+from backend.data_frame_logic import data_frame_logic_new
 from config import database
 
-def build_besides_diagnoses_graph(queryBarLogicObject):
-    df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'concept_cd')
+
+def build_besides_diagnoses_graph(queryBarLogicNewObject, resultMergeObject):
+    df_patients = data_frame_logic_new.generate_df_all_patients(queryBarLogicNewObject, resultMergeObject, 'concept_cd')
+
+    if len(df_patients) == 0:
+        return {}
 
     diag_name = df_patients['concept_cd'].value_counts().keys().to_list()
     diag_num = df_patients['concept_cd'].value_counts().tolist()
@@ -36,7 +38,7 @@ def build_besides_diagnoses_graph(queryBarLogicObject):
     name4 = name4_df.loc[0].values[0]
     name5 = name5_df.loc[0].values[0]
 
-    trace = go.Bar(
+    trace1 = go.Bar(
         x=[number1, number2, number3, number4, number5],
         y=[f'\'{(name1)}\'', f'\'{name2}\'', f'\'{name3}\'', f'\'{name4}\'',
            f'\'{name5}\''],
@@ -44,14 +46,13 @@ def build_besides_diagnoses_graph(queryBarLogicObject):
         orientation='h',
         marker=dict(
             color=['#4C876A', '#307087', '#32544D', '#AFD287', '#E8F5AC'],
-            line=dict(color='#a3a3c2', width=2),
+            line=dict(color='#a3a3c2', width=0.5),
         )
     )
-
     return {
-        'data': [trace],
+        'data': [trace1],
         'layout': go.Layout(
-            title='Nebendiagnosen',
+            title='Häufige Erkrankungen/Nebendiagnosen',
             xaxis={},
             margin=go.layout.Margin(l=400, r=20),
             yaxis=go.layout.YAxis(automargin=True, autorange='reversed')

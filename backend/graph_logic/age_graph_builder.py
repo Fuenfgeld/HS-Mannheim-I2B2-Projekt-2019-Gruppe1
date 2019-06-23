@@ -1,10 +1,17 @@
 import plotly.graph_objs as go
-from backend.data_frame_logic import data_frame_logic
+from backend.data_frame_logic import data_frame_logic_new
 
 
-def build_age_graph(queryBarLogicObject):
-    df_over_all = data_frame_logic.generate_df_age_in_years_num_patient_dimension()
-    age_until_9_over_all = (((df_over_all['age_in_years_num']).ge(0)) & ((df_over_all['age_in_years_num']).le(10))).sum()
+def build_age_graph(queryBarLogicNewObject, resultMergeObject):
+    df_over_all = resultMergeObject.df_age_in_years_num
+    df_patients = data_frame_logic_new.generate_df_all_patients(queryBarLogicNewObject, resultMergeObject,
+                                                                'age_in_years_num')
+
+    if len(df_patients) == 0:
+        return {}
+
+    age_until_9_over_all = (
+                ((df_over_all['age_in_years_num']).ge(0)) & ((df_over_all['age_in_years_num']).le(10))).sum()
     age_until_17_over_all = (
             ((df_over_all['age_in_years_num']).ge(10)) & ((df_over_all['age_in_years_num']).le(20))).sum()
     age_until_34_over_all = (
@@ -20,7 +27,6 @@ def build_age_graph(queryBarLogicObject):
     age_until_84_over_all = (
             ((df_over_all['age_in_years_num']).ge(70)) & ((df_over_all['age_in_years_num']).le(80))).sum()
     age_greater_85_over_all = ((df_over_all['age_in_years_num']).ge(80)).sum()
-
     trace1 = go.Bar(
         x=['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '>=80'],
         y=[age_until_9_over_all, age_until_17_over_all, age_until_34_over_all, age_until_44_over_all,
@@ -30,10 +36,9 @@ def build_age_graph(queryBarLogicObject):
         name='Grundgesamtheit',
         marker=dict(
             color=['#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC',
-                  '#E8F5AC'],
-            line=dict(color='#a3a3c2', width=2)))
-
-    df_patients = data_frame_logic.generate_df_all_patients(queryBarLogicObject, 'age_in_years_num')
+                   '#E8F5AC'],
+            line=dict(color='#a3a3c2', width=0.5)
+        ))
 
     age_until_9 = (((df_patients['age_in_years_num']).ge(0)) & ((df_patients['age_in_years_num']).le(10))).sum()
     age_until_17 = (((df_patients['age_in_years_num']).ge(10)) & ((df_patients['age_in_years_num']).le(20))).sum()
@@ -44,7 +49,6 @@ def build_age_graph(queryBarLogicObject):
     age_until_74 = (((df_patients['age_in_years_num']).ge(60)) & ((df_patients['age_in_years_num']).le(70))).sum()
     age_until_84 = (((df_patients['age_in_years_num']).ge(70)) & ((df_patients['age_in_years_num']).le(80))).sum()
     age_greater_85 = ((df_patients['age_in_years_num']).ge(80)).sum()
-
     trace2 = go.Bar(
         x=['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '>=80'],
         y=[age_until_9, age_until_17, age_until_34, age_until_44, age_until_54, age_until_64, age_until_74,
@@ -54,17 +58,25 @@ def build_age_graph(queryBarLogicObject):
         marker=dict(
             color=['#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D',
                    '#32544D'],
-            line=dict(color='#a3a3c2', width=2)))
+            line=dict(color='#a3a3c2', width=0.5)
+        ))
+
     return {
         'data': [trace1, trace2],
 
         'layout': go.Layout(
-            barmode='group',
-            title='Alter',
+            barmode='relative',
+            title='Altersverteilung',
+            xaxis=dict(
+                title='Jahre',
+            ),
+            yaxis=dict(
+                title='Anzahl',
+            ),
             legend=dict(
-                x=0.5,
+                x=0.6,
                 y=1.0,
-            )
-        ),
+            ),
+        )
 
     }

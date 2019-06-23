@@ -54,11 +54,5 @@ def generate_df_race_cd_patient_dimension():
 def generate_df_income_cd_patient_dimension():
     return pd.read_sql(sql_strings.SQL_i2b2_demodata_patient_dimension_income_cd(), con=database.engine)
 
-def generate_df_diag_all_observation_fact_number():
-    return pd.read_sql(sql_strings.SQL_i2b2_demodata_observation_fact_number(), con=database.engine)
-
-def generate_df_diag_all_observation_fact_icd():
-    return pd.read_sql(sql_strings.SQL_i2b2_demodata_oservation_fact_icd(), con=database.engine)
-
 def generate_df_only_pat_num():
     return pd.read_sql(sql_strings.SQL_i2b2_demodata_observation_pat_num(),con=database.engine)
