@@ -51,7 +51,7 @@
     margin-left: 7%;
     z-index: 3;
     border: 1px solid;
-    border-color: #AFD287;
+    border-color: lightgray;
     border-radius: 4px;
     background-color: white;
     white-space: nowrap;
@@ -70,7 +70,7 @@
     margin-left: 36.75%;
     z-index: 3;
     border: 1px solid;
-    border-color: #AFD287;
+    border-color: lightgray;
     border-radius: 4px;
     white-space: nowrap;
     overflow: auto;
@@ -88,7 +88,7 @@
     margin-left: 66.7%;
     z-index: 3;
     border: 1px solid;
-    border-color: #AFD287;
+    border-color: lightgray;
     border-radius: 4px;
     white-space: nowrap;
     overflow: auto;
@@ -105,9 +105,10 @@
     height: 60%;
     z-index: 3;
     border-radius: 50%;
+    color: white;
     border: 0.5px solid darkgray;
-    background-color: lightgray;
-    box-shadow: 0 2px #999;
+    background-color: #92cb5c;
+    box-shadow: 0 3px #999;
 }
 
 .DivVerbindung1Button:hover,
@@ -135,8 +136,9 @@
     height: 60%;
     z-index: 3;
     border-radius: 50%;
+    color: white;
     border: 0.5px solid darkgray;
-    background-color: lightgray;
+    background-color: #92cb5c;
     box-shadow: 0 2px #999;
 }
 
@@ -172,13 +174,6 @@
     padding: 1.5%;
     height: 8%;
     z-index: 3;
-    /*background: lightgrey;*/
-    /*border-style: solid;*/
-    /*border-right-color: lightgray;*/
-    /*border-right: solid;*/
-    /*border-left: none;*/
-    /*border-bottom: none;*/
-    /*border-top: none;*/
     border: none;
 }
 
@@ -197,7 +192,7 @@
 .DivXbutton Img {
     text-align: center;
     position: absolute;
-    top: 16%;
+    top: 13%;
     left: 10%;
     width: 78%;
     height: 72%;
@@ -245,9 +240,10 @@
     font-family: Verdana;
     margin-top: 2%;
     margin-left: 0.5%;
-    font-size: 75%;
+    font-size: 90%;
     border: 0.5px solid darkgray;
-    background-color: lightgray;
+    background-color: #92cb5c;
+    color: white;
     box-shadow: 0 2px #999;
 }
 
@@ -275,7 +271,6 @@
     left: 45%;
     top: 25.9%;
     overflow: auto;
-    background-color: lightgray;
 }
 
 .DivGesamtanzahl {
@@ -293,7 +288,8 @@
     border-right-style: solid;
     border-bottom: lightgray;
     border-bottom-style: solid;
-    background-color: #AFD287;
+    background-color: lightgray;
+    /*box-shadow: 0 2px gray;*/
 }
 
 .DivGesamtanzahlChecklist {
@@ -309,6 +305,7 @@
     border-bottom-style: solid;
     border-left: lightgray;
     border-left-style: solid;
+    /*box-shadow: 0 2px gray;*/
 }
 
 .DivCheckbox {

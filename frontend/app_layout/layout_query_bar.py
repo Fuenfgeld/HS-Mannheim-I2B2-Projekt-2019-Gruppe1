@@ -2,7 +2,7 @@ import dash_html_components as html
 
 
 class layoutQueryBar:
-    layout_delete_button = html.Button(id='del-button', children=html.Img(src="/assets/bild1.png"), n_clicks=0,
+    layout_delete_button = html.Button(id='del-button', children=html.Img(src="/assets/Papierkorb.png"), n_clicks=0,
                                        className='DivXbutton')
     layout_query_bar = html.Div([
         html.Div(className='DivXbuttonGrenze'),
