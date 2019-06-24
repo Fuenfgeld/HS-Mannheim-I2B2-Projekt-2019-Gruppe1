@@ -1,6 +1,6 @@
 "use strict";
 
-setTimeout(func, 1100);
+setTimeout(func, 1400);
 
 function func() {
    // alert('selector ready');
