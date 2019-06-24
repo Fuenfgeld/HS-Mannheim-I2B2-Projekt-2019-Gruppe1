@@ -1,24 +1,23 @@
 import dash
 import dash_html_components as html
-from dash.exceptions import PreventUpdate
 from dash.dependencies import Output, Input, State
-
-# imports der Klassen zur Anzeige der Seite
-from frontend.app_layout import layout_banner
-from frontend.app_layout import layout_query_bar
-from frontend.app_layout import layout_navigation_bar
-from frontend.app_layout import layout_results
+from dash.exceptions import PreventUpdate
 
 # imports für Logik und Datenbankanbindung
 from backend.graph_logic import age_graph_builder
-from backend.graph_logic import sex_graph_builder
-from backend.graph_logic import race_graph_builder
+from backend.graph_logic import besides_diagnoses_graph_builder
 from backend.graph_logic import decimal_logic
 from backend.graph_logic import income_graph_builder
 from backend.graph_logic import language_graph_builder
-from backend.graph_logic import besides_diagnoses_graph_builder
+from backend.graph_logic import race_graph_builder
+from backend.graph_logic import sex_graph_builder
 from backend.query_bar_logic import query_bar_logic_new
 from backend.result_logic import result_merge
+# imports der Klassen zur Anzeige der Seite
+from frontend.app_layout import layout_banner
+from frontend.app_layout import layout_navigation_bar
+from frontend.app_layout import layout_query_bar
+from frontend.app_layout import layout_results
 
 # Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
@@ -55,6 +54,25 @@ app.css.append_css({
     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
 })
 
+
+# callback for event
+@app.callback(
+    Output('input-box', 'value'),
+    [Input('javascript', 'event'),
+     Input('clear', 'n_clicks'),
+     Input('add-button', 'n_clicks')])
+def myfunc(x, clear_clicks, add_clicks):
+    if clear_clicks is not None:
+        return ''
+
+    if add_clicks is not None:
+        if x is not None:
+            string = str(x)[7:-12]
+            print(string)
+            return str(string)
+
+
+
 @app.callback([
     Output('criteria1-div', 'hidden'),
     Output('criteria1-div', 'children'),
@@ -76,9 +94,19 @@ app.css.append_css({
 ],
     [Input('clicked-button', 'children')],
     [State('input-box', 'value'),
+     State('input-box', 'className'),
      State('criteria3-div', 'hidden')]
 )
-def update_all(clicked, value, hidden):
+def update_all(clicked, value,className, hidden):
+
+    if className is not value:
+        className = value
+
+    # if value is className:
+    #     value=className
+
+    value = str(value).rstrip()
+
     last_clicked = clicked[-3:]
     if last_clicked == 'nan' or last_clicked == 'del':
         if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):

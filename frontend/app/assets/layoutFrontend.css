@@ -2,8 +2,8 @@
     background-color: #AFD287;
     position: absolute;
     width: 99.5%;
-    left: 0.01%;
-    top: 0.01%;
+    left: 0.25%;
+    top: 0.1%;
     bottom: 0.1%;
     height: 6%;
     z-index: 2;
@@ -20,8 +20,8 @@
 .DivBanner Img {
     position: relative;
     float: right;
-    right: 0.01%;
-    height: 100%;
+    right: 0%;
+    height: 99%;
 }
 
 .DivAbfrageleiste {
@@ -29,10 +29,10 @@
     position: absolute;
     display: inline-block;
     font-size: 200%;
-    width: 100%;
+    width: 99.5%;
     height: 13%;
     z-index: 2;
-    left: 0.01%;
+    left: 0.1%;
     top: 5%;
     border-bottom: lightgrey;
     border-bottom-style: solid;
@@ -46,13 +46,11 @@
     font-family: Verdana;
     width: 15%;
     height: 40%;
-    margin-top: 2%;
+    margin-top: 2.5%;
     margin-left: 5%;
     z-index: 3;
-    border-style: solid;
-    border-color: #AFD287;
     border-radius: 4px;
-    background-color: white;
+    background-color: gainsboro;
     white-space: nowrap;
     overflow: auto;
     overflow-y: hidden;
@@ -65,12 +63,11 @@
     font-family: Verdana;
     width: 15%;
     height: 40%;
-    margin-top: 2%;
+    margin-top: 2.5%;
     margin-left: 30%;
     z-index: 3;
-    border-style: solid;
-    border-color: #AFD287;
     border-radius: 4px;
+    background-color: gainsboro;
     white-space: nowrap;
     overflow: auto;
     overflow-y: hidden;
@@ -83,12 +80,11 @@
     font-family: Verdana;
     width: 15%;
     height: 40%;
-    margin-top: 2%;
+    margin-top: 2.5%;
     margin-left: 55%;
     z-index: 3;
-    border-style: solid;
-    border-color: #AFD287;
     border-radius: 4px;
+    background-color: gainsboro;
     white-space: nowrap;
     overflow: auto;
     overflow-y: hidden;
@@ -98,52 +94,28 @@
     position: absolute;
     text-align-all: center;
     font-family: Verdana;
-    margin-top: 1.5%;
-    margin-left: 21.2%;
+    margin-top: 1.75%;
+    margin-left: 21%;
     width: 8%;
     height: 60%;
     z-index: 3;
     border-radius: 50%;
-    border: 0.5px solid darkgray;
-    background-color: lightgray;
-}
-
-.DivVerbindung1Button:hover,
-.DivVerbindung1Button:focus {
-    border: 1px solid #f4efeb;
-    background: darkgrey;
-    color: #111111;
-    text-decoration: none;
-}
-
-.DivVerbindung1Button:active {
-    background: whitesmoke;
+    border: none;
+    background-color: #AFD287;
 }
 
 .DivVerbindung2Button {
     position: absolute;
     text-align-all: center;
     font-family: Verdana;
-    margin-top: 1.5%;
-    margin-left: 46.2%;
+    margin-top: 1.75%;
+    margin-left: 46%;
     width: 8%;
     height: 60%;
     z-index: 3;
     border-radius: 50%;
-    border: 0.5px solid darkgray;
-    background-color: lightgray;
-}
-
-.DivVerbindung2Button:hover,
-.DivVerbindung2Button:focus {
-    border: 1px solid #f4efeb;
-    background: darkgrey;
-    color: #111111;
-    text-decoration: none;
-}
-
-.DivVerbindung2Button:active {
-    background: whitesmoke;
+    border: none;
+    background-color: #AFD287;
 }
 
 .DivXbutton {
@@ -160,13 +132,13 @@
 .DivXbutton:hover,
 .DivXbutton:focus {
     border: 1px solid #f4efeb;
-    background: darkgrey;
+    background: #AFD287;
     color: #111111;
     text-decoration: none;
 }
 
 .DivXbutton:active {
-    background: whitesmoke;
+    background: lime;
 }
 
 .DivXbutton Img {
@@ -184,7 +156,7 @@
     text-align: left;
     position: absolute;
     font-family: Verdana;
-    width: 44.5%;
+    width: 49.5%;
     height: 9%;
     z-index: 1;
     left: 0.1%;
@@ -198,9 +170,9 @@
     text-align: left;
     position: absolute;
     font-family: Verdana;
-    width: 44.5%;
+    width: 49.5%;
     height: 73%;
-    z-index: 2;
+    z-index: 1;
     left: 0.1%;
     top: 27%;
     border-right: lightgrey;
@@ -210,7 +182,7 @@
 
 .DivEingabe {
     margin-top: 2%;
-    width: 80.5%;
+    width: 83.5%;
     margin-left: 0.5%;
     background-color: white;
 }
@@ -225,22 +197,22 @@
 .DivAddButton:hover,
 .DivAddButton:focus {
     border: 1px solid #f4efeb;
-    background: darkgrey;
+    background: #AFD287;
     color: #111111;
     text-decoration: none;
 }
 
 .DivAddButton:active {
-    background: whitesmoke;
+    background: white;
 }
 
 .DivErgebnis {
     text-align: left;
     position: absolute;
-    width: 55%;
-    z-index: 1;
+    width: 49.5%;
     height: 74%;
-    left: 45%;
+    z-index: 1;
+    left: 50%;
     top: 25.9%;
     overflow: auto;
 }
@@ -252,7 +224,7 @@
     height: 7%;
     top: 18.4%;
     width: 22%;
-    left: 44.6%;
+    left: 49.6%;
     z-index: 2;
     border-left: lightgray;
     border-left-style: solid;
@@ -269,8 +241,8 @@
     font-family: Verdana;
     height: 7%;
     top: 18.4%;
-    width: 33.2%;
-    left: 66.6%;
+    width: 27.5%;
+    left: 71.6%;
     z-index: 2;
     border-bottom: lightgray;
     border-bottom-style: solid;
@@ -282,45 +254,100 @@
     margin-left: 5%;
 }
 
-/*.DivSexDis {*/
-/*    position: relative;*/
-/*    z-index: 2;*/
-/*    !*float: left;*!*/
-/*    height: 49.25%;*/
-/*    width: 49.25%;*/
-/*}*/
 
-/*.DivRaceDis {*/
-/*    position: relative;*/
-/*    z-index: 1;*/
-/*    !*float: right;*!*/
-/*    height: 49.25%;*/
-/*    width: 49.25%;*/
-/*    overflow: auto;*/
-/*}*/
+.DivSexDis {
+    position: relative;
+    z-index: 2;
+    height: 49.25%;
+    width: 49.25%;
+}
 
+.DivRaceDis {
+    position: relative;
+    float: right;
+    z-index: 1;
+    height: 49.25%;
+    width: 49.25%;
+    overflow: auto;
+}
 
-/*.DivAgeDis {*/
-/*    height: 70%;*/
-/*    width: 90%;*/
-/*}*/
+.DivAgeDis {
+    position: relative;
+    height: 80%;
+    width: 100%;
 
+}
 
-/*.DivIncomeDis {*/
-/*    position: relative;*/
-/*    height: 80%;*/
-/*    width: 100%;*/
-/*    top: -20%;*/
-/*}*/
+.DivIncomeDis {
+    position: relative;
+    height: 80%;
+    width: 100%;
+    top: -20%;
+}
 
-/*.DivLanguageDis {*/
-/*    width: 50%;*/
-/*}*/
+.DivLanguageDis {
+    position: relative;
+    height: 80%;
+    width: 100%;
+    top: -29%;
+}
 
 .modebar {
     display: none !important;
 }
 
 ._dash-undo-redo {
-    display: none;
+  display: none;
+}
+
+.well_col-sm-6{
+    text-decoration: none;
+    font-size: 200px;
+}
+
+Div:link{
+    text-decoration: none;
+}
+
+
+.jstree-hovered{
+    color: black;
+    text-decoration: none;
+}
+
+.jstree-anchor{
+    color: black;
+    text-decoration: none;
+    margin-left: 5px;
+    font-size: large;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: #adebad;
+
+}
+
+.jstree-children{
+    list-style-type: none;
+    list-style-position: inside;
+
+
+}
+
+/*.jstree-anchor:active{
+    color: red;
+}*/
+
+
+.jstree-anchor:hover{
+    color:#008000;
+}
+
+.jstree-anchor:empty{
+    font-size: 200px;
+}
+
+.jstree-leaf{
+font-style: italic;
+    opacity: 0.7;
 }
