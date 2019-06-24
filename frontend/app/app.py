@@ -22,6 +22,7 @@ navigationBarObject = layout_navigation_bar.layoutNavigationBar()
 resultsObject = layout_results.layoutResults()
 queryBarLogicObject = query_bar_logic.queryBar()
 
+
 app = dash.Dash(__name__, external_stylesheets=
                 ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'],
                 external_scripts=['https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js',

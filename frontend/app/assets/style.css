@@ -111,13 +111,11 @@ Div:link{
 .jstree-children{
     list-style-type: none;
     list-style-position: inside;
-
-
 }
 
-.jstree-anchor:active{
-    color: red;
-}
+/*.jstree-anchor:active{*/
+/*    color: red;*/
+/*}*/
 
 
 .jstree-anchor:hover{
