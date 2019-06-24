@@ -6,7 +6,7 @@ class layoutNavigationBar:
 
     layout_search_bar = html.Div([
         dcc.Input(id='input-box', placeholder='Suche/Eingabe', type='text', className='DivEingabe'),
-        html.Button(id='add-button', children='Add', n_clicks=0, className='DivAddButton')
+        html.Button(id='add-button', children='ADD', n_clicks=0, className='DivAddButton')
 
     ], className="DivEingabeUndAdden")
 
