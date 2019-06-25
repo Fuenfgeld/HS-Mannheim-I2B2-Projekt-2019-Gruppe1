@@ -11,6 +11,7 @@ class layoutNavigationBar:
                   className=''),
         html.Button(id='clear', children='X', n_clicks=0, className='DivClearButton'),
         html.Button(id='add-button', children='Add', n_clicks=0, className='DivAddButton'),
+        html.Div(className='DivClearButtonLine'),
         visdcc.Run_js(id='javascript', run="""
             var target = document.getElementById('input-box')
             document.getElementById('add-button').addEventListener('click', function(evt) {
