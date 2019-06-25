@@ -59,17 +59,25 @@ app.css.append_css({
 @app.callback(
     Output('input-box', 'value'),
     [Input('javascript', 'event'),
-     Input('clear', 'n_clicks'),
-     Input('add-button', 'n_clicks')])
-def myfunc(x, clear_clicks, add_clicks):
-    if clear_clicks is not None:
-        return ''
+    Input('clicked-button', 'children')])
+def myfunc(event, clicked):
+    last_clicked = clicked[-3:]
 
-    if add_clicks is not None:
-        if x is not None:
-            string = str(x)[7:-12]
-            print(string)
-            return str(string)
+    if last_clicked == 'cle':
+        return '',
+
+    if event is not None:
+        string = str(event)[7:-12]
+        return string
+
+@app.callback(
+    Output('input-box', 'className'),
+    [Input('clicked-button', 'children')]
+)
+def clear_class(clicked):
+    last_clicked = clicked[-3:]
+    if last_clicked == 'add':
+        return ''
 
 
 
@@ -99,15 +107,16 @@ def myfunc(x, clear_clicks, add_clicks):
 )
 def update_all(clicked, value,className, hidden):
 
-    if className is not value:
-        className = value
 
-    # if value is className:
-    #     value=className
+    if className is '' and value is not className:
+        print('Value second if: ', value)
+        # className = value
+
 
     value = str(value).rstrip()
 
     last_clicked = clicked[-3:]
+
     if last_clicked == 'nan' or last_clicked == 'del':
         if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
             queryBarLogicNewObject.delete_all()
@@ -266,6 +275,11 @@ def update_all(clicked, value,className, hidden):
                        besides_diagnoses_graph_builder.build_besides_diagnoses_graph(queryBarLogicNewObject,
                                                                                      resultMergeObject)
     if last_clicked == 'add':
+
+        # print('Event: ', event, '\n', value)
+
+
+
         if len(queryBarLogicNewObject.name_list) == 0:
             queryBarLogicNewObject.append_selection(value)
             return False, value, {'display': 'none'}, html.H5(''), True, '', {'display': 'none'}, html.H5(''), \
@@ -384,10 +398,11 @@ def update_radiobutton(visibility_state):
     [Input('del-button', 'n_clicks'),
      Input('add-button', 'n_clicks'),
      Input('con1-button', 'n_clicks'),
-     Input('con2-button', 'n_clicks')],
+     Input('con2-button', 'n_clicks'),
+     Input('clear', 'n_clicks')],
     [State('clicked-button', 'children')]
 )
-def update_clicked(del_clicks, add_clicks, con1_clicks, con2_clicks, prev_clicks):
+def update_clicked(del_clicks, add_clicks, con1_clicks, con2_clicks, clear_clicks, prev_clicks):
     prev_clicks = dict([i.split(':') for i in prev_clicks.split(' ')])
     last_clicked = 'nan'
 
@@ -399,9 +414,10 @@ def update_clicked(del_clicks, add_clicks, con1_clicks, con2_clicks, prev_clicks
         last_clicked = 'co1'
     elif con2_clicks > int(prev_clicks['co2']):
         last_clicked = 'co2'
-
-    cur_clicks = 'del:{} add:{} co1:{} co2:{} last:{}'.format(del_clicks, add_clicks, con1_clicks, con2_clicks,
-                                                              last_clicked)
+    elif clear_clicks > int(prev_clicks['cle']):
+        last_clicked = 'cle'
+    cur_clicks = 'del:{} add:{} co1:{} co2:{} cle:{} last:{}'.format(del_clicks, add_clicks, con1_clicks, con2_clicks,
+                                                                        clear_clicks, last_clicked)
 
     return cur_clicks
 

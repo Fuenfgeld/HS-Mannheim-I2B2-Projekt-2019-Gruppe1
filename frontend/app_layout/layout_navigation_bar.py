@@ -6,9 +6,9 @@ import visdcc
 class layoutNavigationBar:
 
     layout_search_bar = html.Div([
-        dcc.Input(id='input-box', placeholder='Suche/Eingabe', type='text', className='DivEingabe'),
+        dcc.Input(id='input-box', placeholder='Suche/Eingabe', type='text', className=''),
         html.Button(id='add-button', children='Add', n_clicks=0, className='DivAddButton'),
-        html.Button('Clear', id='clear'),
+        html.Button('Clear', id='clear', n_clicks=0),
         visdcc.Run_js(id='javascript', run="""
             var target = document.getElementById('input-box')
             document.getElementById('add-button').addEventListener('click', function(evt) {
@@ -17,14 +17,14 @@ class layoutNavigationBar:
                               'y':evt.y }
                 })
                 //alert($(event.target).prop('class'))
-                //target.className=target.value
+                //target.value=target.className
             });        
                 """),
 
     ], className="DivEingabeUndAdden")
 
     layout_navigation = html.Div([
-        html.Div(id='clicked-button', children='del:0 add:0 co1:0 co2:0 last:nan', style={'display': 'none'}),
+        html.Div(id='clicked-button', children='del:0 add:0 co1:0 co2:0 cle:0 last:nan', style={'display': 'none'}),
         html.Div(
             [html.Div(className='container'),
              html.Div(id='jstree-tree'),
