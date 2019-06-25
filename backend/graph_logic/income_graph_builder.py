@@ -19,7 +19,7 @@ def build_income_graph(queryBarLogicNewObject, resultMergeObject):
         name='Basic population',
         domain={'x': [0.20, 0.80], 'y': [0.20, 0.80]},
         marker=dict(
-            colors=['#93c371', '#788594', '#2e7d7c'],
+            colors=['#93c371', '#c1db67', '#2e7d7c'],
             line=dict(color='#a3a3c2', width=0.5)))
 
     income1 = df_patients.income_cd.str.count('Low').sum()
@@ -32,7 +32,7 @@ def build_income_graph(queryBarLogicNewObject, resultMergeObject):
         name='Selected cohort',
         hole=0.7,
         marker=dict(
-            colors=['#93c371', '#788594', '#2e7d7c'],
+            colors=['#93c371', '#c1db67', '#2e7d7c'],
             line=dict(color='#a3a3c2', width=0.5),
 
         ))

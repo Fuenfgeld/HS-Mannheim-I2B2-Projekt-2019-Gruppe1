@@ -229,11 +229,13 @@
     font-family: Verdana;
     font-size: 90%;
     color: #979797;
-    top: 21%;
+    top: 21.5%;
     left: 80%;
-    height: 50%;
+    height: 60%;
     padding-left: 2.5%;
     padding-right: 1.5%;
+    padding-top: 0.05%;
+    padding-bottom: 0.05%;
     z-index: 3;
     font-optical-sizing: auto;
     border: none;
@@ -248,7 +250,7 @@
 
 .DivClearButtonLine {
     position: absolute;
-    top: 28%;
+    top: 30%;
     width: 0.1%;
     left: 80.5%;
     height: 50%;
@@ -264,6 +266,8 @@
     left: 88%;
     padding-left: 2%;
     padding-right: 2%;
+    padding-top: 0.05%;
+    padding-bottom: 0.05%;
     font-size: 85%;
     font-optical-sizing: auto;
     border: 0.5px solid darkgray;
