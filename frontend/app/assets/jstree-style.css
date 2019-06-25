@@ -350,7 +350,7 @@ hovered
 stuff
 */
 .jstree-default .jstree-hovered {
-    background: #e6ffe6;
+    background: #efffdd;
     border-radius: 4px;
     box-shadow: inset 0 0 1px #ccc;
 }
@@ -368,7 +368,7 @@ selected
 stuff
 */
 .jstree-default .jstree-clicked {
-    background: rgba(179, 255, 179, 0.8);
+    background: #aed187;
     border-radius: 4px;
     box-shadow: inset 0 0 1px #999;
     font-size: large;
@@ -392,7 +392,7 @@ stuff
 }
 
 .jstree-default .jstree-disabled.jstree-clicked {
-    background: #00ff00;
+    background: #aed187;
 }
 
 .jstree-default .jstree-disabled > .jstree-icon {
@@ -405,8 +405,9 @@ stuff
 .jstree-default .jstree-search {
     font-weight: bold;
     color: black;
-    background: #ccffe6;
-    border-style: none;
+    background: #569797;
+    border-style: solid;
+    border-color: #87d3d3;
 
     /*font-weight: 700*/
 }
@@ -421,7 +422,7 @@ stuff
 }
 
 .jstree-default.jstree-checkbox-no-clicked .jstree-clicked.jstree-hovered {
-    background: #00ff00;
+    background: #aed187;
 }
 
 .jstree-default.jstree-checkbox-no-clicked > .jstree-wholerow-ul .jstree-wholerow-clicked {
@@ -429,7 +430,7 @@ stuff
 }
 
 .jstree-default.jstree-checkbox-no-clicked > .jstree-wholerow-ul .jstree-wholerow-clicked.jstree-wholerow-hovered {
-    background: #00ff00;
+    background: #aed187;
 }
 
 .jstree-default > .jstree-striped {
@@ -453,7 +454,7 @@ stuff
 }
 
 .jstree-default .jstree-wholerow-clicked {
-    background: #00ff00;
+    background: #aed187;
     background: -moz-linear-gradient(top, #beebff 0, #a8e4ff 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #beebff), color-stop(100%, #a8e4ff));
     background: -webkit-linear-gradient(top, #beebff 0, #a8e4ff 100%);
