@@ -220,7 +220,6 @@
     top: 18%;
     border-right: lightgrey;
     border-right-style: solid;
-    /*overflow: auto;*/
     box-shadow: 0 1px 2px #ccc;
 }
 
@@ -228,13 +227,17 @@
     text-align: center;
     position: absolute;
     font-family: Verdana;
-    top: 22%;
-    left: 80.5%;
+    font-size: 90%;
+    color: #979797;
+    top: 21%;
+    left: 80%;
     height: 50%;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-left: 2.5%;
+    padding-right: 1.5%;
+    z-index: 3;
     font-optical-sizing: auto;
     border: none;
+    background-color: white;
 }
 
 .DivClearButton:active {
@@ -247,8 +250,9 @@
     position: absolute;
     top: 28%;
     width: 0.1%;
-    left: 79%;
-    height: 70%;
+    left: 80.5%;
+    height: 50%;
+    z-index: 3;
     background-color: lightgray;
 }
 
@@ -305,7 +309,6 @@
     border-left: lightgray;
     border-left-style: solid;
     border-right: lightgray;
-    /*border-right-style: solid;*/
     border-bottom: lightgray;
     border-bottom-style: solid;
     background-color: #b0d18a;
