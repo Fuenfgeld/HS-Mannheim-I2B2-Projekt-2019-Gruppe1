@@ -337,12 +337,11 @@ Div:link{
     color: black;
     text-decoration: none;
     margin-left: 5px;
-    font-size: large;
+    font-size: medium;
     border-style: solid;
     border-width: 1px;
     border-radius: 3px;
     border-color: #adebad;
-
 }
 
 .jstree-children{
