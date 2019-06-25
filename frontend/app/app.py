@@ -3,13 +3,11 @@ import dash_html_components as html
 from dash.exceptions import PreventUpdate
 from dash.dependencies import Output, Input, State
 
-# imports der Klassen zur Anzeige der Seite
 from frontend.app_layout import layout_banner
 from frontend.app_layout import layout_query_bar
 from frontend.app_layout import layout_navigation_bar
 from frontend.app_layout import layout_results
 
-# imports für Logik und Datenbankanbindung
 from backend.graph_logic import age_graph_builder
 from backend.graph_logic import sex_graph_builder
 from backend.graph_logic import race_graph_builder
@@ -20,7 +18,6 @@ from backend.graph_logic import besides_diagnoses_graph_builder
 from backend.query_bar_logic import query_bar_logic_new
 from backend.result_logic import result_merge
 
-# Objekte zur Anzeige der Seite
 bannerObject = layout_banner.layoutBanner()
 queryBarObject = layout_query_bar.layoutQueryBar()
 navigationBarObject = layout_navigation_bar.layoutNavigationBar()
@@ -30,7 +27,6 @@ resultMergeObject = result_merge.resultMerge()
 
 app = dash.Dash(__name__)
 
-# Visualisierung der Seite
 app.layout = html.Div([
 
     bannerObject.layout_banner,
@@ -60,14 +56,8 @@ app.css.append_css({
 
 @app.callback(
     Output('input-box', 'value'),
-    [Input('javascript', 'event'),
-     Input('clicked-button', 'children')])
-def myfunc(event, clicked):
-    last_clicked = clicked[-3:]
-
-    if last_clicked == 'cle':
-        return '',
-
+    [Input('javascript', 'event')])
+def myfunc(event):
     if event is not None:
         string = str(event)[7:-12]
         return string
@@ -82,6 +72,8 @@ def clear_class(clicked):
     if last_clicked == 'add':
         return ''
 
+
+# callback for visualization
 
 @app.callback([
     Output('criteria1-div', 'hidden'),
@@ -108,6 +100,7 @@ def clear_class(clicked):
 )
 def update_all(clicked, value, hidden):
     last_clicked = clicked[-3:]
+
     if last_clicked == 'nan' or last_clicked == 'del':
         if last_clicked == 'del' or (last_clicked == 'del' and (value is None or value is '')):
             queryBarLogicNewObject.delete_all()
@@ -378,7 +371,8 @@ def update_radiobutton(visibility_state):
         return {'display': 'none'}
 
 
-# Zuordnung der Buttons
+# callback for assignment of the buttons
+
 @app.callback(
     Output('clicked-button', 'children'),
     [Input('del-button', 'n_clicks'),
