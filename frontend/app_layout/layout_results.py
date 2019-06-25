@@ -55,7 +55,8 @@ class layoutResults:
 
     layout_results = html.Div(
         [html.Div(dcc.Graph(id='age-distribution'),
-                  style={'width': '61%', 'display': 'inline-block'}),
+                  style={'width': '61.5%', 'display': 'inline-block', 'border-right': '1px solid',
+                         'border-right-color': 'lightgrey'}),
          html.Div(dcc.Graph(id='sex-distribution'),
                   style={'width': '38%', 'display': 'inline-block', 'border-left': '1px solid',
                          'border-left-color': 'lightgrey'}),
@@ -66,24 +67,3 @@ class layoutResults:
          html.Div(dcc.Graph(id='language-distribution'), style={'width': '50%', 'display': 'inline-block'}),
          html.Div(dcc.Graph(id='race-distribution')),
          ], className="DivErgebnis")
-
-    # style = {'position': 'relative', 'height': '90%', 'width': '100%'}
-    # style = {'width': '50%', 'display': 'inline-block'}
-
-#     html.Div([
-#     html.Div(dcc.Graph(id='sex-distribution'),
-#              style={'width': '29%', 'display': 'inline-block'},
-#              className='DivSexDis'),
-#     html.Div(dcc.Graph(id='race-distribution'),
-#              style={'width': '29%', 'display': 'inline-block'},
-#              className='DivRaceDis'),
-#     html.Div(dcc.Graph(id='age-distribution'), style={'width': '42%', 'display': 'inline-block'}),
-#     html.Div(dcc.Graph(id='income-distribution'),
-#              style={'display': 'inline-block'},
-#
-#              className='DivLanguageDis'),
-#     html.Div(dcc.Graph(id='language-distribution'),
-#              style={'display': 'inline-block'},
-#              className='DivLanguageDis'),
-#     html.Div(dcc.Graph(id='besides-diagnoses'))
-# ], className="DivErgebnis", style={'width': '70%', 'display': 'inline-block'})

@@ -4,11 +4,13 @@ import visdcc
 
 
 class layoutNavigationBar:
-
     layout_search_bar = html.Div([
-        dcc.Input(id='input-box', placeholder='Suche/Eingabe', type='text', className=''),
+        dcc.Input(id='input-box', placeholder='Search',
+                  style={'width': '86%', 'font-family': 'Verdana', 'font-size': '90%', 'margin-top': '1.85%',
+                         'margin-left': '1%', 'background-color': 'white'}, type='text',
+                  className=''),
+        html.Button(id='clear', children='X', n_clicks=0, className='DivClearButton'),
         html.Button(id='add-button', children='Add', n_clicks=0, className='DivAddButton'),
-        html.Button('Clear', id='clear', n_clicks=0),
         visdcc.Run_js(id='javascript', run="""
             var target = document.getElementById('input-box')
             document.getElementById('add-button').addEventListener('click', function(evt) {

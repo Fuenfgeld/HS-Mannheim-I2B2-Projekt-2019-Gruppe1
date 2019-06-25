@@ -17,9 +17,10 @@ def build_language_graph(queryBarLogicNewObject, resultMergeObject):
         labels=['English', 'Spanish', 'German'],
         values=[count_english_all, count_spanish_all, count_german_all],
         textposition='inside',
+        name='Basic population',
         domain={'x': [0.20, 0.80], 'y': [0.20, 0.80]},
         marker=dict(
-            colors=['#788594', '#81b1b1', '#bfdbaa'],
+            colors=['#92a2b5', '#81b1b1', '#bfdbaa'],
             line=dict(color='#a3a3c2', width=0.5)))
 
     count_english = df_patients.language_cd.str.count('english').sum()
@@ -29,9 +30,10 @@ def build_language_graph(queryBarLogicNewObject, resultMergeObject):
         labels=['English', 'Spanish', 'German'],
         values=[count_english, count_spanish, count_german],
         textposition='outside',
+        name='Selected cohort',
         hole=0.7,
         marker=dict(
-            colors=['#788594', '#81b1b1', '#bfdbaa'],
+            colors=['#92a2b5', '#81b1b1', '#bfdbaa'],
             line=dict(color='#a3a3c2', width=0.5)))
 
     return {

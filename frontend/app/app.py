@@ -407,4 +407,4 @@ def update_clicked(del_clicks, add_clicks, con1_clicks, con2_clicks, prev_clicks
 
 
 if __name__ == "__main__":
-    app.run_server(debug=False, port=5001)
+    app.run_server(debug=True, port=5001)
