@@ -55,6 +55,34 @@ app.css.append_css({
     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
 })
 
+
+# callback for event
+
+@app.callback(
+    Output('input-box', 'value'),
+    [Input('javascript', 'event'),
+     Input('clicked-button', 'children')])
+def myfunc(event, clicked):
+    last_clicked = clicked[-3:]
+
+    if last_clicked == 'cle':
+        return '',
+
+    if event is not None:
+        string = str(event)[7:-12]
+        return string
+
+
+@app.callback(
+    Output('input-box', 'className'),
+    [Input('clicked-button', 'children')]
+)
+def clear_class(clicked):
+    last_clicked = clicked[-3:]
+    if last_clicked == 'add':
+        return ''
+
+
 @app.callback([
     Output('criteria1-div', 'hidden'),
     Output('criteria1-div', 'children'),
@@ -379,4 +407,4 @@ def update_clicked(del_clicks, add_clicks, con1_clicks, con2_clicks, prev_clicks
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True, port=5001)
+    app.run_server(debug=False, port=5001)
