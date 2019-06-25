@@ -14,42 +14,42 @@ def build_language_graph(queryBarLogicNewObject, resultMergeObject):
     count_spanish_all = df_patients_all.language_cd.str.count('spanish').sum()
     count_german_all = df_patients_all.language_cd.str.count('german').sum()
     trace1 = go.Pie(
-        labels=['Englisch', 'Spanisch', 'Deutsch'],
+        labels=['English', 'Spanish', 'German'],
         values=[count_english_all, count_spanish_all, count_german_all],
         textposition='inside',
         domain={'x': [0.20, 0.80], 'y': [0.20, 0.80]},
         marker=dict(
-            colors=['#32544D', '#E8F5AC', '#AFD287'],
+            colors=['#788594', '#81b1b1', '#bfdbaa'],
             line=dict(color='#a3a3c2', width=0.5)))
 
     count_english = df_patients.language_cd.str.count('english').sum()
     count_spanish = df_patients.language_cd.str.count('spanish').sum()
     count_german = df_patients.language_cd.str.count('german').sum()
     trace2 = go.Pie(
-        labels=['Englisch', 'Spanisch', 'Deutsch'],
+        labels=['English', 'Spanish', 'German'],
         values=[count_english, count_spanish, count_german],
         textposition='outside',
         hole=0.7,
         marker=dict(
-            colors=['#32544D', '#E8F5AC', '#AFD287'],
+            colors=['#788594', '#81b1b1', '#bfdbaa'],
             line=dict(color='#a3a3c2', width=0.5)))
 
     return {
         'data': [trace1, trace2],
         'layout': go.Layout(
-            title='Muttersprache',
+            title='Language',
             annotations=[
                 dict(
                     font={'size': 12},
                     showarrow=False,
-                    text="Innen: Grundgesamtheit",
+                    text="Inside: Basic population",
                     x=0.50,
                     y=0
                 ),
                 dict(
                     font={'size': 12},
                     showarrow=False,
-                    text="Außen: Aktuelle Kohorte",
+                    text="Outside: Selected cohort",
                     x=0.50,
                     y=-0.1
                 )

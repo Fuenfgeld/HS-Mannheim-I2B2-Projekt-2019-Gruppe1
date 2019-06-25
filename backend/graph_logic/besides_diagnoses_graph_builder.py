@@ -52,7 +52,7 @@ def build_besides_diagnoses_graph(queryBarLogicNewObject, resultMergeObject):
     return {
         'data': [trace1],
         'layout': go.Layout(
-            title='Häufige Erkrankungen/Nebendiagnosen',
+            title='Common diseases/Secondary diagnoses',
             xaxis={},
             margin=go.layout.Margin(l=400, r=20),
             yaxis=go.layout.YAxis(automargin=True, autorange='reversed')

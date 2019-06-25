@@ -13,24 +13,24 @@ def build_income_graph(queryBarLogicNewObject, resultMergeObject):
     income2_all = df_patients_all.income_cd.str.count('Medium').sum()
     income3_all = df_patients_all.income_cd.str.count('High').sum()
     trace1 = go.Pie(
-        labels=['Niedrig', 'Mittel', 'Hoch'],
+        labels=['Low', 'Medium', 'High'],
         values=[income1_all, income2_all, income3_all],
         textposition='inside',
         domain={'x': [0.20, 0.80], 'y': [0.20, 0.80]},
         marker=dict(
-            colors=['#32544D', '#E8F5AC', '#AFD287'],
+            colors=['#2e7d7c', '#c6df76', '#93c371'],
             line=dict(color='#a3a3c2', width=0.5)))
 
     income1 = df_patients.income_cd.str.count('Low').sum()
     income2 = df_patients.income_cd.str.count('Medium').sum()
     income3 = df_patients.income_cd.str.count('High').sum()
     trace2 = go.Pie(
-        labels=['Niedrig', 'Mittel', 'Hoch'],
+        labels=['Low', 'Medium', 'High'],
         values=[income1, income2, income3],
         textposition='outside',
         hole=0.7,
         marker=dict(
-            colors=['#32544D', '#E8F5AC', '#AFD287'],
+            colors=['#2e7d7c', '#c6df76', '#93c371'],
             line=dict(color='#a3a3c2', width=0.5),
 
         ))
@@ -38,19 +38,19 @@ def build_income_graph(queryBarLogicNewObject, resultMergeObject):
     return {
         'data': [trace1, trace2],
         'layout': go.Layout(
-            title='Einkommen',
+            title='Income',
             annotations=[
                 dict(
                     font={'size': 12},
                     showarrow=False,
-                    text="Innen: Grundgesamtheit",
+                    text="Inside: Basic population",
                     x=0.50,
                     y=0
                 ),
                 dict(
                     font={'size': 12},
                     showarrow=False,
-                    text="Außen: Aktuelle Kohorte",
+                    text="Outside: Selected cohort",
                     x=0.50,
                     y=-0.1
                 )

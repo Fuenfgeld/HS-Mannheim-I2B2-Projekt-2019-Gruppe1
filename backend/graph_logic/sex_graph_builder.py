@@ -13,10 +13,10 @@ def build_sex_graph(queryBarLogicNewObject, resultMergeObject):
 
     return {
         'data': [go.Pie(
-            labels=['Weiblich', 'Männlich'],
+            labels=['Female', 'Male'],
             values=[count_female,
                     count_male],
-            marker=dict(colors=['#32544D', '#AFD287'],
+            marker=dict(colors=['#569797', '#495d6f'],
                         line=dict(color='#a3a3c2', width=0.5)),
             textfont={'size': 15},
             textposition='outside',
@@ -26,9 +26,10 @@ def build_sex_graph(queryBarLogicNewObject, resultMergeObject):
         ],
 
         'layout': go.Layout(
+            title='Gender',
             legend=dict(
                 x=0,
-                y=1.0,
+                y=1.0
             ),
             annotations=[
                 dict(

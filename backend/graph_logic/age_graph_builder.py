@@ -13,51 +13,51 @@ def build_age_graph(queryBarLogicNewObject, resultMergeObject):
     age_until_9_over_all = (
                 ((df_over_all['age_in_years_num']).ge(0)) & ((df_over_all['age_in_years_num']).le(10))).sum()
     age_until_17_over_all = (
-            ((df_over_all['age_in_years_num']).ge(10)) & ((df_over_all['age_in_years_num']).le(20))).sum()
+            ((df_over_all['age_in_years_num']).ge(11)) & ((df_over_all['age_in_years_num']).le(20))).sum()
     age_until_34_over_all = (
-            ((df_over_all['age_in_years_num']).ge(20)) & ((df_over_all['age_in_years_num']).le(30))).sum()
+            ((df_over_all['age_in_years_num']).ge(21)) & ((df_over_all['age_in_years_num']).le(30))).sum()
     age_until_44_over_all = (
-            ((df_over_all['age_in_years_num']).ge(30)) & ((df_over_all['age_in_years_num']).le(40))).sum()
+            ((df_over_all['age_in_years_num']).ge(31)) & ((df_over_all['age_in_years_num']).le(40))).sum()
     age_until_54_over_all = (
-            ((df_over_all['age_in_years_num']).ge(40)) & ((df_over_all['age_in_years_num']).le(50))).sum()
+            ((df_over_all['age_in_years_num']).ge(41)) & ((df_over_all['age_in_years_num']).le(50))).sum()
     age_until_64_over_all = (
-            ((df_over_all['age_in_years_num']).ge(50)) & ((df_over_all['age_in_years_num']).le(60))).sum()
+            ((df_over_all['age_in_years_num']).ge(51)) & ((df_over_all['age_in_years_num']).le(60))).sum()
     age_until_74_over_all = (
-            ((df_over_all['age_in_years_num']).ge(60)) & ((df_over_all['age_in_years_num']).le(70))).sum()
+            ((df_over_all['age_in_years_num']).ge(61)) & ((df_over_all['age_in_years_num']).le(70))).sum()
     age_until_84_over_all = (
-            ((df_over_all['age_in_years_num']).ge(70)) & ((df_over_all['age_in_years_num']).le(80))).sum()
-    age_greater_85_over_all = ((df_over_all['age_in_years_num']).ge(80)).sum()
+            ((df_over_all['age_in_years_num']).ge(71)) & ((df_over_all['age_in_years_num']).le(80))).sum()
+    age_greater_85_over_all = ((df_over_all['age_in_years_num']).ge(81)).sum()
     trace1 = go.Bar(
-        x=['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '>=80'],
+        x=['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '>80'],
         y=[age_until_9_over_all, age_until_17_over_all, age_until_34_over_all, age_until_44_over_all,
            age_until_54_over_all, age_until_64_over_all, age_until_74_over_all,
            age_until_84_over_all,
            age_greater_85_over_all],
-        name='Grundgesamtheit',
+        name='Basic population',
         marker=dict(
-            color=['#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC', '#E8F5AC',
-                   '#E8F5AC'],
+            color=['#1d344d', '#1d3441', '#1d3441', '#1d3441', '#1d3441', '#1d3441', '#1d3441', '#1d3441',
+                   '#1d3441'],
             line=dict(color='#a3a3c2', width=0.5)
         ))
 
     age_until_9 = (((df_patients['age_in_years_num']).ge(0)) & ((df_patients['age_in_years_num']).le(10))).sum()
-    age_until_17 = (((df_patients['age_in_years_num']).ge(10)) & ((df_patients['age_in_years_num']).le(20))).sum()
-    age_until_34 = (((df_patients['age_in_years_num']).ge(20)) & ((df_patients['age_in_years_num']).le(30))).sum()
-    age_until_44 = (((df_patients['age_in_years_num']).ge(30)) & ((df_patients['age_in_years_num']).le(40))).sum()
-    age_until_54 = (((df_patients['age_in_years_num']).ge(40)) & ((df_patients['age_in_years_num']).le(50))).sum()
-    age_until_64 = (((df_patients['age_in_years_num']).ge(50)) & ((df_patients['age_in_years_num']).le(60))).sum()
-    age_until_74 = (((df_patients['age_in_years_num']).ge(60)) & ((df_patients['age_in_years_num']).le(70))).sum()
-    age_until_84 = (((df_patients['age_in_years_num']).ge(70)) & ((df_patients['age_in_years_num']).le(80))).sum()
-    age_greater_85 = ((df_patients['age_in_years_num']).ge(80)).sum()
+    age_until_17 = (((df_patients['age_in_years_num']).ge(11)) & ((df_patients['age_in_years_num']).le(20))).sum()
+    age_until_34 = (((df_patients['age_in_years_num']).ge(21)) & ((df_patients['age_in_years_num']).le(30))).sum()
+    age_until_44 = (((df_patients['age_in_years_num']).ge(31)) & ((df_patients['age_in_years_num']).le(40))).sum()
+    age_until_54 = (((df_patients['age_in_years_num']).ge(41)) & ((df_patients['age_in_years_num']).le(50))).sum()
+    age_until_64 = (((df_patients['age_in_years_num']).ge(51)) & ((df_patients['age_in_years_num']).le(60))).sum()
+    age_until_74 = (((df_patients['age_in_years_num']).ge(61)) & ((df_patients['age_in_years_num']).le(70))).sum()
+    age_until_84 = (((df_patients['age_in_years_num']).ge(71)) & ((df_patients['age_in_years_num']).le(80))).sum()
+    age_greater_85 = ((df_patients['age_in_years_num']).ge(81)).sum()
     trace2 = go.Bar(
-        x=['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '>=80'],
+        x=['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '>80'],
         y=[age_until_9, age_until_17, age_until_34, age_until_44, age_until_54, age_until_64, age_until_74,
            age_until_84,
            age_greater_85],
-        name='Aktuelle Kohorte',
+        name='Selected cohort',
         marker=dict(
-            color=['#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D', '#32544D',
-                   '#32544D'],
+            color=['#b0d18a', '#b0d18a', '#b0d18a', '#b0d18a', '#b0d18a', '#b0d18a', '#b0d18a', '#b0d18a',
+                   '#b0d18a'], ##32544D
             line=dict(color='#a3a3c2', width=0.5)
         ))
 
@@ -66,12 +66,12 @@ def build_age_graph(queryBarLogicNewObject, resultMergeObject):
 
         'layout': go.Layout(
             barmode='relative',
-            title='Altersverteilung',
+            title='Age',
             xaxis=dict(
-                title='Jahre',
+                title='Years',
             ),
             yaxis=dict(
-                title='Anzahl',
+                title='Number of patients',
             ),
             legend=dict(
                 x=0.6,

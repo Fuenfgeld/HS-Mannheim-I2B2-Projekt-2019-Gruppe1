@@ -12,37 +12,37 @@ class layoutResults:
         html.Div(children=[
             dcc.Checklist(
                 id='checklistAGE',
-                options=[{'label': 'Alter', 'value': 'on'}],
+                options=[{'label': 'Age', 'value': 'on'}],
                 values=['on'],
                 style={'display': 'inline-block'},
                 className='DivCheckbox'),
             dcc.Checklist(
                 id='checklistSEX',
-                options=[{'label': 'Geschlecht', 'value': 'on'}],
+                options=[{'label': 'Gender', 'value': 'on'}],
                 values=['on'],
                 style={'display': 'inline-block'},
                 className='DivCheckbox'),
             dcc.Checklist(
                 id='checklistBesides',
-                options=[{'label': 'Häufige Erk./Nebendiag.', 'value': 'on'}],
+                options=[{'label': 'Common dis./Secondary diag.', 'value': 'on'}],
                 style={'display': 'inline-block'},
                 values=['on'],
                 className='DivCheckbox'),
             dcc.Checklist(
                 id='checklistIncome',
-                options=[{'label': 'Einkommen', 'value': 'on'}],
+                options=[{'label': 'Income', 'value': 'on'}],
                 values=['off'],
                 style={'display': 'inline-block'},
                 className='DivCheckbox'),
             dcc.Checklist(
                 id='checklistLanguage',
-                options=[{'label': 'Sprache', 'value': 'on'}],
+                options=[{'label': 'Language', 'value': 'on'}],
                 values=['off'],
                 style={'display': 'inline-block'},
                 className='DivCheckbox'),
             dcc.Checklist(
                 id='checklistRace',
-                options=[{'label': 'Herkunft', 'value': 'on'}],
+                options=[{'label': 'Ethnic origin', 'value': 'on'}],
                 values=['off'],
                 style={'display': 'inline-block'},
                 className='DivCheckbox'),
@@ -54,10 +54,15 @@ class layoutResults:
     ], className='DivGesamtanzahl')
 
     layout_results = html.Div(
-        [html.Div(dcc.Graph(id='age-distribution'), style={'width': '62%', 'display': 'inline-block'}),
-         html.Div(dcc.Graph(id='sex-distribution'), style={'width': '38%', 'display': 'inline-block'}),
+        [html.Div(dcc.Graph(id='age-distribution'),
+                  style={'width': '61%', 'display': 'inline-block'}),
+         html.Div(dcc.Graph(id='sex-distribution'),
+                  style={'width': '38%', 'display': 'inline-block', 'border-left': '1px solid',
+                         'border-left-color': 'lightgrey'}),
          html.Div(dcc.Graph(id='besides-diagnoses')),
-         html.Div(dcc.Graph(id='income-distribution'), style={'width': '50%', 'display': 'inline-block'}),
+         html.Div(dcc.Graph(id='income-distribution'),
+                  style={'width': '49.5%', 'border-right': '1px solid', 'border-right-color': 'lightgrey',
+                         'display': 'inline-block'}),
          html.Div(dcc.Graph(id='language-distribution'), style={'width': '50%', 'display': 'inline-block'}),
          html.Div(dcc.Graph(id='race-distribution')),
          ], className="DivErgebnis")
